@@ -403,6 +403,13 @@ textarea:focus-visible {
 
 .city-container {
   height: 476px;
+  position: relative;
+  overflow: hidden;
+  background-color: #fdfdfd;
+  background-image:
+    linear-gradient(rgba(151, 28, 38, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(151, 28, 38, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 .panel-empty {
@@ -420,7 +427,84 @@ textarea:focus-visible {
 }
 
 .building-shape.active {
-  box-shadow: 0 -5px 25px -5px rgba(151, 28, 38, 0.35);
+  box-shadow: 0 -3px 14px -8px rgba(151, 28, 38, 0.28);
+  animation: building-glow-pulse 2.4s ease-in-out infinite;
+}
+
+.building-shape .window-dot {
+  position: relative;
+  border-radius: 2px;
+  animation: window-flicker 4s ease-in-out infinite;
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.building-shape.active .window-dot {
+  background-color: #ffd64a;
+  box-shadow:
+    0 0 8px rgba(255, 214, 74, 0.72),
+    inset 0 0 0 1px rgba(255, 244, 188, 0.8);
+  animation-name: window-lit-flicker;
+  transform: scale(1.08);
+}
+
+.building-shape.active .window-dot.window-person::before,
+.building-shape.active .window-dot.window-person::after {
+  position: absolute;
+  left: 50%;
+  content: "";
+  background: rgba(25, 18, 14, 0.82);
+  transform: translateX(-50%);
+}
+
+.building-shape.active .window-dot.window-person::before {
+  top: 18%;
+  width: 34%;
+  height: 34%;
+  border-radius: 999px;
+}
+
+.building-shape.active .window-dot.window-person::after {
+  bottom: 4%;
+  width: 48%;
+  height: 36%;
+  border-radius: 999px 999px 2px 2px;
+}
+
+@keyframes building-glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 -3px 14px -8px rgba(151, 28, 38, 0.28);
+  }
+
+  50% {
+    box-shadow: 0 -5px 18px -9px rgba(151, 28, 38, 0.38);
+  }
+}
+
+@keyframes window-flicker {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@keyframes window-lit-flicker {
+  0%,
+  100% {
+    opacity: 0.78;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .projects-section {
@@ -973,6 +1057,11 @@ textarea:focus-visible {
 
   .terminal-bg {
     display: none;
+  }
+
+  .building-shape.active,
+  .building-shape .window-dot {
+    animation: none !important;
   }
 
   .progress-fill {

@@ -13,7 +13,8 @@ import {
   Workflow,
   Wrench,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useInView, useReducedMotion } from "framer-motion";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { serviceCategories, works } from "@/data/dev-content";
 import { getWhatsAppWorkLink } from "@/lib/whatsapp";
@@ -32,6 +33,10 @@ const icons: Record<string, LucideIcon> = {
 
 export function WorksSection() {
   const [activeId, setActiveId] = useState<string | null>(null);
+  const cityRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const isCityInView = useInView(cityRef, { amount: 0.3, once: true });
+  const [hasBuilt, setHasBuilt] = useState(false);
   const active = serviceCategories.find((item) => item.id === activeId);
   const heights = useMemo(
     () =>
@@ -48,6 +53,24 @@ export function WorksSection() {
     [activeId],
   );
 
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setHasBuilt(true);
+      return;
+    }
+
+    if (!isCityInView || hasBuilt) {
+      return;
+    }
+
+    const buildDuration = (serviceCategories.length - 1) * 60 + 550;
+    const timeout = window.setTimeout(() => {
+      setHasBuilt(true);
+    }, buildDuration);
+
+    return () => window.clearTimeout(timeout);
+  }, [hasBuilt, isCityInView, prefersReducedMotion]);
+
   return (
     <section
       id="works"
@@ -57,11 +80,24 @@ export function WorksSection() {
         <SectionTitle title={works.title} subtitle={works.subtitle} />
 
         <div className="relative mt-16 flex flex-col gap-8 lg:flex-row lg:items-start">
-          <div className="city-container relative w-full shrink-0 rounded-2xl border border-[var(--section-border)] bg-white/80 p-6 shadow-[0_24px_70px_-46px_rgba(151,28,38,0.55)] lg:w-[60%] md:p-8">
+          <div
+            ref={cityRef}
+            className="city-container relative w-full shrink-0 rounded-2xl border border-[var(--section-border)] p-6 shadow-[0_24px_70px_-46px_rgba(151,28,38,0.55)] lg:w-[60%] md:p-8"
+          >
             <div className="grid h-[280px] grid-cols-4 gap-2 sm:h-[350px] md:h-[380px] md:gap-4 lg:grid-cols-8">
-              {serviceCategories.map((category) => {
+              {serviceCategories.map((category, categoryIndex) => {
                 const Icon = icons[category.icon] ?? Building2;
                 const isActive = activeId === category.id;
+                const shouldBuild =
+                  prefersReducedMotion || hasBuilt || isCityInView;
+                const height = shouldBuild ? heights[category.id] : 8;
+                const buildDelay =
+                  !prefersReducedMotion && isCityInView && !hasBuilt
+                    ? `${categoryIndex * 60}ms`
+                    : "0ms";
+                const firstPersonWindow = categoryIndex % 6;
+                const secondPersonWindow =
+                  (firstPersonWindow + 3 + (categoryIndex % 2)) % 6;
                 return (
                   <button
                     key={category.id}
@@ -78,17 +114,35 @@ export function WorksSection() {
                     <div
                       className={
                         isActive
-                          ? "building-shape active z-10 mx-auto flex w-full max-w-[60px] scale-105 flex-col items-center justify-center overflow-hidden rounded-t-lg border-l-2 border-r-2 border-t-2 border-dev bg-[var(--brand-red-tint)] shadow-dev md:max-w-[80px]"
+                          ? "building-shape active z-10 mx-auto flex w-full max-w-[60px] scale-105 flex-col items-center justify-center overflow-hidden rounded-t-lg border-l-2 border-r-2 border-t-2 border-dev bg-[var(--brand-red-tint)] md:max-w-[80px]"
                           : "building-shape mx-auto flex w-full max-w-[60px] flex-col items-center justify-center overflow-hidden rounded-t-lg border border-[var(--section-border)] bg-white hover:border-dev/50 hover:bg-[var(--brand-red-tint)] md:max-w-[80px]"
                       }
-                      style={{ height: `${heights[category.id]}%` }}
+                      style={{
+                        height: `${height}%`,
+                        transitionDelay: buildDelay,
+                      }}
                     >
                       <Icon className="mb-2 hidden h-6 w-6 text-gray-400 transition-colors group-hover:text-dev md:block" />
-                      <div className="grid grid-cols-2 gap-1 px-2 pb-2 opacity-40 md:grid-cols-3 md:gap-2 md:pb-4">
+                      <div
+                        className={
+                          isActive
+                            ? "grid grid-cols-2 gap-1 px-2 pb-2 opacity-100 md:grid-cols-3 md:gap-2 md:pb-4"
+                            : "grid grid-cols-2 gap-1 px-2 pb-2 opacity-40 md:grid-cols-3 md:gap-2 md:pb-4"
+                        }
+                      >
                         {Array.from({ length: 6 }).map((_, index) => (
                           <div
                             key={index}
-                            className="h-1.5 w-1.5 rounded-sm bg-dev-light/70 md:h-2 md:w-2"
+                            className={`window-dot h-1.5 w-1.5 rounded-sm bg-dev-light/70 md:h-2 md:w-2 ${
+                              isActive &&
+                              (index === firstPersonWindow ||
+                                index === secondPersonWindow)
+                                ? "window-person"
+                                : ""
+                            }`}
+                            style={{
+                              animationDelay: `${((categoryIndex * 7 + index * 3) % 17) * 0.18}s`,
+                            }}
                           />
                         ))}
                       </div>
@@ -101,7 +155,11 @@ export function WorksSection() {
           </div>
 
           <div className="panel-container w-full overflow-hidden rounded-2xl border border-[var(--section-border)] bg-white shadow-[0_24px_70px_-46px_rgba(151,28,38,0.65)] lg:w-[40%]">
-            {active ? <ActivePanel category={active} /> : <EmptyPanel />}
+            {active ? (
+              <ActivePanel key={active.id} category={active} />
+            ) : (
+              <EmptyPanel />
+            )}
           </div>
         </div>
       </div>
