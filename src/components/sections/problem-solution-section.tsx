@@ -38,7 +38,7 @@ export function ProblemSolutionSection() {
           <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase text-white backdrop-blur-sm">
             {problemSolution.badge}
           </div>
-          <h2 className="text-4xl font-extrabold md:text-6xl">
+          <h2 className="font-heading text-4xl font-normal md:text-6xl">
             {problemSolution.title}
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-white/78 md:text-xl">

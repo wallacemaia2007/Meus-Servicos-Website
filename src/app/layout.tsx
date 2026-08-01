@@ -1,7 +1,11 @@
 import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Spline_Sans_Mono } from "next/font/google";
+import {
+  DM_Serif_Display,
+  Plus_Jakarta_Sans,
+  Spline_Sans_Mono,
+} from "next/font/google";
 import { Toaster } from "sonner";
 
 import { QueryProvider } from "@/components/common/query-provider";
@@ -10,9 +14,18 @@ import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { site } from "@/data/dev-content";
 
-const spaceGrotesk = Space_Grotesk({
+const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-dm-serif-display",
+  display: "swap",
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-plus-jakarta-sans",
   display: "swap",
 });
 
@@ -71,7 +84,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="theme-dev" suppressHydrationWarning>
       <body
-        className={`${spaceGrotesk.variable} ${splineSansMono.variable} min-h-screen bg-dev-bg text-dev-text antialiased`}
+        className={`${dmSerifDisplay.variable} ${plusJakartaSans.variable} ${splineSansMono.variable} min-h-screen bg-dev-bg text-dev-text antialiased`}
       >
         <ThemeProvider>
           <QueryProvider>

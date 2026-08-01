@@ -47,7 +47,7 @@ export function Header() {
                 className="h-full w-full object-cover"
               />
             </span>
-            <span className="text-sm font-bold text-[var(--brand-ink)] transition-colors group-hover:text-dev">
+            <span className="font-heading text-xl font-normal leading-none text-[var(--brand-ink)] transition-colors group-hover:text-dev">
               Maiawall
             </span>
           </button>
@@ -59,7 +59,7 @@ export function Header() {
                   <button
                     type="button"
                     onClick={() => scrollTo(item.href)}
-                    className="relative text-sm font-semibold text-[var(--brand-ink-muted)] transition-colors duration-200 after:absolute after:bottom-[-3px] after:left-0 after:h-[2px] after:w-0 after:bg-dev after:transition-all after:duration-300 hover:text-dev hover:after:w-full"
+                    className="font-body relative text-sm font-semibold text-[var(--brand-ink-muted)] transition-colors duration-200 after:absolute after:bottom-[-3px] after:left-0 after:h-[2px] after:w-0 after:bg-dev after:transition-all after:duration-300 hover:text-dev hover:after:w-full"
                   >
                     {item.label}
                   </button>
@@ -73,7 +73,7 @@ export function Header() {
               href={links.cv}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-border)] px-4 py-1.5 text-sm font-semibold text-[var(--brand-ink)] transition-all duration-200 hover:border-dev hover:text-dev"
+              className="font-body inline-flex items-center gap-2 rounded-full border border-[var(--brand-border)] px-4 py-1.5 text-sm font-semibold text-[var(--brand-ink)] transition-all duration-200 hover:border-dev hover:text-dev"
             >
               <Download className="h-4 w-4" />
               Baixar CV
@@ -81,7 +81,7 @@ export function Header() {
             <button
               type="button"
               onClick={() => scrollTo("#contact")}
-              className="inline-flex items-center gap-2 rounded-full bg-dev px-5 py-1.5 text-sm font-bold !text-white shadow-dev transition-all duration-200 hover:-translate-y-0.5 hover:bg-dev-dark [&_*]:!text-white"
+              className="font-body inline-flex items-center gap-2 rounded-full bg-dev px-5 py-1.5 text-sm font-bold !text-white shadow-dev transition-all duration-200 hover:-translate-y-0.5 hover:bg-dev-dark [&_*]:!text-white"
             >
               <MessageCircle className="h-4 w-4" />
               Fale comigo
@@ -126,7 +126,7 @@ export function Header() {
                 className="h-full w-full object-cover"
               />
             </span>
-            <span className="text-sm font-bold leading-tight">
+            <span className="font-heading text-xl font-normal leading-tight">
               Maiawall
               <br />
               Wallace Maia
@@ -148,7 +148,7 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => scrollTo(item.href)}
-                className="flex w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-[var(--brand-ink-muted)] transition-all duration-200 hover:bg-[var(--brand-red-tint)] hover:text-[var(--brand-red)]"
+                className="font-body flex w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-[var(--brand-ink-muted)] transition-all duration-200 hover:bg-[var(--brand-red-tint)] hover:text-[var(--brand-red)]"
               >
                 {item.label}
               </button>
@@ -160,7 +160,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => scrollTo("#contact")}
-            className="flex w-full items-center justify-center rounded-xl bg-dev px-5 py-3 text-sm font-bold !text-white transition-all active:scale-[0.98]"
+            className="font-body flex w-full items-center justify-center rounded-xl bg-dev px-5 py-3 text-sm font-bold !text-white transition-all active:scale-[0.98]"
           >
             Fale comigo
           </button>
@@ -168,7 +168,7 @@ export function Header() {
             href={links.cv}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex w-full items-center justify-center rounded-xl border border-[var(--brand-border)] bg-white px-5 py-3 text-sm font-bold text-[var(--brand-red)] transition-all hover:bg-[var(--brand-red-tint)]"
+            className="font-body flex w-full items-center justify-center rounded-xl border border-[var(--brand-border)] bg-white px-5 py-3 text-sm font-bold text-[var(--brand-red)] transition-all hover:bg-[var(--brand-red-tint)]"
           >
             Baixar CV
           </Link>
@@ -184,7 +184,7 @@ export function Header() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-lg border border-[var(--brand-border)] bg-white px-3 py-2 text-center text-xs font-semibold text-[var(--brand-ink-muted)] transition-colors hover:bg-[var(--brand-red-tint)] hover:text-[var(--brand-red)]"
+                className="font-body rounded-lg border border-[var(--brand-border)] bg-white px-3 py-2 text-center text-xs font-semibold text-[var(--brand-ink-muted)] transition-colors hover:bg-[var(--brand-red-tint)] hover:text-[var(--brand-red)]"
               >
                 {label}
               </Link>

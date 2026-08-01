@@ -21,6 +21,7 @@ const HeroParticles = dynamic(
 
 export function HeroSection() {
   const [avatar, setAvatar] = useState(hero.avatar);
+  const [heroTitlePrefix, heroTitleHighlight] = hero.title.split("vender mais");
 
   return (
     <section
@@ -65,12 +66,16 @@ export function HeroSection() {
             </motion.div>
 
             <motion.h1
-              className="text-4xl font-black leading-tight text-[var(--brand-ink)] sm:text-5xl lg:text-6xl"
+              className="font-heading text-4xl font-normal leading-tight text-[var(--brand-ink)] sm:text-5xl lg:text-6xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
-              {hero.title}
+              {heroTitlePrefix}
+              <span className="italic text-[var(--brand-red)]">
+                vender mais
+              </span>
+              {heroTitleHighlight}
             </motion.h1>
 
             <motion.p

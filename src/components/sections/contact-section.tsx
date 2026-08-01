@@ -61,7 +61,7 @@ export function ContactSection() {
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-black text-[var(--brand-ink)] md:text-5xl">
+          <h2 className="font-heading text-3xl font-normal text-[var(--brand-ink)] md:text-5xl">
             {contactCopy.title}
           </h2>
           <p className="mt-4 text-base text-[var(--brand-ink-muted)] md:text-lg">
@@ -72,7 +72,7 @@ export function ContactSection() {
         <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-2">
           <div className="order-2 lg:order-1">
             <div className="rounded-2xl border border-[var(--section-border)] bg-white p-6 shadow-[0_24px_70px_-50px_rgba(151,28,38,0.7)] md:p-8">
-              <h3 className="mb-6 text-xl font-bold text-[var(--brand-ink)]">
+              <h3 className="font-body mb-6 text-xl font-bold text-[var(--brand-ink)]">
                 {contactCopy.formTitle}
               </h3>
               <form onSubmit={onSubmit} className="space-y-5">

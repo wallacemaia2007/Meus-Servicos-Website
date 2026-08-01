@@ -65,7 +65,7 @@ export function StackSection() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-black text-white md:text-5xl">
+          <h2 className="font-heading text-3xl font-normal text-white md:text-5xl">
             {stackCopy.title}
           </h2>
           <p className="mt-4 text-base text-white/72 md:text-lg">
@@ -132,7 +132,7 @@ export function StackSection() {
                     />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="truncate text-sm font-bold text-[var(--brand-ink)]">
+                    <h3 className="font-body truncate text-sm font-bold text-[var(--brand-ink)]">
                       {skill.name}
                     </h3>
                   </div>
@@ -200,7 +200,7 @@ function StackHeroCard({
           />
           {label}
         </span>
-        <h3 className="mb-3 text-2xl font-black leading-tight text-[var(--brand-ink)] sm:text-3xl">
+        <h3 className="font-heading mb-3 text-2xl font-normal leading-tight text-[var(--brand-ink)] sm:text-3xl">
           Stack
           <br />
           <span style={{ color: light }}>{title}</span>

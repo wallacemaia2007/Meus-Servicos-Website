@@ -176,7 +176,7 @@ function ActivePanel({ category }: { category: ServiceCategory }) {
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--brand-red-tint)] text-dev">
           <Icon className="h-5 w-5" />
         </div>
-        <h3 className="text-lg font-bold leading-tight text-[var(--brand-ink)] md:text-xl">
+        <h3 className="font-body text-lg font-bold leading-tight text-[var(--brand-ink)] md:text-xl">
           {category.name}
         </h3>
       </div>
@@ -245,7 +245,7 @@ function SectionTitle({
 }) {
   return (
     <div className="mx-auto max-w-3xl text-center">
-      <h2 className="text-3xl font-black text-[var(--brand-ink)] md:text-5xl">
+      <h2 className="font-heading text-3xl font-normal text-[var(--brand-ink)] md:text-5xl">
         {title}
       </h2>
       <p className="mt-4 text-base text-[var(--brand-ink-muted)] md:text-lg">

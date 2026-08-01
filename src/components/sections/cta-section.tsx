@@ -99,7 +99,7 @@ export function CtaSection() {
             {cta.tag}
           </span>
         </div>
-        <h2 className="text-3xl font-black leading-[1.1] text-white sm:text-4xl md:text-5xl lg:text-6xl">
+        <h2 className="font-heading text-3xl font-normal leading-[1.1] text-white sm:text-4xl md:text-5xl lg:text-6xl">
           {cta.title}
           <br />
           <span className="text-[var(--brand-red-tint)]">{cta.accent}</span>

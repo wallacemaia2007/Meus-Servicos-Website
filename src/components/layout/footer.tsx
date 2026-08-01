@@ -46,7 +46,7 @@ export function Footer() {
           </section>
 
           <nav className="space-y-4" aria-label="Links rápidos">
-            <h3 className="flex items-center gap-2 text-lg font-semibold">
+            <h3 className="font-body flex items-center gap-2 text-lg font-semibold">
               <span className="h-6 w-1 rounded bg-dev" />
               Links Rápidos
             </h3>
@@ -65,7 +65,7 @@ export function Footer() {
           </nav>
 
           <address className="space-y-4 not-italic">
-            <h3 className="flex items-center gap-2 text-lg font-semibold">
+            <h3 className="font-body flex items-center gap-2 text-lg font-semibold">
               <span className="h-6 w-1 rounded bg-dev" />
               Contato
             </h3>
