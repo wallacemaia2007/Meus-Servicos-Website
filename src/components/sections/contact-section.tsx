@@ -1,0 +1,267 @@
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { Mail, MapPin } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+
+import {
+  contactCopy,
+  contactInfo,
+  links,
+  socialLinks,
+} from "@/data/dev-content";
+import { contactService } from "@/services/contact-service";
+import type { ContactPayload } from "@/types";
+
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Textarea } from "../ui/textarea";
+
+const contactSchema = z.object({
+  name: z.string().min(3, "Mínimo de 3 caracteres"),
+  email: z.string().email("Email inválido"),
+  subject: z.string().optional(),
+  message: z.string().min(10, "Mínimo de 10 caracteres"),
+});
+
+type ContactFormValues = z.infer<typeof contactSchema>;
+
+export function ContactSection() {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactFormValues>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: { name: "", email: "", subject: "", message: "" },
+  });
+
+  const mutation = useMutation({
+    mutationFn: (payload: ContactPayload) => contactService.send(payload),
+    onSuccess: () => {
+      toast.success(contactCopy.toastSuccess);
+      reset();
+    },
+    onError: () => {
+      toast.error(contactCopy.toastError);
+    },
+  });
+
+  const onSubmit = handleSubmit((values) => mutation.mutate(values));
+
+  return (
+    <section
+      id="contact"
+      className="bg-gray-50 py-16 transition-colors duration-300 md:py-24 dark:bg-dev-bg"
+    >
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl font-black text-gray-900 md:text-5xl dark:text-white">
+            {contactCopy.title}
+          </h2>
+          <p className="mt-4 text-base text-gray-500 md:text-lg dark:text-dev-text-muted">
+            {contactCopy.subtitle}
+          </p>
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-2">
+          <div className="order-2 lg:order-1">
+            <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm md:p-8 dark:border-dev-bg-elevated dark:bg-dev-bg">
+              <h3 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">
+                {contactCopy.formTitle}
+              </h3>
+              <form onSubmit={onSubmit} className="space-y-5">
+                <FieldError error={errors.name?.message}>
+                  <Label htmlFor="contact-name">Nome *</Label>
+                  <Input
+                    id="contact-name"
+                    placeholder="Seu nome completo"
+                    aria-invalid={Boolean(errors.name)}
+                    {...register("name")}
+                  />
+                </FieldError>
+                <FieldError error={errors.email?.message}>
+                  <Label htmlFor="contact-email">Email *</Label>
+                  <Input
+                    id="contact-email"
+                    type="email"
+                    placeholder="seu@email.com"
+                    aria-invalid={Boolean(errors.email)}
+                    {...register("email")}
+                  />
+                </FieldError>
+                <div className="grid gap-1.5">
+                  <Label htmlFor="contact-subject">Assunto</Label>
+                  <Input
+                    id="contact-subject"
+                    placeholder="Assunto da mensagem"
+                    {...register("subject")}
+                  />
+                </div>
+                <FieldError error={errors.message?.message}>
+                  <Label htmlFor="contact-message">Mensagem *</Label>
+                  <Textarea
+                    id="contact-message"
+                    rows={5}
+                    placeholder="Descreva seu projeto ou dúvida..."
+                    aria-invalid={Boolean(errors.message)}
+                    {...register("message")}
+                  />
+                </FieldError>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  disabled={mutation.isPending}
+                  className="w-full"
+                >
+                  {mutation.isPending ? contactCopy.sending : contactCopy.send}
+                </Button>
+              </form>
+            </div>
+          </div>
+
+          <div className="order-1 space-y-3 sm:space-y-4 lg:order-2">
+            <ContactCard
+              href={`mailto:${contactInfo.email}`}
+              icon={<Mail className="h-5 w-5" />}
+              label="Email"
+              value={contactInfo.email}
+            />
+            <ContactCard
+              href={links.whatsapp}
+              icon={
+                <img
+                  src="/assets/icons/whatsapp.svg"
+                  alt=""
+                  className="h-6 w-6"
+                />
+              }
+              label="WhatsApp"
+              value={contactInfo.phone}
+            />
+            <ContactCard
+              href={contactInfo.linkedin}
+              icon={
+                <img
+                  src="/assets/icons/linkedin.svg"
+                  alt=""
+                  className="h-6 w-6"
+                />
+              }
+              label="LinkedIn"
+              value={contactInfo.linkedinDisplay}
+            />
+            <ContactCard
+              href={contactInfo.github}
+              icon={
+                <img
+                  src="/assets/icons/github.svg"
+                  alt=""
+                  className="h-6 w-6"
+                />
+              }
+              label="GitHub"
+              value={contactInfo.githubDisplay}
+            />
+            <ContactCard
+              href={contactInfo.fiverr}
+              icon={
+                <img
+                  src="/assets/icons/fiverr.svg"
+                  alt=""
+                  className="h-6 w-6"
+                />
+              }
+              label="Fiverr"
+              value={contactInfo.fiverrDisplay}
+            />
+            <div className="flex items-center gap-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm dark:border-dev-bg-elevated dark:bg-dev-bg">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-dev/10 text-dev dark:bg-dev/20">
+                <MapPin className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase text-gray-500 dark:text-dev-text-muted">
+                  Localização
+                </p>
+                <p className="mt-0.5 break-all text-sm font-bold text-gray-900 dark:text-white">
+                  {contactInfo.location}
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-3 pt-4">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="grid h-12 w-12 place-items-center rounded-xl border border-gray-100 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-dev/40 dark:border-dev-bg-elevated dark:bg-dev-bg"
+                  aria-label={link.name}
+                >
+                  <img
+                    src={link.src}
+                    alt=""
+                    className="h-6 w-6 object-contain"
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FieldError({
+  children,
+  error,
+}: {
+  children: React.ReactNode;
+  error?: string;
+}) {
+  return (
+    <div className="grid gap-1.5">
+      {children}
+      {error ? <p className="text-xs text-red-500">{error}</p> : null}
+    </div>
+  );
+}
+
+function ContactCard({
+  href,
+  icon,
+  label,
+  value,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+}) {
+  return (
+    <a
+      href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+      className="group flex items-center gap-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-dev/30 dark:border-dev-bg-elevated dark:bg-dev-bg"
+    >
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-dev/10 text-dev transition-colors group-hover:bg-dev group-hover:text-white dark:bg-dev/20">
+        {icon}
+      </div>
+      <div className="min-w-0">
+        <p className="text-xs font-semibold uppercase text-gray-500 dark:text-dev-text-muted">
+          {label}
+        </p>
+        <p className="mt-0.5 truncate break-all text-sm font-bold text-gray-900 dark:text-white">
+          {value}
+        </p>
+      </div>
+    </a>
+  );
+}
