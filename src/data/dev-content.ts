@@ -40,6 +40,12 @@ export const links = {
 export const hero = {
   role: "Desenvolvedor Web Full Stack",
   tag: "Dev Web Full Stack",
+  rotatingRoles: [
+    "Landing Pages de Alta Conversão",
+    "Sistemas Web Sob Medida",
+    "Dashboards e Painéis Admin",
+    "E-commerces e Lojas Online",
+  ],
   title: "Sites modernos e rápidos que ajudam negócios a vender mais",
   subtitle:
     "Para empresas e negócios digitais que precisam de autoridade e conversão",
