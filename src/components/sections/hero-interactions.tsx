@@ -57,12 +57,13 @@ export function CasinoMetricValue({
 
   useEffect(() => {
     if (prefersReducedMotion) {
-      setDisplayValue(value);
       return;
     }
 
-    setDisplayValue("");
-    let interval: ReturnType<typeof setInterval> | undefined;
+    const reset = window.setTimeout(() => {
+      setDisplayValue("");
+    }, 0);
+    let interval: number | undefined;
     const start = window.setTimeout(() => {
       interval = window.setInterval(() => {
         const randomValue = Math.max(
@@ -79,6 +80,7 @@ export function CasinoMetricValue({
     }, delay + 760);
 
     return () => {
+      window.clearTimeout(reset);
       window.clearTimeout(start);
       window.clearTimeout(stop);
       if (interval) window.clearInterval(interval);
@@ -91,5 +93,7 @@ export function CasinoMetricValue({
     value,
   ]);
 
-  return <span className="metric-value">{displayValue}</span>;
+  const renderedValue = prefersReducedMotion ? value : displayValue;
+
+  return <span className="metric-value">{renderedValue}</span>;
 }

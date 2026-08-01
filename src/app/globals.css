@@ -783,10 +783,12 @@ textarea:focus-visible {
   min-height: 420px;
 }
 
-.cta-bg-image {
-  top: -15%;
-  bottom: -15%;
-  height: 130%;
+.cta-bg-video {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 @keyframes float-a {
@@ -981,10 +983,7 @@ textarea:focus-visible {
     background-attachment: scroll;
   }
 
-  .cta-bg-image {
-    top: 0;
-    bottom: 0;
-    height: 100%;
+  .cta-bg-video {
     transform: none !important;
   }
 }

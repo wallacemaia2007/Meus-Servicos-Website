@@ -1,20 +1,93 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 import { cta, site } from "@/data/dev-content";
 
+const ctaVideoSrc = "/assets/videos/banner_codigo.mp4";
+const ctaPosterSrc = "/assets/images/banner.png";
+
 export function CtaSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const syncMotionPreference = () => {
+      const shouldReduceMotion = mediaQuery.matches;
+
+      setPrefersReducedMotion(shouldReduceMotion);
+
+      if (shouldReduceMotion) {
+        videoRef.current?.pause();
+      }
+    };
+
+    syncMotionPreference();
+    mediaQuery.addEventListener("change", syncMotionPreference);
+
+    return () => {
+      mediaQuery.removeEventListener("change", syncMotionPreference);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion || shouldLoadVideo) {
+      return;
+    }
+
+    const section = sectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" },
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [prefersReducedMotion, shouldLoadVideo]);
+
   return (
     <section
       id="cta"
+      ref={sectionRef}
       className="cta-section relative overflow-hidden py-10 md:py-18"
     >
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div
-          className="cta-bg-image absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/assets/images/banner.png')" }}
-        />
+        <video
+          ref={videoRef}
+          className="cta-bg-video absolute inset-0 h-full w-full object-cover"
+          src={
+            shouldLoadVideo && !prefersReducedMotion ? ctaVideoSrc : undefined
+          }
+          poster={ctaPosterSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+          preload="none"
+        >
+          {shouldLoadVideo && !prefersReducedMotion ? (
+            <source src={ctaVideoSrc} type="video/mp4" />
+          ) : null}
+        </video>
         <div className="absolute inset-0 bg-[rgba(110,20,28,0.82)]" />
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[rgba(110,20,28,0.72)] to-transparent" />
       </div>
