@@ -12,26 +12,30 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center overflow-hidden bg-dev-bg text-white"
+      className="hero-shell relative flex min-h-screen items-center overflow-hidden text-[var(--brand-ink)]"
     >
       <ParticleCanvas />
+      <div
+        className="pointer-events-none absolute left-1/2 top-28 h-[420px] w-[min(90vw,760px)] -translate-x-1/2 rounded-full bg-[rgba(253,236,236,0.72)] blur-3xl"
+        aria-hidden="true"
+      />
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 lg:px-6 lg:py-28">
         <div className="grid grid-cols-1 items-center justify-items-center gap-12 lg:grid-cols-2">
           <div className="order-2 flex max-w-2xl flex-col items-center gap-6 text-center lg:order-1">
             <motion.div
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5"
+              className="inline-flex items-center gap-2 rounded-full border border-[rgba(151,28,38,0.2)] bg-[var(--brand-red-tint)] px-5 py-2.5"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
               <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />
-              <span className="text-sm font-bold uppercase text-white/70">
+              <span className="text-sm font-bold uppercase text-[var(--brand-red-dark)]">
                 {hero.tag}
               </span>
             </motion.div>
 
             <motion.h1
-              className="text-4xl font-black leading-tight sm:text-5xl lg:text-6xl"
+              className="text-4xl font-black leading-tight text-[var(--brand-ink)] sm:text-5xl lg:text-6xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
@@ -40,7 +44,7 @@ export function HeroSection() {
             </motion.h1>
 
             <motion.p
-              className="text-lg font-semibold text-dev-light sm:text-xl"
+              className="text-lg font-semibold text-[var(--brand-red)] sm:text-xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
@@ -49,7 +53,7 @@ export function HeroSection() {
             </motion.p>
 
             <motion.p
-              className="max-w-xl text-base leading-relaxed text-white/70 sm:text-lg"
+              className="max-w-xl text-base leading-relaxed text-[var(--brand-ink-muted)] sm:text-lg"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
@@ -65,14 +69,14 @@ export function HeroSection() {
             >
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-dev px-6 py-3 text-sm font-bold text-white shadow-dev transition-all duration-200 hover:-translate-y-0.5 hover:bg-dev-dark"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-dev px-6 py-3 text-sm font-bold !text-white shadow-dev transition-all duration-200 hover:-translate-y-0.5 hover:bg-dev-dark [&_*]:!text-white"
               >
                 {hero.ctaOrcamento}
                 <ArrowRight className="h-[18px] w-[18px]" />
               </a>
               <a
                 href="#works"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/20 px-6 py-3 text-sm font-bold text-white/80 transition-all duration-200 hover:-translate-y-0.5 hover:border-dev hover:text-white"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-[rgba(151,28,38,0.25)] px-6 py-3 text-sm font-bold text-[var(--brand-red)] transition-all duration-200 hover:-translate-y-0.5 hover:border-dev hover:bg-[var(--brand-red-tint)] hover:text-[var(--brand-red-dark)]"
               >
                 {hero.ctaServicos}
               </a>
@@ -91,7 +95,7 @@ export function HeroSection() {
                   <div className="hero-preview-dots">
                     <span className="dot dot-red" />
                     <span className="dot dot-yellow" />
-                    <span className="dot dot-green" />
+                    <span className="dot dot-brand" />
                   </div>
                   <div className="hero-preview-title">{hero.cardDashboard}</div>
                   <div className="hero-preview-avatar">
@@ -158,13 +162,13 @@ function ParticleCanvas() {
     let frame = 0;
     let width = 0;
     let height = 0;
-    const particles = Array.from({ length: 520 }, () => ({
+    const particles = Array.from({ length: 360 }, () => ({
       x: 0,
       y: 0,
       size: Math.random() * 1.1 + 0.2,
       speedX: (Math.random() - 0.5) * 0.12,
       speedY: (Math.random() - 0.5) * 0.12,
-      opacity: Math.random() * 0.2 + 0.25,
+      opacity: Math.random() * 0.16 + 0.12,
     }));
 
     const resize = () => {
@@ -204,7 +208,7 @@ function ParticleCanvas() {
         if (p.x > width) p.x = 0;
         if (p.y < 0) p.y = height;
         if (p.y > height) p.y = 0;
-        ctx.fillStyle = `rgba(94, 234, 212, ${p.opacity})`;
+        ctx.fillStyle = `rgba(151, 28, 38, ${p.opacity * 0.32})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();

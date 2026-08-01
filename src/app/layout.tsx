@@ -60,7 +60,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#020617",
+  themeColor: "#FFFFFF",
 };
 
 export default function RootLayout({
@@ -69,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className="dark theme-dev" suppressHydrationWarning>
+    <html lang="pt-BR" className="theme-dev" suppressHydrationWarning>
       <body
         className={`${spaceGrotesk.variable} ${splineSansMono.variable} min-h-screen bg-dev-bg text-dev-text antialiased`}
       >

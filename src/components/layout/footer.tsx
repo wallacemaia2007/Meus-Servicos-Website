@@ -7,7 +7,7 @@ import { contactInfo, navItems, site, socialLinks } from "@/data/dev-content";
 
 export function Footer() {
   return (
-    <footer className="border-t-4 border-dev bg-dev-bg text-white">
+    <footer className="border-t-4 border-dev bg-[var(--section-tint)] text-[var(--brand-ink)]">
       <div className="mx-auto max-w-7xl px-4 py-12 lg:px-6">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <section className="space-y-4">
@@ -33,7 +33,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.name}
-                  className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 bg-white/5 transition-all hover:-translate-y-0.5 hover:border-dev/50 hover:bg-dev/10"
+                  className="grid h-9 w-9 place-items-center rounded-lg border border-[var(--brand-border)] bg-white transition-all hover:-translate-y-0.5 hover:border-dev/50 hover:bg-[var(--brand-red-tint)]"
                 >
                   <img
                     src={link.src}
@@ -55,7 +55,7 @@ export function Footer() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="flex items-center gap-2 text-sm text-dev-text-muted transition-all hover:translate-x-2 hover:text-dev-light"
+                  className="flex items-center gap-2 text-sm text-dev-text-muted transition-all hover:translate-x-2 hover:text-dev"
                 >
                   <span className="text-dev">→</span>
                   <span>{link.label}</span>
@@ -72,24 +72,24 @@ export function Footer() {
             <div className="space-y-3 text-sm text-dev-text-muted">
               <a
                 href={`mailto:${contactInfo.email}`}
-                className="flex items-center gap-3 transition-colors hover:text-dev-light"
+                className="flex items-center gap-3 transition-colors hover:text-dev"
               >
-                <span className="grid h-8 w-8 place-items-center rounded-lg bg-dev-bg-surface text-dev">
+                <span className="grid h-8 w-8 place-items-center rounded-lg bg-white text-dev">
                   <Mail className="h-4 w-4" />
                 </span>
                 <span className="break-all">{contactInfo.email}</span>
               </a>
               <a
                 href="tel:+5535910036806"
-                className="flex items-center gap-3 transition-colors hover:text-dev-light"
+                className="flex items-center gap-3 transition-colors hover:text-dev"
               >
-                <span className="grid h-8 w-8 place-items-center rounded-lg bg-dev-bg-surface text-dev">
+                <span className="grid h-8 w-8 place-items-center rounded-lg bg-white text-dev">
                   <Phone className="h-4 w-4" />
                 </span>
                 <span>{contactInfo.phone}</span>
               </a>
               <div className="flex items-center gap-3">
-                <span className="grid h-8 w-8 place-items-center rounded-lg bg-dev-bg-surface text-dev">
+                <span className="grid h-8 w-8 place-items-center rounded-lg bg-white text-dev">
                   <MapPin className="h-4 w-4" />
                 </span>
                 <span>{contactInfo.location}</span>
@@ -98,7 +98,7 @@ export function Footer() {
           </address>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-[var(--brand-border)] pt-8 md:flex-row">
           <p className="text-center text-sm text-dev-text-muted md:text-left">
             &copy; {new Date().getFullYear()}{" "}
             <span className="font-semibold text-dev">{site.fullName}</span>.
@@ -107,7 +107,7 @@ export function Footer() {
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="grid h-12 w-12 place-items-center rounded-full bg-dev text-white shadow-dev transition-all hover:scale-110 hover:bg-dev-dark"
+            className="grid h-12 w-12 place-items-center rounded-full bg-dev !text-white shadow-dev transition-all hover:scale-110 hover:bg-dev-dark [&_*]:!text-white"
             aria-label="Voltar ao topo"
           >
             <ArrowUp className="h-5 w-5" />

@@ -22,7 +22,7 @@ export default function HomePage() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Pedir agora no WhatsApp"
-        className="fixed bottom-4 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-dev transition-transform duration-300 hover:-translate-y-1 active:scale-[0.98] sm:bottom-5 sm:right-5"
+        className="fixed bottom-4 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-accent !text-white shadow-dev transition-transform duration-300 hover:-translate-y-1 active:scale-[0.98] sm:bottom-5 sm:right-5"
       >
         <img
           src="/assets/icons/whatsapp.png"

@@ -5,8 +5,8 @@
   --color-dev-light: var(--dev-accent-light);
   --color-dev-dark: var(--dev-accent-dark);
   --color-accent: var(--dev-success);
-  --color-accent-light: #6ee7b7;
-  --color-accent-dark: #059669;
+  --color-accent-light: var(--brand-red-light);
+  --color-accent-dark: var(--brand-red-dark);
   --color-dev-bg: var(--dev-bg-primary);
   --color-dev-bg-surface: var(--dev-bg-surface);
   --color-dev-bg-card: var(--dev-bg-card);
@@ -23,38 +23,54 @@
   --color-text: var(--dev-text-primary);
   --color-muted: var(--dev-text-muted);
   --color-border: var(--dev-border);
-  --color-danger: #ef4444;
+  --color-danger: var(--brand-red-dark);
   --font-heading: var(--font-space-grotesk), system-ui, sans-serif;
   --font-body: var(--font-space-grotesk), system-ui, sans-serif;
   --font-mono: var(--font-spline-sans-mono), ui-monospace, monospace;
-  --shadow-dev: 0 20px 50px rgba(30, 144, 212, 0.24);
-  --shadow-soft: 0 12px 32px rgba(2, 6, 23, 0.18);
-  --shadow-glow: 0 20px 50px rgba(30, 144, 212, 0.32);
+  --shadow-dev: 0 20px 50px rgba(151, 28, 38, 0.18);
+  --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.12);
+  --shadow-glow: 0 20px 50px rgba(151, 28, 38, 0.24);
 }
 
 :root,
 .theme-dev {
-  --dev-bg-primary: #020617;
-  --dev-bg-surface: #0f172a;
-  --dev-bg-card: #111827;
-  --dev-bg-elevated: #1e293b;
-  --dev-accent: #1e90d4;
-  --dev-accent-light: #5eead4;
-  --dev-accent-dark: #166aa3;
-  --dev-success: #14b8a6;
-  --dev-text-primary: #f8fafc;
-  --dev-text-muted: #94a3b8;
-  --dev-text-bright: #e2e8f0;
-  --dev-muted: #64748b;
-  --dev-border: rgba(148, 163, 184, 0.18);
-  --dev-glass: rgba(255, 255, 255, 0.05);
-  --dev-glass-strong: rgba(255, 255, 255, 0.08);
-  --dev-overlay: rgba(2, 6, 23, 0.72);
-  --dev-shadow: rgba(0, 0, 0, 0.55);
+  --brand-red: #971c26;
+  --brand-red-dark: #6e141c;
+  --brand-red-light: #c23a44;
+  --brand-red-tint: #fdecec;
+  --brand-white: #ffffff;
+  --brand-ink: #1a1a1a;
+  --brand-ink-muted: #5b5b5b;
+  --brand-border: #e5e5e5;
+  --section-light: var(--brand-white);
+  --section-tint: var(--brand-red-tint);
+  --section-surface: #fafafa;
+  --section-dark: var(--brand-red-dark);
+  --section-dark-soft: var(--brand-red);
+  --section-card: rgba(255, 255, 255, 0.94);
+  --section-card-tint: rgba(253, 236, 236, 0.78);
+  --section-border: rgba(151, 28, 38, 0.16);
+  --dev-bg-primary: #ffffff;
+  --dev-bg-surface: #fafafa;
+  --dev-bg-card: #ffffff;
+  --dev-bg-elevated: #f5f5f5;
+  --dev-accent: var(--brand-red);
+  --dev-accent-light: var(--brand-red-light);
+  --dev-accent-dark: var(--brand-red-dark);
+  --dev-success: var(--brand-red-dark);
+  --dev-text-primary: var(--brand-ink);
+  --dev-text-muted: var(--brand-ink-muted);
+  --dev-text-bright: #000000;
+  --dev-muted: var(--brand-ink-muted);
+  --dev-border: var(--brand-border);
+  --dev-glass: rgba(151, 28, 38, 0.04);
+  --dev-glass-strong: rgba(151, 28, 38, 0.08);
+  --dev-overlay: rgba(255, 255, 255, 0.85);
+  --dev-shadow: rgba(0, 0, 0, 0.12);
   --dev-parallax-opacity: 0.18;
   --dev-parallax-filter: saturate(1.1) contrast(1.05);
   --radius-sm: 12px;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 * {
@@ -69,7 +85,7 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  background: var(--dev-bg-primary);
+  background: var(--section-light);
   color: var(--dev-text-primary);
   font-family: var(--font-body);
   text-rendering: optimizeLegibility;
@@ -129,6 +145,17 @@ textarea:focus-visible {
   pointer-events: none;
 }
 
+.hero-shell {
+  background:
+    radial-gradient(
+      circle at 22% 32%,
+      rgba(151, 28, 38, 0.12),
+      transparent 28%
+    ),
+    radial-gradient(circle at 76% 45%, rgba(194, 58, 68, 0.1), transparent 30%),
+    linear-gradient(180deg, var(--section-light), var(--section-tint));
+}
+
 .hero-preview-wrapper {
   position: relative;
   padding: 64px 88px 72px 48px;
@@ -140,12 +167,12 @@ textarea:focus-visible {
   position: relative;
   z-index: 2;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--brand-border);
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.92);
   box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    0 24px 60px rgba(0, 0, 0, 0.16),
+    0 0 0 1px rgba(151, 28, 38, 0.04) inset;
   backdrop-filter: blur(20px);
 }
 
@@ -155,8 +182,8 @@ textarea:focus-visible {
   justify-content: space-between;
   gap: 16px;
   padding: 16px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--brand-border);
+  background: var(--dev-bg-surface);
 }
 
 .hero-preview-dots {
@@ -171,15 +198,15 @@ textarea:focus-visible {
 }
 
 .dot-red {
-  background: #f87171;
+  background: var(--brand-red);
 }
 
 .dot-yellow {
-  background: #fbbf24;
+  background: var(--brand-ink-muted);
 }
 
-.dot-green {
-  background: #34d399;
+.dot-brand {
+  background: var(--brand-red-light);
 }
 
 .hero-preview-title {
@@ -188,7 +215,7 @@ textarea:focus-visible {
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--brand-ink-muted);
 }
 
 .hero-preview-avatar {
@@ -196,7 +223,7 @@ textarea:focus-visible {
   height: 32px;
   flex-shrink: 0;
   overflow: hidden;
-  border: 2px solid rgba(20, 184, 166, 0.5);
+  border: 2px solid rgba(151, 28, 38, 0.5);
   border-radius: 999px;
 }
 
@@ -220,13 +247,13 @@ textarea:focus-visible {
 }
 
 .metric-label {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--brand-ink-muted);
   font-size: 0.9rem;
   font-weight: 500;
 }
 
 .metric-value {
-  color: #5eead4;
+  color: var(--brand-red);
   font-size: 1.25rem;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
@@ -237,7 +264,7 @@ textarea:focus-visible {
   height: 8px;
   overflow: hidden;
   border-radius: 999px;
-  background: rgba(20, 184, 166, 0.1);
+  background: rgba(151, 28, 38, 0.1);
 }
 
 .progress-fill {
@@ -245,12 +272,17 @@ textarea:focus-visible {
   width: 72%;
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #0f766e, #14b8a6, #5eead4);
+  background: linear-gradient(
+    90deg,
+    var(--brand-red-dark),
+    var(--brand-red),
+    var(--brand-red-light)
+  );
 }
 
 .progress-caption {
   margin-top: 8px;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--brand-ink-muted);
   font-size: 0.8rem;
   font-weight: 500;
 }
@@ -259,11 +291,11 @@ textarea:focus-visible {
 .hero-badge {
   position: absolute;
   z-index: 3;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(151, 28, 38, 0.14);
+  background: rgba(255, 255, 255, 0.92);
   box-shadow:
-    0 16px 40px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+    0 16px 40px rgba(0, 0, 0, 0.14),
+    0 0 0 1px rgba(151, 28, 38, 0.04) inset;
   backdrop-filter: blur(16px);
 }
 
@@ -275,7 +307,7 @@ textarea:focus-visible {
 
 .floating-title,
 .hero-badge span {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--brand-ink);
   font-size: 0.82rem;
   font-weight: 700;
 }
@@ -283,10 +315,10 @@ textarea:focus-visible {
 .floating-chip {
   margin-top: 6px;
   display: inline-flex;
-  border: 1px solid rgba(20, 184, 166, 0.25);
+  border: 1px solid rgba(151, 28, 38, 0.25);
   border-radius: 999px;
-  background: rgba(20, 184, 166, 0.15);
-  color: #5eead4;
+  background: rgba(151, 28, 38, 0.12);
+  color: var(--brand-red);
   padding: 3px 10px;
   font-size: 0.72rem;
   font-weight: 700;
@@ -338,21 +370,25 @@ textarea:focus-visible {
   min-height: 30px;
   background-image: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.05),
+    rgba(151, 28, 38, 0.06),
     transparent
   );
   transition: height 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .building-shape.active {
-  box-shadow: 0 -5px 25px -5px rgba(30, 144, 212, 0.4);
+  box-shadow: 0 -5px 25px -5px rgba(151, 28, 38, 0.35);
 }
 
 .projects-section {
   --active-accent: var(--dev-accent);
   --active-surface: var(--dev-bg-surface);
   --active-glow: var(--shadow-dev);
-  background: var(--dev-bg-primary);
+  background: linear-gradient(
+    180deg,
+    var(--section-light),
+    var(--section-surface)
+  );
   color: var(--dev-text-primary);
 }
 
@@ -366,8 +402,8 @@ textarea:focus-visible {
   background-position: center top;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  opacity: var(--dev-parallax-opacity);
-  filter: var(--dev-parallax-filter);
+  opacity: 0.08;
+  filter: grayscale(1) sepia(0.18) saturate(0.55) contrast(1.05);
 }
 
 .projects-wrapper {
@@ -472,10 +508,10 @@ textarea:focus-visible {
   display: flex;
   overflow: hidden;
   flex-direction: column;
-  border: 1px solid var(--dev-border);
+  border: 1px solid var(--section-border);
   border-radius: 1rem;
-  background: var(--dev-bg-surface);
-  box-shadow: 0 20px 60px -20px var(--dev-shadow);
+  background: var(--section-card);
+  box-shadow: 0 28px 70px -32px rgba(151, 28, 38, 0.42);
 }
 
 .browser-topbar {
@@ -483,8 +519,8 @@ textarea:focus-visible {
   flex-shrink: 0;
   align-items: center;
   gap: 0.75rem;
-  border-bottom: 1px solid var(--dev-border);
-  background: var(--dev-bg-elevated);
+  border-bottom: 1px solid var(--section-border);
+  background: var(--section-tint);
   padding: 0.6rem 0.875rem;
 }
 
@@ -500,9 +536,9 @@ textarea:focus-visible {
   flex: 1;
   align-items: center;
   gap: 0.4rem;
-  border: 1px solid var(--dev-border);
+  border: 1px solid var(--section-border);
   border-radius: 0.375rem;
-  background: var(--dev-bg-surface);
+  background: rgba(255, 255, 255, 0.82);
   padding: 0.25rem 0.75rem;
 }
 
@@ -557,10 +593,10 @@ textarea:focus-visible {
   position: absolute;
   right: 0.75rem;
   bottom: 0.6rem;
-  border: 1px solid var(--dev-border);
+  border: 1px solid var(--section-border);
   border-radius: 0.25rem;
-  background: var(--dev-glass-strong);
-  color: var(--dev-text-muted);
+  background: var(--section-card);
+  color: var(--brand-red);
   padding: 0.1rem 0.4rem;
   font-family: var(--font-mono);
   font-size: 0.6rem;
@@ -575,9 +611,9 @@ textarea:focus-visible {
   height: 100%;
   flex-direction: column;
   gap: 1.25rem;
-  border: 1px solid var(--dev-border);
+  border: 1px solid var(--section-border);
   border-radius: 1.25rem;
-  background: var(--dev-glass-strong);
+  background: var(--section-card);
   padding: 1.5rem;
   backdrop-filter: blur(16px);
 }
@@ -634,9 +670,9 @@ textarea:focus-visible {
 }
 
 .tech-tag {
-  border: 1px solid var(--dev-border);
+  border: 1px solid var(--section-border);
   border-radius: 0.375rem;
-  background: var(--dev-glass);
+  background: var(--section-tint);
   color: var(--dev-text-muted);
   padding: 0.2rem 0.6rem;
   font-size: 0.65rem;
@@ -649,29 +685,40 @@ textarea:focus-visible {
   justify-content: center;
   border-radius: 999px;
   background: var(--active-accent);
-  color: black;
+  color: white !important;
   padding: 0.7rem;
   font-size: 0.8rem;
   font-weight: 700;
   transition: all 0.25s ease;
 }
 
+.sidebar-cta *,
+.sidebar-cta:hover * {
+  color: white !important;
+}
+
 .stack-section {
-  background: var(--dev-bg-primary);
-  color: var(--dev-text-primary);
+  background:
+    radial-gradient(
+      circle at 18% 18%,
+      rgba(255, 255, 255, 0.1),
+      transparent 28%
+    ),
+    linear-gradient(135deg, var(--section-dark), var(--section-dark-soft));
+  color: white;
 }
 
 .stack-glass-overlay {
-  background: var(--dev-overlay);
+  background: rgba(110, 20, 28, 0.78);
 }
 
 .terminal-bg .terminal-line {
-  color: var(--dev-text-muted);
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.42);
+  text-shadow: none;
 }
 
 .terminal-bg .prompt {
-  color: var(--dev-accent);
+  color: rgba(255, 255, 255, 0.76);
   margin-right: 8px;
 }
 
@@ -685,8 +732,8 @@ textarea:focus-visible {
 
 .skill-card-item:hover,
 .stack-hero-card:hover {
-  background: var(--dev-glass-strong);
-  box-shadow: 0 10px 30px -10px var(--dev-shadow);
+  background: white;
+  box-shadow: 0 18px 45px -24px rgba(0, 0, 0, 0.4);
 }
 
 .cta-section {

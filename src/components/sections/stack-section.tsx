@@ -68,14 +68,14 @@ export function StackSection() {
           <h2 className="text-3xl font-black text-white md:text-5xl">
             {stackCopy.title}
           </h2>
-          <p className="mt-4 text-base text-gray-400 md:text-lg">
+          <p className="mt-4 text-base text-white/72 md:text-lg">
             {stackCopy.subtitle}
           </p>
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <StackHeroCard
-            tone="blue"
+            tone="primary"
             label={stackCopy.frontendLabel}
             title="Frontend"
             description={stackCopy.frontendDesc}
@@ -84,7 +84,7 @@ export function StackSection() {
             onClick={() => setActive("frontend")}
           />
           <StackHeroCard
-            tone="green"
+            tone="muted"
             label={stackCopy.backendLabel}
             title="Backend"
             description={stackCopy.backendDesc}
@@ -95,7 +95,7 @@ export function StackSection() {
         </div>
 
         <div className="mt-20">
-          <p className="mb-6 text-center text-xs font-bold uppercase text-gray-400">
+          <p className="mb-6 text-center text-xs font-bold uppercase text-white/68">
             {stackCopy.allTechs}
           </p>
           <div className="flex justify-center">
@@ -107,8 +107,8 @@ export function StackSection() {
                   onClick={() => setActive(tab.key)}
                   className={
                     active === tab.key
-                      ? "whitespace-nowrap rounded-xl bg-[#3b82f6] px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all"
-                      : "whitespace-nowrap rounded-xl bg-white/5 px-5 py-2.5 text-sm font-semibold text-gray-400 transition-all hover:bg-white/10"
+                      ? "whitespace-nowrap rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-[var(--brand-red-dark)] shadow-[0_14px_36px_rgba(0,0,0,0.22)] transition-all"
+                      : "whitespace-nowrap rounded-xl border border-white/15 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white/80 transition-all hover:bg-white/18 hover:text-white"
                   }
                 >
                   {tab.label}
@@ -121,10 +121,10 @@ export function StackSection() {
             {activeSkills.map((skill) => (
               <div
                 key={skill.id}
-                className="skill-card-item rounded-2xl border border-white/10 bg-white/5 p-4 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#3b82f6]/30"
+                className="skill-card-item rounded-2xl border border-white/15 bg-white p-4 shadow-[0_18px_45px_-30px_rgba(0,0,0,0.55)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 p-2">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--brand-red-tint)] p-2">
                     <img
                       src={skill.icon}
                       alt={skill.name}
@@ -132,11 +132,11 @@ export function StackSection() {
                     />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="truncate text-sm font-bold text-white">
+                    <h3 className="truncate text-sm font-bold text-[var(--brand-ink)]">
                       {skill.name}
                     </h3>
                   </div>
-                  <span className="shrink-0 rounded-md bg-blue-500/15 px-2 py-0.5 text-[10px] font-bold text-blue-400">
+                  <span className="shrink-0 rounded-md bg-[var(--brand-red-tint)] px-2 py-0.5 text-[10px] font-bold text-[var(--brand-red)]">
                     {levelLabels[skill.level]}
                   </span>
                 </div>
@@ -158,7 +158,7 @@ function StackHeroCard({
   techs,
   onClick,
 }: {
-  tone: "blue" | "green";
+  tone: "primary" | "muted";
   label: string;
   title: string;
   description: string;
@@ -166,28 +166,32 @@ function StackHeroCard({
   techs: { id: string; name: string; icon: string }[];
   onClick: () => void;
 }) {
-  const color = tone === "blue" ? "#3b82f6" : "#22c55e";
-  const light = tone === "blue" ? "#60a5fa" : "#4ade80";
-  const chip = tone === "blue" ? "#93c5fd" : "#86efac";
+  const color = tone === "primary" ? "var(--brand-red)" : "var(--brand-ink)";
+  const light =
+    tone === "primary" ? "var(--brand-red-light)" : "var(--brand-ink-muted)";
+  const chip =
+    tone === "primary" ? "var(--brand-red)" : "var(--brand-ink-muted)";
+  const soft =
+    tone === "primary" ? "var(--brand-red-tint)" : "var(--dev-bg-elevated)";
 
   return (
     <button
       type="button"
       onClick={onClick}
-      className="stack-hero-card group relative cursor-pointer overflow-hidden rounded-3xl border border-white/10 bg-white/5 text-left backdrop-blur-md transition-all duration-500 hover:shadow-2xl"
+      className="stack-hero-card group relative cursor-pointer overflow-hidden rounded-3xl border border-white/15 bg-white text-left backdrop-blur-md transition-all duration-500 hover:shadow-2xl"
       style={{ boxShadow: `0 0 0 transparent` }}
     >
       <div
         className="pointer-events-none absolute right-0 top-0 h-64 w-64 translate-x-16 -translate-y-16 rounded-full blur-3xl transition-all duration-700"
-        style={{ background: `${color}1a` }}
+        style={{ background: soft }}
       />
       <div className="relative z-10 p-5 sm:p-8 md:p-10">
         <span
           className="mb-6 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold uppercase"
           style={{
             color: light,
-            background: `${color}33`,
-            borderColor: `${color}55`,
+            background: soft,
+            borderColor: color,
           }}
         >
           <span
@@ -196,12 +200,12 @@ function StackHeroCard({
           />
           {label}
         </span>
-        <h3 className="mb-3 text-2xl font-black leading-tight text-white sm:text-3xl">
+        <h3 className="mb-3 text-2xl font-black leading-tight text-[var(--brand-ink)] sm:text-3xl">
           Stack
           <br />
           <span style={{ color: light }}>{title}</span>
         </h3>
-        <p className="mb-8 max-w-xs text-sm leading-relaxed text-gray-400">
+        <p className="mb-8 max-w-xs text-sm leading-relaxed text-[var(--brand-ink-muted)]">
           {description}
         </p>
         <div className="mb-8 flex flex-wrap gap-2">
@@ -211,8 +215,8 @@ function StackHeroCard({
               className="rounded-full border px-3 py-1 text-[11px] font-semibold"
               style={{
                 color: chip,
-                background: `${color}1a`,
-                borderColor: `${color}33`,
+                background: soft,
+                borderColor: color,
               }}
             >
               {trait}
@@ -223,14 +227,14 @@ function StackHeroCard({
           {techs.map((tech) => (
             <div
               key={tech.id}
-              className="flex shrink-0 items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 transition-all duration-200 hover:bg-white/10"
+              className="flex shrink-0 items-center gap-2 rounded-xl border border-[var(--brand-border)] bg-[var(--brand-white)] px-3 py-2 transition-all duration-200 hover:bg-[var(--brand-red-tint)]"
             >
               <img
                 src={tech.icon}
                 alt={tech.name}
                 className="h-5 w-5 object-contain"
               />
-              <span className="text-xs font-semibold text-gray-300">
+              <span className="text-xs font-semibold text-[var(--brand-ink-muted)]">
                 {tech.name}
               </span>
             </div>

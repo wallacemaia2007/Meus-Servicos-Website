@@ -46,8 +46,8 @@ export const hero = {
   description: "Mais confiança, mais vendas, mais autoridade",
   ctaOrcamento: "Solicitar Orçamento",
   ctaServicos: "Ver Serviços",
-  avatar: "/assets/images/avatar.png",
-  fallbackAvatar: "/assets/images/avatar.jpeg",
+  avatar: "/assets/brand/logo-light.png",
+  fallbackAvatar: "/assets/brand/logo-light.png",
   cardDashboard: "Dashboard de Conversões",
   progressCaption: "Resultados consistentes em projetos reais",
   floatingA: "Landing Page SaaS",
@@ -291,9 +291,9 @@ export const projects: DevProject[] = [
     liveUrl: "https://maiawall.com",
     technologies: ["Angular", "Tailwind CSS", "RxJS", "GSAP"],
     theme: {
-      surface: "#0f172a",
-      accent: "#38bdf8",
-      glow: "rgba(56, 189, 248, 0.45)",
+      surface: "var(--dev-bg-surface)",
+      accent: "var(--brand-red)",
+      glow: "rgba(151, 28, 38, 0.35)",
     },
     pages: [
       "/assets/images/projects/portfolio-pessoal/portfolio-pessoal-1.png",
@@ -314,9 +314,9 @@ export const projects: DevProject[] = [
     liveUrl: "https://portfolio-banda-aurah.vercel.app/",
     technologies: ["Angular", "Tailwind CSS", "Angular Material"],
     theme: {
-      surface: "#111827",
-      accent: "#f97316",
-      glow: "rgba(249, 115, 22, 0.35)",
+      surface: "var(--dev-bg-card)",
+      accent: "var(--brand-red-dark)",
+      glow: "rgba(110, 20, 28, 0.3)",
     },
     pages: [
       "/assets/images/projects/banda-aurah/banda-aurah1.png",
@@ -334,9 +334,9 @@ export const projects: DevProject[] = [
     liveUrl: "https://www.institutomotiro.com.br/",
     technologies: ["Vite", "Tailwind CSS", "TypeScript"],
     theme: {
-      surface: "#0f2418",
-      accent: "#34d399",
-      glow: "rgba(52, 211, 153, 0.35)",
+      surface: "var(--dev-bg-elevated)",
+      accent: "var(--brand-ink-muted)",
+      glow: "rgba(91, 91, 91, 0.22)",
     },
     pages: [
       "/assets/images/projects/instituto-motiro/motiro1.png",
@@ -356,9 +356,9 @@ export const projects: DevProject[] = [
       "https://www.linkedin.com/feed/update/urn:li:activity:7393610706035654656/",
     technologies: ["Angular", "TypeScript", "Angular Material"],
     theme: {
-      surface: "#0b1220",
-      accent: "#1e40af",
-      glow: "rgba(30, 64, 175, 0.35)",
+      surface: "var(--dev-bg-surface)",
+      accent: "var(--brand-red)",
+      glow: "rgba(151, 28, 38, 0.35)",
     },
     pages: [
       "/assets/images/projects/painel-admin/foto1.jpg",
@@ -376,9 +376,9 @@ export const projects: DevProject[] = [
     liveUrl: "https://www.schulles.com.br/",
     technologies: ["Angular", "TypeScript", "Angular Material"],
     theme: {
-      surface: "#0b1220",
-      accent: "#1e40af",
-      glow: "rgba(30, 64, 175, 0.35)",
+      surface: "var(--dev-bg-card)",
+      accent: "var(--brand-red-dark)",
+      glow: "rgba(110, 20, 28, 0.3)",
     },
     pages: [
       "/assets/images/projects/schulles/hero.jpg",
@@ -403,9 +403,9 @@ export const projects: DevProject[] = [
       "Resend",
     ],
     theme: {
-      surface: "#4A2E20",
-      accent: "#C68A2E",
-      glow: "rgba(198, 138, 46, 0.35)",
+      surface: "var(--dev-bg-elevated)",
+      accent: "var(--brand-ink-muted)",
+      glow: "rgba(91, 91, 91, 0.22)",
     },
     pages: [
       "/assets/images/projects/portfolio-marcio-carvalho/imagem-1.png",
@@ -429,9 +429,9 @@ export const projects: DevProject[] = [
       "IA",
     ],
     theme: {
-      surface: "#0b1220",
-      accent: "#1e40af",
-      glow: "rgba(30, 64, 175, 0.35)",
+      surface: "var(--dev-bg-surface)",
+      accent: "var(--brand-red)",
+      glow: "rgba(151, 28, 38, 0.35)",
     },
     pages: [
       "/assets/images/projects/split-hub/imagem-1.png",
@@ -762,7 +762,7 @@ export const terminalSnippets = [
   "kubectl apply -f k8s/deployment.yaml",
   "// Optimizing rendering performance for high-load apps...",
   "if (network.isStable()) { syncDatabaseState(); }",
-  'console.log("%cWelcome to my Portfolio!", "color: #3b82f6; font-weight: bold;");',
+  'console.log("%cWelcome to my Portfolio!", "color: #971C26; font-weight: bold;");',
   "git push origin main --force-with-lease",
   "sudo apt-get update && sudo apt-get upgrade -y",
   "const observer = new IntersectionObserver(entries => { ... });",

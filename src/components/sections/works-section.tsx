@@ -51,13 +51,13 @@ export function WorksSection() {
   return (
     <section
       id="works"
-      className="overflow-hidden bg-white py-20 text-gray-900 md:py-32 dark:bg-dev-bg dark:text-dev-text"
+      className="overflow-hidden bg-[var(--section-tint)] py-20 text-[var(--brand-ink)] md:py-32"
     >
       <div className="mx-auto max-w-7xl px-6">
         <SectionTitle title={works.title} subtitle={works.subtitle} />
 
         <div className="relative mt-16 flex flex-col gap-8 lg:flex-row lg:items-start">
-          <div className="city-container relative w-full shrink-0 rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm lg:w-[60%] md:p-8 dark:border-dev-elevated dark:bg-dev-bg-surface">
+          <div className="city-container relative w-full shrink-0 rounded-2xl border border-[var(--section-border)] bg-white/80 p-6 shadow-[0_24px_70px_-46px_rgba(151,28,38,0.55)] lg:w-[60%] md:p-8">
             <div className="grid h-[280px] grid-cols-4 gap-2 sm:h-[350px] md:h-[380px] md:gap-4 lg:grid-cols-8">
               {serviceCategories.map((category) => {
                 const Icon = icons[category.icon] ?? Building2;
@@ -78,8 +78,8 @@ export function WorksSection() {
                     <div
                       className={
                         isActive
-                          ? "building-shape active z-10 mx-auto flex w-full max-w-[60px] scale-105 flex-col items-center justify-center overflow-hidden rounded-t-lg border-l-2 border-r-2 border-t-2 border-dev bg-gray-100 shadow-dev md:max-w-[80px] dark:bg-dev-bg-elevated"
-                          : "building-shape mx-auto flex w-full max-w-[60px] flex-col items-center justify-center overflow-hidden rounded-t-lg border border-gray-300 bg-white hover:border-dev/50 hover:bg-gray-50 md:max-w-[80px] dark:border-dev-dark dark:bg-dev-bg-card dark:hover:bg-dev-bg-elevated"
+                          ? "building-shape active z-10 mx-auto flex w-full max-w-[60px] scale-105 flex-col items-center justify-center overflow-hidden rounded-t-lg border-l-2 border-r-2 border-t-2 border-dev bg-[var(--brand-red-tint)] shadow-dev md:max-w-[80px]"
+                          : "building-shape mx-auto flex w-full max-w-[60px] flex-col items-center justify-center overflow-hidden rounded-t-lg border border-[var(--section-border)] bg-white hover:border-dev/50 hover:bg-[var(--brand-red-tint)] md:max-w-[80px]"
                       }
                       style={{ height: `${heights[category.id]}%` }}
                     >
@@ -100,7 +100,7 @@ export function WorksSection() {
             <div className="absolute bottom-6 left-6 right-6 h-px bg-gradient-to-r from-transparent via-dev-dark to-transparent opacity-50 md:bottom-8 md:left-8 md:right-8" />
           </div>
 
-          <div className="panel-container w-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg lg:w-[40%] dark:border-dev-dark/50 dark:bg-dev-bg-elevated">
+          <div className="panel-container w-full overflow-hidden rounded-2xl border border-[var(--section-border)] bg-white shadow-[0_24px_70px_-46px_rgba(151,28,38,0.65)] lg:w-[40%]">
             {active ? <ActivePanel category={active} /> : <EmptyPanel />}
           </div>
         </div>
@@ -115,35 +115,35 @@ function ActivePanel({ category }: { category: ServiceCategory }) {
   return (
     <div className="animate-slide-in flex flex-col gap-5 p-6 md:p-8">
       <div className="flex items-center gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-dev/10 text-dev dark:bg-dev-bg">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--brand-red-tint)] text-dev">
           <Icon className="h-5 w-5" />
         </div>
-        <h3 className="text-lg font-bold leading-tight text-gray-900 md:text-xl dark:text-white">
+        <h3 className="text-lg font-bold leading-tight text-[var(--brand-ink)] md:text-xl">
           {category.name}
         </h3>
       </div>
-      <p className="border-l-4 border-dev pl-4 text-sm italic leading-relaxed text-gray-600 md:text-base dark:text-dev-text/90">
+      <p className="border-l-4 border-dev pl-4 text-sm italic leading-relaxed text-[var(--brand-ink-muted)] md:text-base">
         &quot;{category.phrase}&quot;
       </p>
       <ul className="space-y-2">
         {category.services.map((service) => (
           <li key={service} className="flex items-start gap-2">
             <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-            <span className="text-sm leading-snug text-gray-600 dark:text-dev-text/80">
+            <span className="text-sm leading-snug text-[var(--brand-ink-muted)]">
               {service}
             </span>
           </li>
         ))}
       </ul>
       <div>
-        <p className="mb-2 text-xs font-semibold uppercase text-gray-400">
+        <p className="mb-2 text-xs font-semibold uppercase text-[var(--brand-ink-muted)]">
           Stack
         </p>
         <div className="flex flex-wrap gap-1.5">
           {category.stack.map((tech) => (
             <span
               key={tech}
-              className="rounded-full border border-gray-200 bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:border-dev-dark/30 dark:bg-dev-bg dark:text-dev-text-bright"
+              className="rounded-full border border-[var(--section-border)] bg-[var(--brand-red-tint)] px-2.5 py-0.5 text-xs font-medium text-[var(--brand-ink-muted)]"
             >
               {tech}
             </span>
@@ -154,7 +154,7 @@ function ActivePanel({ category }: { category: ServiceCategory }) {
         href={getWhatsAppWorkLink(category.name)}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-full rounded-xl bg-accent py-3 text-center text-sm font-bold text-white shadow-dev transition-all duration-300 hover:bg-dev-light active:scale-95"
+        className="w-full rounded-xl bg-accent py-3 text-center text-sm font-bold !text-white shadow-dev transition-all duration-300 hover:bg-dev-light active:scale-95"
       >
         {works.cta}
       </a>
@@ -164,14 +164,14 @@ function ActivePanel({ category }: { category: ServiceCategory }) {
 
 function EmptyPanel() {
   return (
-    <div className="panel-empty flex flex-col items-center justify-center p-8 text-center text-gray-400">
-      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gray-50 shadow-sm dark:bg-dev-bg-surface">
+    <div className="panel-empty flex flex-col items-center justify-center p-8 text-center text-[var(--brand-ink-muted)]">
+      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--brand-red-tint)] shadow-sm">
         <Touchpad className="h-7 w-7 text-dev-light" />
       </div>
-      <p className="mb-1 text-base font-semibold text-gray-600 dark:text-dev-text-bright">
+      <p className="mb-1 text-base font-semibold text-[var(--brand-ink)]">
         {works.emptyTitle}
       </p>
-      <p className="text-sm leading-snug text-gray-400 dark:text-dev-muted">
+      <p className="text-sm leading-snug text-[var(--brand-ink-muted)]">
         {works.emptyMsg}
       </p>
     </div>
@@ -187,10 +187,10 @@ function SectionTitle({
 }) {
   return (
     <div className="mx-auto max-w-3xl text-center">
-      <h2 className="text-3xl font-black text-gray-900 md:text-5xl dark:text-white">
+      <h2 className="text-3xl font-black text-[var(--brand-ink)] md:text-5xl">
         {title}
       </h2>
-      <p className="mt-4 text-base text-gray-500 md:text-lg dark:text-dev-text-muted">
+      <p className="mt-4 text-base text-[var(--brand-ink-muted)] md:text-lg">
         {subtitle}
       </p>
     </div>

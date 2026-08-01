@@ -57,22 +57,22 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="bg-gray-50 py-16 transition-colors duration-300 md:py-24 dark:bg-dev-bg"
+      className="bg-[var(--section-surface)] py-16 transition-colors duration-300 md:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-black text-gray-900 md:text-5xl dark:text-white">
+          <h2 className="text-3xl font-black text-[var(--brand-ink)] md:text-5xl">
             {contactCopy.title}
           </h2>
-          <p className="mt-4 text-base text-gray-500 md:text-lg dark:text-dev-text-muted">
+          <p className="mt-4 text-base text-[var(--brand-ink-muted)] md:text-lg">
             {contactCopy.subtitle}
           </p>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-2">
           <div className="order-2 lg:order-1">
-            <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm md:p-8 dark:border-dev-bg-elevated dark:bg-dev-bg">
-              <h3 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">
+            <div className="rounded-2xl border border-[var(--section-border)] bg-white p-6 shadow-[0_24px_70px_-50px_rgba(151,28,38,0.7)] md:p-8">
+              <h3 className="mb-6 text-xl font-bold text-[var(--brand-ink)]">
                 {contactCopy.formTitle}
               </h3>
               <form onSubmit={onSubmit} className="space-y-5">
@@ -180,15 +180,15 @@ export function ContactSection() {
               label="Fiverr"
               value={contactInfo.fiverrDisplay}
             />
-            <div className="flex items-center gap-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm dark:border-dev-bg-elevated dark:bg-dev-bg">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-dev/10 text-dev dark:bg-dev/20">
+            <div className="flex items-center gap-4 rounded-2xl border border-[var(--section-border)] bg-white p-5 shadow-sm">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--brand-red-tint)] text-dev">
                 <MapPin className="h-5 w-5" />
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase text-gray-500 dark:text-dev-text-muted">
+                <p className="text-xs font-semibold uppercase text-[var(--brand-ink-muted)]">
                   Localização
                 </p>
-                <p className="mt-0.5 break-all text-sm font-bold text-gray-900 dark:text-white">
+                <p className="mt-0.5 break-all text-sm font-bold text-[var(--brand-ink)]">
                   {contactInfo.location}
                 </p>
               </div>
@@ -200,7 +200,7 @@ export function ContactSection() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="grid h-12 w-12 place-items-center rounded-xl border border-gray-100 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-dev/40 dark:border-dev-bg-elevated dark:bg-dev-bg"
+                  className="grid h-12 w-12 place-items-center rounded-xl border border-[var(--section-border)] bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-dev/40 hover:bg-[var(--brand-red-tint)]"
                   aria-label={link.name}
                 >
                   <img
@@ -228,7 +228,9 @@ function FieldError({
   return (
     <div className="grid gap-1.5">
       {children}
-      {error ? <p className="text-xs text-red-500">{error}</p> : null}
+      {error ? (
+        <p className="text-xs text-[var(--brand-red-dark)]">{error}</p>
+      ) : null}
     </div>
   );
 }
@@ -249,16 +251,16 @@ function ContactCard({
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      className="group flex items-center gap-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-dev/30 dark:border-dev-bg-elevated dark:bg-dev-bg"
+      className="group flex items-center gap-4 rounded-2xl border border-[var(--section-border)] bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-dev/30 hover:bg-[rgba(253,236,236,0.42)]"
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-dev/10 text-dev transition-colors group-hover:bg-dev group-hover:text-white dark:bg-dev/20">
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--brand-red-tint)] text-dev transition-colors group-hover:bg-dev group-hover:!text-white">
         {icon}
       </div>
       <div className="min-w-0">
-        <p className="text-xs font-semibold uppercase text-gray-500 dark:text-dev-text-muted">
+        <p className="text-xs font-semibold uppercase text-[var(--brand-ink-muted)]">
           {label}
         </p>
-        <p className="mt-0.5 truncate break-all text-sm font-bold text-gray-900 dark:text-white">
+        <p className="mt-0.5 truncate break-all text-sm font-bold text-[var(--brand-ink)]">
           {value}
         </p>
       </div>

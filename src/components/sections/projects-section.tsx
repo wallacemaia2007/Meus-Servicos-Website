@@ -57,7 +57,7 @@ export function ProjectsSection() {
               <div className="browser-dots">
                 <span className="dot dot-red" />
                 <span className="dot dot-yellow" />
-                <span className="dot dot-green" />
+                <span className="dot dot-brand" />
               </div>
               <div className="browser-url-bar">
                 <span className="browser-lock">lock</span>
