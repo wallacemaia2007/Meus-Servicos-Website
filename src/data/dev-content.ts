@@ -30,6 +30,7 @@ export const navItems: NavItem[] = [
 
 export const links = {
   cv: "/assets/cv.pdf",
+  personalPortfolio: "https://maiawall.com",
   whatsapp: "https://wa.me/5535910036806",
   github: "https://github.com/wallacemaia2007",
   linkedin: "https://www.linkedin.com/in/wallacemaia-dev/",

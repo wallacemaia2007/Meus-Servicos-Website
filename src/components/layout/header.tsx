@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, Menu, MessageCircle, X } from "lucide-react";
+import { Menu, MessageCircle, UserRound, X } from "lucide-react";
 import Link from "next/link";
 
 import { links, navItems } from "@/data/dev-content";
@@ -22,7 +22,8 @@ export function Header() {
       <header
         className={cn(
           "pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-3 transition-transform duration-300 lg:px-6",
-          isHidden && "header-hidden",
+          isOpen && "z-30",
+          isHidden && !isOpen && "header-hidden",
         )}
         role="banner"
       >
@@ -30,8 +31,8 @@ export function Header() {
           className={cn(
             "pointer-events-auto flex w-full max-w-5xl items-center justify-between rounded-full border px-2 py-1.5 shadow-lg backdrop-blur-md transition-all duration-300 sm:px-3 sm:py-2",
             isScrolled
-              ? "border-[rgba(151,28,38,0.2)] bg-white/95"
-              : "border-[var(--brand-border)] bg-white/85",
+                ? "border-[rgba(151,28,38,0.2)] bg-white/95"
+                : "border-[var(--brand-border)] bg-white/85",
           )}
         >
           <button
@@ -70,13 +71,13 @@ export function Header() {
 
           <div className="hidden items-center gap-2 pr-1 lg:flex">
             <Link
-              href={links.cv}
+              href={links.personalPortfolio}
               target="_blank"
               rel="noopener noreferrer"
               className="font-body inline-flex items-center gap-2 rounded-full border border-[var(--brand-border)] px-4 py-1.5 text-sm font-semibold text-[var(--brand-ink)] transition-all duration-200 hover:border-dev hover:text-dev"
             >
-              <Download className="h-4 w-4" />
-              Baixar CV
+              <UserRound className="h-4 w-4" />
+              Sobre mim
             </Link>
             <button
               type="button"
@@ -165,12 +166,13 @@ export function Header() {
             Fale comigo
           </button>
           <Link
-            href={links.cv}
+            href={links.personalPortfolio}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={close}
             className="font-body flex w-full items-center justify-center rounded-xl border border-[var(--brand-border)] bg-white px-5 py-3 text-sm font-bold text-[var(--brand-red)] transition-all hover:bg-[var(--brand-red-tint)]"
           >
-            Baixar CV
+            Saiba mais
           </Link>
           <div className="grid grid-cols-2 gap-2">
             {[
