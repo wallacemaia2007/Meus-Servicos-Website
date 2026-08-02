@@ -77,7 +77,9 @@ export function Footer() {
             </h3>
             <div className="space-y-3 text-sm text-dev-text-muted">
               <a
-                href={`mailto:${contactInfo.email}`}
+                href={links.email}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-3 transition-colors hover:text-dev"
               >
                 <span className="grid h-8 w-8 place-items-center rounded-lg bg-white text-dev">

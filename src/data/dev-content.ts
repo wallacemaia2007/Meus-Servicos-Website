@@ -32,6 +32,8 @@ export const links = {
   cv: "/assets/cv.pdf",
   personalPortfolio: "https://maiawall.com",
   whatsapp: "https://wa.me/5535910036806",
+  email:
+    "https://mail.google.com/mail/?view=cm&fs=1&to=wallacemaia2007@gmail.com&su=Tenho%20interesse%20em%20um%20projeto&body=Ol%C3%A1%2C%20Wallace!%0A%0AGostaria%20de%20conversar%20sobre%20um%20projeto.%0A%0A",
   github: "https://github.com/wallacemaia2007",
   linkedin: "https://www.linkedin.com/in/wallacemaia-dev/",
   instagram: "https://www.instagram.com/wallace_maia._",

@@ -148,7 +148,7 @@ export function ContactSection() {
               transition={{ duration: prefersReducedMotion ? 0 : 0.4 }}
             >
               <ContactCard
-                href={`mailto:${contactInfo.email}`}
+                href={links.email}
                 icon={<Mail className="h-5 w-5" />}
                 label="Email"
                 value={contactInfo.email}

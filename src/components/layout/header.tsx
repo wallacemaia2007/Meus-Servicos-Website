@@ -178,18 +178,19 @@ export function Header() {
             {[
               ["GitHub", links.github],
               ["LinkedIn", links.linkedin],
+              ["Email", links.email],
               ["WhatsApp", links.whatsapp],
               ["Instagram", links.instagram],
             ].map(([label, href]) => (
-              <Link
+              <a
                 key={label}
                 href={href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="font-body rounded-lg border border-[var(--brand-border)] bg-white px-3 py-2 text-center text-xs font-semibold text-[var(--brand-ink-muted)] transition-colors hover:bg-[var(--brand-red-tint)] hover:text-[var(--brand-red)]"
               >
                 {label}
-              </Link>
+              </a>
             ))}
           </div>
         </div>
