@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
   Brush,
@@ -13,7 +14,6 @@ import {
   Workflow,
   Wrench,
 } from "lucide-react";
-import { useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { serviceCategories, works } from "@/data/dev-content";
@@ -77,7 +77,12 @@ export function WorksSection() {
       className="overflow-hidden bg-[var(--section-tint)] py-20 text-[var(--brand-ink)] md:py-32"
     >
       <div className="mx-auto max-w-7xl px-6">
-        <SectionTitle title={works.title} subtitle={works.subtitle} />
+        <SectionTitle
+          title={works.title}
+          subtitle={works.subtitle}
+          isVisible={isCityInView}
+          prefersReducedMotion={Boolean(prefersReducedMotion)}
+        />
 
         <div className="relative mt-16 flex flex-col gap-8 lg:flex-row lg:items-start">
           <div
@@ -239,18 +244,31 @@ function EmptyPanel() {
 function SectionTitle({
   title,
   subtitle,
+  isVisible,
+  prefersReducedMotion,
 }: {
   title: string;
   subtitle: string;
+  isVisible: boolean;
+  prefersReducedMotion: boolean;
 }) {
   return (
-    <div className="mx-auto max-w-3xl text-center">
+    <motion.div
+      className="mx-auto max-w-3xl text-center"
+      initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+      animate={
+        prefersReducedMotion || isVisible
+          ? { opacity: 1, y: 0 }
+          : { opacity: 0, y: 24 }
+      }
+      transition={{ duration: prefersReducedMotion ? 0 : 0.55 }}
+    >
       <h2 className="font-heading text-3xl font-normal text-[var(--brand-ink)] md:text-5xl">
         {title}
       </h2>
       <p className="mt-4 text-base text-[var(--brand-ink-muted)] md:text-lg">
         {subtitle}
       </p>
-    </div>
+    </motion.div>
   );
 }

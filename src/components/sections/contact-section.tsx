@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
+import { motion, useReducedMotion } from "framer-motion";
 import { Mail, MapPin } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -31,6 +32,7 @@ const contactSchema = z.object({
 type ContactFormValues = z.infer<typeof contactSchema>;
 
 export function ContactSection() {
+  const prefersReducedMotion = useReducedMotion();
   const {
     register,
     handleSubmit,
@@ -53,6 +55,7 @@ export function ContactSection() {
   });
 
   const onSubmit = handleSubmit((values) => mutation.mutate(values));
+  const viewport = { once: true, amount: 0.2 };
 
   return (
     <section
@@ -60,17 +63,29 @@ export function ContactSection() {
       className="bg-[var(--section-surface)] py-16 transition-colors duration-300 md:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="mx-auto max-w-3xl text-center">
+        <motion.div
+          className="mx-auto max-w-3xl text-center"
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewport}
+          transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}
+        >
           <h2 className="font-heading text-3xl font-normal text-[var(--brand-ink)] md:text-5xl">
             {contactCopy.title}
           </h2>
           <p className="mt-4 text-base text-[var(--brand-ink-muted)] md:text-lg">
             {contactCopy.subtitle}
           </p>
-        </div>
+        </motion.div>
 
         <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-2">
-          <div className="order-2 lg:order-1">
+          <motion.div
+            className="order-2 lg:order-1"
+            initial={prefersReducedMotion ? false : { opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={viewport}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.55 }}
+          >
             <div className="rounded-2xl border border-[var(--section-border)] bg-white p-6 shadow-[0_24px_70px_-50px_rgba(151,28,38,0.7)] md:p-8">
               <h3 className="font-body mb-6 text-xl font-bold text-[var(--brand-ink)]">
                 {contactCopy.formTitle}
@@ -123,64 +138,120 @@ export function ContactSection() {
                 </Button>
               </form>
             </div>
-          </div>
+          </motion.div>
 
           <div className="order-1 space-y-3 sm:space-y-4 lg:order-2">
-            <ContactCard
-              href={`mailto:${contactInfo.email}`}
-              icon={<Mail className="h-5 w-5" />}
-              label="Email"
-              value={contactInfo.email}
-            />
-            <ContactCard
-              href={links.whatsapp}
-              icon={
-                <img
-                  src="/assets/icons/whatsapp.svg"
-                  alt=""
-                  className="h-6 w-6"
-                />
-              }
-              label="WhatsApp"
-              value={contactInfo.phone}
-            />
-            <ContactCard
-              href={contactInfo.linkedin}
-              icon={
-                <img
-                  src="/assets/icons/linkedin.svg"
-                  alt=""
-                  className="h-6 w-6"
-                />
-              }
-              label="LinkedIn"
-              value={contactInfo.linkedinDisplay}
-            />
-            <ContactCard
-              href={contactInfo.github}
-              icon={
-                <img
-                  src="/assets/icons/github.svg"
-                  alt=""
-                  className="h-6 w-6"
-                />
-              }
-              label="GitHub"
-              value={contactInfo.githubDisplay}
-            />
-            <ContactCard
-              href={contactInfo.fiverr}
-              icon={
-                <img
-                  src="/assets/icons/fiverr.svg"
-                  alt=""
-                  className="h-6 w-6"
-                />
-              }
-              label="Fiverr"
-              value={contactInfo.fiverrDisplay}
-            />
-            <div className="flex items-center gap-4 rounded-2xl border border-[var(--section-border)] bg-white p-5 shadow-sm">
+            <motion.div
+              initial={prefersReducedMotion ? false : { opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={viewport}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.4 }}
+            >
+              <ContactCard
+                href={`mailto:${contactInfo.email}`}
+                icon={<Mail className="h-5 w-5" />}
+                label="Email"
+                value={contactInfo.email}
+              />
+            </motion.div>
+            <motion.div
+              initial={prefersReducedMotion ? false : { opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={viewport}
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.4,
+                delay: prefersReducedMotion ? 0 : 0.06,
+              }}
+            >
+              <ContactCard
+                href={links.whatsapp}
+                icon={
+                  <img
+                    src="/assets/icons/whatsapp.svg"
+                    alt=""
+                    className="h-6 w-6"
+                  />
+                }
+                label="WhatsApp"
+                value={contactInfo.phone}
+              />
+            </motion.div>
+            <motion.div
+              initial={prefersReducedMotion ? false : { opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={viewport}
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.4,
+                delay: prefersReducedMotion ? 0 : 0.12,
+              }}
+            >
+              <ContactCard
+                href={contactInfo.linkedin}
+                icon={
+                  <img
+                    src="/assets/icons/linkedin.svg"
+                    alt=""
+                    className="h-6 w-6"
+                  />
+                }
+                label="LinkedIn"
+                value={contactInfo.linkedinDisplay}
+              />
+            </motion.div>
+            <motion.div
+              initial={prefersReducedMotion ? false : { opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={viewport}
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.4,
+                delay: prefersReducedMotion ? 0 : 0.18,
+              }}
+            >
+              <ContactCard
+                href={contactInfo.github}
+                icon={
+                  <img
+                    src="/assets/icons/github.svg"
+                    alt=""
+                    className="h-6 w-6"
+                  />
+                }
+                label="GitHub"
+                value={contactInfo.githubDisplay}
+              />
+            </motion.div>
+            <motion.div
+              initial={prefersReducedMotion ? false : { opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={viewport}
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.4,
+                delay: prefersReducedMotion ? 0 : 0.24,
+              }}
+            >
+              <ContactCard
+                href={contactInfo.fiverr}
+                icon={
+                  <img
+                    src="/assets/icons/fiverr.svg"
+                    alt=""
+                    className="h-6 w-6"
+                  />
+                }
+                label="Fiverr"
+                value={contactInfo.fiverrDisplay}
+              />
+            </motion.div>
+            <motion.div
+              className="flex items-center gap-4 rounded-2xl border border-[var(--section-border)] bg-white p-5 shadow-sm"
+              initial={prefersReducedMotion ? false : { opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={viewport}
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.4,
+                delay: prefersReducedMotion ? 0 : 0.3,
+              }}
+            >
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--brand-red-tint)] text-dev">
                 <MapPin className="h-5 w-5" />
               </div>
@@ -192,8 +263,19 @@ export function ContactSection() {
                   {contactInfo.location}
                 </p>
               </div>
-            </div>
-            <div className="flex flex-wrap gap-3 pt-4">
+            </motion.div>
+            <motion.div
+              className="flex flex-wrap gap-3 pt-4"
+              initial={
+                prefersReducedMotion ? false : { opacity: 0, scale: 0.9 }
+              }
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={viewport}
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.35,
+                delay: prefersReducedMotion ? 0 : 0.36,
+              }}
+            >
               {socialLinks.map((link) => (
                 <a
                   key={link.name}
@@ -210,7 +292,7 @@ export function ContactSection() {
                   />
                 </a>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

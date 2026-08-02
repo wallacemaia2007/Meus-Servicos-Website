@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 
 import { projectCopy, projects } from "@/data/dev-content";
@@ -7,8 +8,10 @@ import { getWhatsAppProjectLink } from "@/lib/whatsapp";
 
 export function ProjectsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
   const active = projects[activeIndex];
   const total = active.pages.length + (active.video ? 1 : 0);
+  const viewport = { once: true, amount: 0.2 };
 
   return (
     <section
@@ -25,18 +28,55 @@ export function ProjectsSection() {
       <div className="projects-parallax-bg" aria-hidden="true" />
       <div className="projects-wrapper">
         <header className="projects-header">
-          <span className="header-eyebrow">{projectCopy.title}</span>
-          <h2 className="header-title">{projectCopy.subtitle01}</h2>
-          <p className="header-subtitle">
+          <motion.span
+            className="header-eyebrow"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewport}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.45 }}
+          >
+            {projectCopy.title}
+          </motion.span>
+          <motion.h2
+            className="header-title"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewport}
+            transition={{
+              duration: prefersReducedMotion ? 0 : 0.5,
+              delay: prefersReducedMotion ? 0 : 0.06,
+            }}
+          >
+            {projectCopy.subtitle01}
+          </motion.h2>
+          <motion.p
+            className="header-subtitle"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewport}
+            transition={{
+              duration: prefersReducedMotion ? 0 : 0.5,
+              delay: prefersReducedMotion ? 0 : 0.12,
+            }}
+          >
             {projectCopy.subtitle02} {projectCopy.subtitle03}
-          </p>
+          </motion.p>
           <div className="projects-selector">
             {projects.map((project, index) => (
-              <button
+              <motion.button
                 key={project.id}
                 type="button"
                 className={`selector-pill ${index === activeIndex ? "is-active" : ""}`}
                 onClick={() => setActiveIndex(index)}
+                initial={
+                  prefersReducedMotion ? false : { opacity: 0, scale: 0.85 }
+                }
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={viewport}
+                transition={{
+                  duration: prefersReducedMotion ? 0 : 0.35,
+                  delay: prefersReducedMotion ? 0 : index * 0.07,
+                }}
                 style={
                   {
                     "--pill-accent": project.theme.accent,
@@ -46,13 +86,19 @@ export function ProjectsSection() {
               >
                 <span className="pill-index">0{index + 1}</span>
                 <span className="pill-title">{project.title}</span>
-              </button>
+              </motion.button>
             ))}
           </div>
         </header>
 
         <main className="projects-main">
-          <div className="browser-mockup">
+          <motion.div
+            className="browser-mockup"
+            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.94 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.75 }}
+          >
             <div className="browser-topbar">
               <div className="browser-dots">
                 <span className="dot dot-red" />
@@ -68,41 +114,59 @@ export function ProjectsSection() {
               <span className="browser-scroll-hint">scroll →</span>
             </div>
 
-            <div className="browser-canvas">
-              {active.pages.map((page, index) => (
-                <div className="page-frame" key={page}>
-                  <img
-                    src={page}
-                    alt={`${active.title} - página ${index + 1}`}
-                    className="page-img"
-                    draggable={false}
-                  />
-                  <span className="page-badge">
-                    {index + 1}/{total}
-                  </span>
-                </div>
-              ))}
-              {active.video ? (
-                <div className="page-frame">
-                  <video
-                    className="page-video"
-                    src={active.video.src}
-                    poster={active.video.poster}
-                    muted
-                    playsInline
-                    preload="metadata"
-                    loop
-                    controls
-                  />
-                  <span className="page-badge">
-                    {active.pages.length + 1}/{total}
-                  </span>
-                </div>
-              ) : null}
-            </div>
-          </div>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                className="browser-canvas"
+                key={active.id}
+                initial={prefersReducedMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: prefersReducedMotion ? 1 : 0 }}
+                transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
+              >
+                {active.pages.map((page, index) => (
+                  <div className="page-frame" key={page}>
+                    <img
+                      src={page}
+                      alt={`${active.title} - página ${index + 1}`}
+                      className="page-img"
+                      draggable={false}
+                    />
+                    <span className="page-badge">
+                      {index + 1}/{total}
+                    </span>
+                  </div>
+                ))}
+                {active.video ? (
+                  <div className="page-frame">
+                    <video
+                      className="page-video"
+                      src={active.video.src}
+                      poster={active.video.poster}
+                      muted
+                      playsInline
+                      preload="metadata"
+                      loop
+                      controls
+                    />
+                    <span className="page-badge">
+                      {active.pages.length + 1}/{total}
+                    </span>
+                  </div>
+                ) : null}
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
 
-          <aside className="projects-sidebar">
+          <motion.aside
+            className="projects-sidebar"
+            initial={prefersReducedMotion ? false : { opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: prefersReducedMotion ? 0 : 0.5,
+              delay: prefersReducedMotion ? 0 : 0.3,
+            }}
+          >
             <div className="sidebar-card">
               <div className="pages-indicator">
                 <span className="indicator-label">{projectCopy.pages}</span>
@@ -113,18 +177,27 @@ export function ProjectsSection() {
                 </div>
               </div>
 
-              <div className="sidebar-info">
-                <span className="project-year">{active.year}</span>
-                <h3 className="project-title">{active.title}</h3>
-                <p className="project-desc">{active.description}</p>
-                <div className="tech-tags">
-                  {active.technologies.map((tech) => (
-                    <span className="tech-tag" key={tech}>
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  className="sidebar-info"
+                  key={active.id}
+                  initial={prefersReducedMotion ? false : { opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: prefersReducedMotion ? 1 : 0 }}
+                  transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
+                >
+                  <span className="project-year">{active.year}</span>
+                  <h3 className="project-title">{active.title}</h3>
+                  <p className="project-desc">{active.description}</p>
+                  <div className="tech-tags">
+                    {active.technologies.map((tech) => (
+                      <span className="tech-tag" key={tech}>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
 
               <a
                 className="sidebar-cta"
@@ -135,7 +208,7 @@ export function ProjectsSection() {
                 {projectCopy.cta}
               </a>
             </div>
-          </aside>
+          </motion.aside>
         </main>
       </div>
     </section>

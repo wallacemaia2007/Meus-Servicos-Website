@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -12,31 +13,18 @@ export function CtaSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const shouldReduceMotion = Boolean(prefersReducedMotion);
+  const viewport = { once: true, amount: 0.3 };
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const syncMotionPreference = () => {
-      const shouldReduceMotion = mediaQuery.matches;
-
-      setPrefersReducedMotion(shouldReduceMotion);
-
-      if (shouldReduceMotion) {
-        videoRef.current?.pause();
-      }
-    };
-
-    syncMotionPreference();
-    mediaQuery.addEventListener("change", syncMotionPreference);
-
-    return () => {
-      mediaQuery.removeEventListener("change", syncMotionPreference);
-    };
-  }, []);
+    if (shouldReduceMotion) {
+      videoRef.current?.pause();
+    }
+  }, [shouldReduceMotion]);
 
   useEffect(() => {
-    if (prefersReducedMotion || shouldLoadVideo) {
+    if (shouldReduceMotion || shouldLoadVideo) {
       return;
     }
 
@@ -61,7 +49,7 @@ export function CtaSection() {
     return () => {
       observer.disconnect();
     };
-  }, [prefersReducedMotion, shouldLoadVideo]);
+  }, [shouldReduceMotion, shouldLoadVideo]);
 
   return (
     <section
@@ -73,9 +61,7 @@ export function CtaSection() {
         <video
           ref={videoRef}
           className="cta-bg-video absolute inset-0 h-full w-full object-cover"
-          src={
-            shouldLoadVideo && !prefersReducedMotion ? ctaVideoSrc : undefined
-          }
+          src={shouldLoadVideo && !shouldReduceMotion ? ctaVideoSrc : undefined}
           poster={ctaPosterSrc}
           autoPlay
           muted
@@ -84,7 +70,7 @@ export function CtaSection() {
           aria-hidden="true"
           preload="none"
         >
-          {shouldLoadVideo && !prefersReducedMotion ? (
+          {shouldLoadVideo && !shouldReduceMotion ? (
             <source src={ctaVideoSrc} type="video/mp4" />
           ) : null}
         </video>
@@ -93,21 +79,54 @@ export function CtaSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-3xl px-4 text-center lg:px-6">
-        <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/12 px-4 py-1.5 backdrop-blur-sm">
+        <motion.div
+          className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/12 px-4 py-1.5 backdrop-blur-sm"
+          initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={viewport}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.35 }}
+        >
           <span className="h-2 w-2 animate-pulse rounded-full bg-white" />
           <span className="text-xs font-bold uppercase text-white">
             {cta.tag}
           </span>
-        </div>
-        <h2 className="font-heading text-3xl font-normal leading-[1.1] text-white sm:text-4xl md:text-5xl lg:text-6xl">
+        </motion.div>
+        <motion.h2
+          className="font-heading text-3xl font-normal leading-[1.1] text-white sm:text-4xl md:text-5xl lg:text-6xl"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewport}
+          transition={{
+            duration: shouldReduceMotion ? 0 : 0.35,
+            delay: shouldReduceMotion ? 0 : 0.1,
+          }}
+        >
           {cta.title}
           <br />
           <span className="text-[var(--brand-red-tint)]">{cta.accent}</span>
-        </h2>
-        <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-white/78 sm:text-base md:text-lg">
+        </motion.h2>
+        <motion.p
+          className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-white/78 sm:text-base md:text-lg"
+          initial={shouldReduceMotion ? false : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={viewport}
+          transition={{
+            duration: shouldReduceMotion ? 0 : 0.3,
+            delay: shouldReduceMotion ? 0 : 0.15,
+          }}
+        >
           {cta.subtitle}
-        </p>
-        <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        </motion.p>
+        <motion.div
+          className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewport}
+          transition={{
+            duration: shouldReduceMotion ? 0 : 0.35,
+            delay: shouldReduceMotion ? 0 : 0.22,
+          }}
+        >
           <a
             href="#projects"
             className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-8 py-4 text-sm font-bold text-dev transition-all duration-300 hover:-translate-y-1 hover:bg-gray-100"
@@ -124,7 +143,7 @@ export function CtaSection() {
             <img src="/assets/icons/whatsapp.svg" alt="" className="h-5 w-5" />
             {cta.whatsappBtn}
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

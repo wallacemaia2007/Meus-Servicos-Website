@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
 import {
@@ -22,10 +23,12 @@ const levelLabels = {
 export function StackSection() {
   const [active, setActive] = useState<SkillCategoryKey>("frontend");
   const [lines, setLines] = useState<string[]>([]);
+  const prefersReducedMotion = useReducedMotion();
   const activeSkills = useMemo(
     () => skills.filter((skill) => skill.category === active),
     [active],
   );
+  const viewport = { once: true, amount: 0.2 };
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -64,37 +67,64 @@ export function StackSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="mx-auto max-w-3xl text-center">
+        <motion.div
+          className="mx-auto max-w-3xl text-center"
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewport}
+          transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}
+        >
           <h2 className="font-heading text-3xl font-normal text-white md:text-5xl">
             {stackCopy.title}
           </h2>
           <p className="mt-4 text-base text-white/72 md:text-lg">
             {stackCopy.subtitle}
           </p>
-        </div>
+        </motion.div>
 
         <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <StackHeroCard
-            tone="primary"
-            label={stackCopy.frontendLabel}
-            title="Frontend"
-            description={stackCopy.frontendDesc}
-            traits={stackCopy.traits.frontend}
-            techs={mainStacks.frontend}
-            onClick={() => setActive("frontend")}
-          />
-          <StackHeroCard
-            tone="muted"
-            label={stackCopy.backendLabel}
-            title="Backend"
-            description={stackCopy.backendDesc}
-            traits={stackCopy.traits.backend}
-            techs={mainStacks.backend}
-            onClick={() => setActive("backend")}
-          />
+          {[
+            {
+              tone: "primary" as const,
+              label: stackCopy.frontendLabel,
+              title: "Frontend",
+              description: stackCopy.frontendDesc,
+              traits: stackCopy.traits.frontend,
+              techs: mainStacks.frontend,
+              onClick: () => setActive("frontend"),
+            },
+            {
+              tone: "muted" as const,
+              label: stackCopy.backendLabel,
+              title: "Backend",
+              description: stackCopy.backendDesc,
+              traits: stackCopy.traits.backend,
+              techs: mainStacks.backend,
+              onClick: () => setActive("backend"),
+            },
+          ].map((card, index) => (
+            <motion.div
+              key={card.title}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewport}
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.55,
+                delay: prefersReducedMotion ? 0 : index * 0.12,
+              }}
+            >
+              <StackHeroCard {...card} />
+            </motion.div>
+          ))}
         </div>
 
-        <div className="mt-20">
+        <motion.div
+          className="mt-20"
+          initial={prefersReducedMotion ? false : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={viewport}
+          transition={{ duration: prefersReducedMotion ? 0 : 0.4 }}
+        >
           <p className="mb-6 text-center text-xs font-bold uppercase text-white/68">
             {stackCopy.allTechs}
           </p>
@@ -117,33 +147,59 @@ export function StackSection() {
             </div>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {activeSkills.map((skill) => (
-              <div
-                key={skill.id}
-                className="skill-card-item rounded-2xl border border-white/15 bg-white p-4 shadow-[0_18px_45px_-30px_rgba(0,0,0,0.55)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--brand-red-tint)] p-2">
-                    <img
-                      src={skill.icon}
-                      alt={skill.name}
-                      className="h-6 w-6 object-contain"
-                    />
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={active}
+              className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+              initial={prefersReducedMotion ? false : "hidden"}
+              whileInView="visible"
+              exit={prefersReducedMotion ? undefined : "hidden"}
+              viewport={viewport}
+              variants={{
+                hidden: { opacity: 1 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: prefersReducedMotion ? 0 : 0.04,
+                  },
+                },
+              }}
+            >
+              {activeSkills.map((skill) => (
+                <motion.div
+                  key={skill.id}
+                  className="skill-card-item rounded-2xl border border-white/15 bg-white p-4 shadow-[0_18px_45px_-30px_rgba(0,0,0,0.55)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white"
+                  variants={{
+                    hidden: {
+                      opacity: prefersReducedMotion ? 1 : 0,
+                      y: prefersReducedMotion ? 0 : 16,
+                    },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: prefersReducedMotion ? 0 : 0.28 }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--brand-red-tint)] p-2">
+                      <img
+                        src={skill.icon}
+                        alt={skill.name}
+                        className="h-6 w-6 object-contain"
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-body truncate text-sm font-bold text-[var(--brand-ink)]">
+                        {skill.name}
+                      </h3>
+                    </div>
+                    <span className="shrink-0 rounded-md bg-[var(--brand-red-tint)] px-2 py-0.5 text-[10px] font-bold text-[var(--brand-red)]">
+                      {levelLabels[skill.level]}
+                    </span>
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-body truncate text-sm font-bold text-[var(--brand-ink)]">
-                      {skill.name}
-                    </h3>
-                  </div>
-                  <span className="shrink-0 rounded-md bg-[var(--brand-red-tint)] px-2 py-0.5 text-[10px] font-bold text-[var(--brand-red)]">
-                    {levelLabels[skill.level]}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );
