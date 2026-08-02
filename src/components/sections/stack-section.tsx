@@ -10,7 +10,7 @@ import {
   stackCopy,
   terminalSnippets,
 } from "@/data/dev-content";
-import type { SkillCategoryKey } from "@/types";
+import type { Skill, SkillCategoryKey } from "@/types";
 
 const levelLabels = {
   1: "Iniciante",
@@ -22,12 +22,16 @@ const levelLabels = {
 
 export function StackSection() {
   const [active, setActive] = useState<SkillCategoryKey>("frontend");
+  const [showAllMobileSkills, setShowAllMobileSkills] = useState(false);
   const [lines, setLines] = useState<string[]>([]);
   const prefersReducedMotion = useReducedMotion();
   const activeSkills = useMemo(
     () => skills.filter((skill) => skill.category === active),
     [active],
   );
+  const firstMobileSkills = activeSkills.slice(0, 6);
+  const remainingMobileSkills = activeSkills.slice(6);
+  const hasMoreMobileSkills = activeSkills.length > 6;
   const viewport = { once: true, amount: 0.2 };
 
   useEffect(() => {
@@ -134,7 +138,10 @@ export function StackSection() {
                 <button
                   key={tab.key}
                   type="button"
-                  onClick={() => setActive(tab.key)}
+                  onClick={() => {
+                    setActive(tab.key);
+                    setShowAllMobileSkills(false);
+                  }}
                   className={
                     active === tab.key
                       ? "whitespace-nowrap rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-[var(--brand-red-dark)] shadow-[0_14px_36px_rgba(0,0,0,0.22)] transition-all"
@@ -150,7 +157,7 @@ export function StackSection() {
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={active}
-              className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+              className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-4"
               initial={prefersReducedMotion ? false : "hidden"}
               whileInView="visible"
               exit={prefersReducedMotion ? undefined : "hidden"}
@@ -165,7 +172,7 @@ export function StackSection() {
                 },
               }}
             >
-              {activeSkills.map((skill) => (
+              {firstMobileSkills.map((skill) => (
                 <motion.div
                   key={skill.id}
                   className="skill-card-item rounded-2xl border border-white/15 bg-white p-4 shadow-[0_18px_45px_-30px_rgba(0,0,0,0.55)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white"
@@ -178,30 +185,92 @@ export function StackSection() {
                   }}
                   transition={{ duration: prefersReducedMotion ? 0 : 0.28 }}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--brand-red-tint)] p-2">
-                      <img
-                        src={skill.icon}
-                        alt={skill.name}
-                        className="h-6 w-6 object-contain"
-                      />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-body truncate text-sm font-bold text-[var(--brand-ink)]">
-                        {skill.name}
-                      </h3>
-                    </div>
-                    <span className="shrink-0 rounded-md bg-[var(--brand-red-tint)] px-2 py-0.5 text-[10px] font-bold text-[var(--brand-red)]">
-                      {levelLabels[skill.level]}
-                    </span>
-                  </div>
+                  <SkillCardContent skill={skill} />
                 </motion.div>
               ))}
+              {remainingMobileSkills.map((skill) => (
+                <motion.div
+                  key={`desktop-${skill.id}`}
+                  className="skill-card-item hidden rounded-2xl border border-white/15 bg-white p-4 shadow-[0_18px_45px_-30px_rgba(0,0,0,0.55)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white sm:block"
+                  variants={{
+                    hidden: {
+                      opacity: prefersReducedMotion ? 1 : 0,
+                      y: prefersReducedMotion ? 0 : 16,
+                    },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: prefersReducedMotion ? 0 : 0.28 }}
+                >
+                  <SkillCardContent skill={skill} />
+                </motion.div>
+              ))}
+              <AnimatePresence initial={false}>
+                {showAllMobileSkills
+                  ? remainingMobileSkills.map((skill, index) => (
+                      <motion.div
+                        key={`mobile-${skill.id}`}
+                        className="skill-card-item rounded-2xl border border-white/15 bg-white p-4 shadow-[0_18px_45px_-30px_rgba(0,0,0,0.55)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white sm:hidden"
+                        initial={
+                          prefersReducedMotion
+                            ? { opacity: 1 }
+                            : { opacity: 0, y: 18, scale: 0.96 }
+                        }
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={
+                          prefersReducedMotion
+                            ? { opacity: 1 }
+                            : { opacity: 0, y: -10, scale: 0.98 }
+                        }
+                        transition={{
+                          duration: prefersReducedMotion ? 0 : 0.24,
+                          delay: prefersReducedMotion ? 0 : index * 0.035,
+                          ease: "easeOut",
+                        }}
+                      >
+                        <SkillCardContent skill={skill} />
+                      </motion.div>
+                    ))
+                  : null}
+              </AnimatePresence>
             </motion.div>
           </AnimatePresence>
+          {hasMoreMobileSkills ? (
+            <div className="mt-6 flex justify-center sm:hidden">
+              <button
+                type="button"
+                onClick={() => setShowAllMobileSkills((current) => !current)}
+                className="rounded-xl border border-white/18 bg-white px-5 py-2.5 text-sm font-semibold text-[var(--brand-red-dark)] shadow-[0_14px_36px_rgba(0,0,0,0.18)] transition-all hover:-translate-y-0.5 hover:bg-white/92"
+                aria-expanded={showAllMobileSkills}
+              >
+                {showAllMobileSkills ? "Ver menos" : "Ver mais"}
+              </button>
+            </div>
+          ) : null}
         </motion.div>
       </div>
     </section>
+  );
+}
+
+function SkillCardContent({ skill }: { skill: Skill }) {
+  return (
+    <div className="flex min-h-24 flex-col items-center justify-center gap-2 text-center sm:min-h-0 sm:flex-row sm:justify-start sm:gap-3 sm:text-left">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--brand-red-tint)] p-2">
+        <img
+          src={skill.icon}
+          alt={skill.name}
+          className="h-6 w-6 object-contain"
+        />
+      </div>
+      <div className="min-w-0 flex-1">
+        <h3 className="font-body max-w-full text-xs font-bold leading-tight text-[var(--brand-ink)] sm:truncate sm:text-sm">
+          {skill.name}
+        </h3>
+      </div>
+      <span className="shrink-0 rounded-md bg-[var(--brand-red-tint)] px-2 py-0.5 text-[9px] font-bold text-[var(--brand-red)] sm:text-[10px]">
+        {levelLabels[skill.level]}
+      </span>
+    </div>
   );
 }
 
