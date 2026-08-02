@@ -442,6 +442,10 @@ textarea:focus-visible {
   min-height: 476px;
 }
 
+.building-stack {
+  transition: height 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 .building-shape {
   min-height: 30px;
   background-image: linear-gradient(

@@ -1,9 +1,15 @@
 "use client";
 
-import { ArrowUp, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUp, Mail, MapPin, Phone, UserRound } from "lucide-react";
 import Link from "next/link";
 
-import { contactInfo, navItems, site, socialLinks } from "@/data/dev-content";
+import {
+  contactInfo,
+  links,
+  navItems,
+  site,
+  socialLinks,
+} from "@/data/dev-content";
 
 export function Footer() {
   return (
@@ -104,14 +110,25 @@ export function Footer() {
             <span className="font-semibold text-dev">{site.fullName}</span>.
             Todos os direitos reservados.
           </p>
-          <button
-            type="button"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="grid h-12 w-12 place-items-center rounded-full bg-dev !text-white shadow-dev transition-all hover:scale-110 hover:bg-dev-dark [&_*]:!text-white"
-            aria-label="Voltar ao topo"
-          >
-            <ArrowUp className="h-5 w-5" />
-          </button>
+          <div className="flex items-center gap-3">
+            <Link
+              href={links.personalPortfolio}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-body inline-flex items-center gap-2 rounded-full border border-[var(--brand-border)] bg-white px-4 py-2 text-sm font-semibold text-[var(--brand-ink)] transition-all duration-200 hover:border-dev hover:text-dev"
+            >
+              <UserRound className="h-4 w-4" />
+              Sobre mim
+            </Link>
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="grid h-12 w-12 place-items-center rounded-full bg-dev !text-white shadow-dev transition-all hover:scale-110 hover:bg-dev-dark [&_*]:!text-white"
+              aria-label="Voltar ao topo"
+            >
+              <ArrowUp className="h-5 w-5" />
+            </button>
+          </div>
         </div>
       </div>
     </footer>

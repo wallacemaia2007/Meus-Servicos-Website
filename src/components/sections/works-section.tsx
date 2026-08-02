@@ -55,7 +55,6 @@ export function WorksSection() {
 
   useEffect(() => {
     if (prefersReducedMotion) {
-      setHasBuilt(true);
       return;
     }
 
@@ -111,45 +110,49 @@ export function WorksSection() {
                     className="building group relative flex h-full w-full flex-col items-center justify-end"
                     aria-pressed={isActive}
                   >
-                    <div className="pointer-events-none absolute -top-10 left-1/2 z-10 w-max -translate-x-1/2 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:block">
-                      <span className="whitespace-nowrap rounded bg-gray-800 px-2 py-1 text-xs text-white shadow-lg">
-                        {category.name}
-                      </span>
-                    </div>
                     <div
-                      className={
-                        isActive
-                          ? "building-shape active z-10 mx-auto flex w-full max-w-[60px] scale-105 flex-col items-center justify-center overflow-hidden rounded-t-lg border-l-2 border-r-2 border-t-2 border-dev bg-[var(--brand-red-tint)] md:max-w-[80px]"
-                          : "building-shape mx-auto flex w-full max-w-[60px] flex-col items-center justify-center overflow-hidden rounded-t-lg border border-[var(--section-border)] bg-white hover:border-dev/50 hover:bg-[var(--brand-red-tint)] md:max-w-[80px]"
-                      }
+                      className="building-stack relative mx-auto w-full max-w-[60px] transition-transform duration-300 md:max-w-[80px]"
                       style={{
                         height: `${height}%`,
                         transitionDelay: buildDelay,
                       }}
                     >
-                      <Icon className="mb-2 hidden h-6 w-6 text-gray-400 transition-colors group-hover:text-dev md:block" />
+                      <div className="pointer-events-none absolute -top-10 left-1/2 z-20 w-max -translate-x-1/2 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:block">
+                        <span className="whitespace-nowrap rounded bg-gray-800 px-2 py-1 text-xs text-white shadow-lg">
+                          {category.name}
+                        </span>
+                      </div>
                       <div
                         className={
                           isActive
-                            ? "grid grid-cols-2 gap-1 px-2 pb-2 opacity-100 md:grid-cols-3 md:gap-2 md:pb-4"
-                            : "grid grid-cols-2 gap-1 px-2 pb-2 opacity-40 md:grid-cols-3 md:gap-2 md:pb-4"
+                            ? "building-shape active z-10 flex h-full w-full scale-105 flex-col items-center justify-center overflow-hidden rounded-t-lg border-l-2 border-r-2 border-t-2 border-dev bg-[var(--brand-red-tint)]"
+                            : "building-shape flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-t-lg border border-[var(--section-border)] bg-white hover:border-dev/50 hover:bg-[var(--brand-red-tint)]"
                         }
                       >
-                        {Array.from({ length: 6 }).map((_, index) => (
-                          <div
-                            key={index}
-                            className={`window-dot h-1.5 w-1.5 rounded-sm bg-dev-light/70 md:h-2 md:w-2 ${
-                              isActive &&
-                              (index === firstPersonWindow ||
-                                index === secondPersonWindow)
-                                ? "window-person"
-                                : ""
-                            }`}
-                            style={{
-                              animationDelay: `${((categoryIndex * 7 + index * 3) % 17) * 0.18}s`,
-                            }}
-                          />
-                        ))}
+                        <Icon className="mb-2 hidden h-6 w-6 text-gray-400 transition-colors group-hover:text-dev md:block" />
+                        <div
+                          className={
+                            isActive
+                              ? "grid grid-cols-2 gap-1 px-2 pb-2 opacity-100 md:grid-cols-3 md:gap-2 md:pb-4"
+                              : "grid grid-cols-2 gap-1 px-2 pb-2 opacity-40 md:grid-cols-3 md:gap-2 md:pb-4"
+                          }
+                        >
+                          {Array.from({ length: 6 }).map((_, index) => (
+                            <div
+                              key={index}
+                              className={`window-dot h-1.5 w-1.5 rounded-sm bg-dev-light/70 md:h-2 md:w-2 ${
+                                isActive &&
+                                (index === firstPersonWindow ||
+                                  index === secondPersonWindow)
+                                  ? "window-person"
+                                  : ""
+                              }`}
+                              style={{
+                                animationDelay: `${((categoryIndex * 7 + index * 3) % 17) * 0.18}s`,
+                              }}
+                            />
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </button>
