@@ -27,7 +27,7 @@ export default function HomePage() {
         <img
           src="/assets/icons/whatsapp.png"
           alt="Whatsapp"
-          className="h-8 w-8"
+          className="h-full w-full rounded-full object-cover"
         />
       </a>
     </>
