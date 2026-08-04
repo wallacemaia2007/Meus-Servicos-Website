@@ -51,6 +51,44 @@ NEXT_PUBLIC_SITE_URL=https://servicos.maiawall.com
 NEXT_PUBLIC_API_BASE_URL=https://api.maiawall.com
 ```
 
+## SEO / Analytics
+
+### Google Search Console (verificacao)
+
+Para verificar o site em `https://servicos.maiawall.com` no Google Search Console, adicione o codigo de verificacao em `src/app/layout.tsx`, na prop `metadata.verification`:
+
+```ts
+export const metadata: Metadata = {
+  // ...
+  verification: {
+    google: "COLE_AQUI_O_CODIGO_DE_VERIFICACAO",
+  },
+};
+```
+
+### Google Analytics / GA4
+
+O site ainda nao possui o script do GA4. Para ativar, adicione o snippet a seguir em `src/app/layout.tsx`, dentro de `<head>` (ou via componente `Analytics`):
+
+```html
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SEU_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-SEU_ID');
+</script>
+```
+
+Substitua `G-SEU_ID` pelo Measurement ID da sua propriedade GA4.
+
+### Assets de SEO
+
+- `og:image`: `public/assets/images/og-image.jpg` (1200x674 px) — ja configurada em `metadata.openGraph` e `metadata.twitter`.
+- `robots.txt`: gerado em `src/app/robots.ts`.
+- `sitemap.xml`: gerado em `src/app/sitemap.ts`.
+- Dados estruturados (JSON-LD): injetados em `src/app/page.tsx` (`Person`, `WebSite`, `WebPage`, `ItemList` de projetos).
+
 ## Deploy
 
 Publique esta raiz do projeto como a aplicacao independente do subdominio `servicos.maiawall.com`.

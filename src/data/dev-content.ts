@@ -15,7 +15,7 @@ export const site = {
   fullName: "Wallace Maia",
   title: "Wallace Maia | Serviços Web Full Stack",
   description:
-    "Sites modernos, sistemas web e soluções digitais para empresas que precisam de autoridade, conversão e tecnologia escalável.",
+    "Portfólio de serviços de Wallace Maia — desenvolvedor full stack Angular, Java e Spring Boot. Sites, e-commerces, dashboards e APIs sob medida. Orçamento gratuito.",
   whatsapp:
     "https://wa.me/5535910036806?text=Ol%C3%A1!%20Gostaria%20de%20saber%20sobre%20os%20projetos%20e%20seu%20trabalho!",
 };

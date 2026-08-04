@@ -91,7 +91,7 @@ export function ProjectsSection() {
           </div>
         </header>
 
-        <main className="projects-main">
+        <div className="projects-main">
           <motion.div
             className="browser-mockup"
             initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.94 }}
@@ -130,6 +130,8 @@ export function ProjectsSection() {
                       alt={`${active.title} - página ${index + 1}`}
                       className="page-img"
                       draggable={false}
+                      loading="lazy"
+                      decoding="async"
                     />
                     <span className="page-badge">
                       {index + 1}/{total}
@@ -209,7 +211,7 @@ export function ProjectsSection() {
               </a>
             </div>
           </motion.aside>
-        </main>
+        </div>
       </div>
     </section>
   );

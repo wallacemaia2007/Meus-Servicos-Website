@@ -35,6 +35,12 @@ const splineSansMono = Spline_Sans_Mono({
   display: "swap",
 });
 
+// ═══════════════════════════════════════════════════════════
+// SEO & METADATA — servicos.maiawall.com
+// GSC: para verificar no Google Search Console, adicione abaixo:
+//   verification: { google: "SEU-CODIGO-DE-VERIFICACAO" }
+// GA4: o snippet do Google Analytics fica documentado no README.md
+// ═══════════════════════════════════════════════════════════
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -42,6 +48,54 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.description,
+  applicationName: site.name,
+  authors: [{ name: site.fullName, url: site.url }],
+  creator: site.fullName,
+  publisher: site.fullName,
+  category: "Tecnologia",
+  keywords: [
+    "serviços web",
+    "desenvolvedor full stack",
+    "criação de sites",
+    "sistemas web",
+    "e-commerce",
+    "landing pages",
+    "dashboards",
+    "APIs",
+    "Angular",
+    "Java",
+    "Spring Boot",
+    "Wallace Maia",
+    "maiawall",
+    "desenvolvimento web",
+    "freelancer",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+  alternates: {
+    canonical: site.url,
+  },
+  manifest: "/assets/brand/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/assets/brand/favicon.svg", type: "image/svg+xml" },
+      {
+        url: "/assets/brand/favicon-96x96.png",
+        sizes: "96x96",
+        type: "image/png",
+      },
+    ],
+    apple: "/assets/brand/apple-touch-icon.png",
+  },
   openGraph: {
     type: "website",
     locale: "pt_BR",
@@ -51,24 +105,24 @@ export const metadata: Metadata = {
     description: site.description,
     images: [
       {
-        url: "/assets/images/og-image.jpg",
+        url: `${site.url}/assets/images/og-image.jpg`,
         width: 1200,
         height: 674,
-        alt: "Wallace Maia — Desenvolvedor Full Stack",
+        alt: "Wallace Maia — Serviços Web Full Stack",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
+    site: "@wallacemaia2007",
+    creator: "@wallacemaia2007",
     title: site.title,
     description: site.description,
+    images: [`${site.url}/assets/images/og-image.jpg`],
   },
-  alternates: {
-    canonical: site.url,
-  },
-  robots: {
-    index: true,
-    follow: true,
+  other: {
+    "geo.region": "BR-MG",
+    "geo.placename": "Uberlândia, Minas Gerais, Brasil",
   },
 };
 

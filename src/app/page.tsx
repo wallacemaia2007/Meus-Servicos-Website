@@ -5,11 +5,98 @@ import { ProblemSolutionSection } from "@/components/sections/problem-solution-s
 import { ProjectsSection } from "@/components/sections/projects-section";
 import { StackSection } from "@/components/sections/stack-section";
 import { WorksSection } from "@/components/sections/works-section";
-import { site } from "@/data/dev-content";
+import { JsonLd } from "@/components/seo/json-ld";
+import { links, projects, site } from "@/data/dev-content";
+
+const OG_IMAGE = `${site.url}/assets/images/og-image.jpg`;
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${site.url}/#person`,
+  name: site.fullName,
+  alternateName: ["Wallace Maia Dev", "maiawall"],
+  jobTitle: "Desenvolvedor Web Full Stack",
+  description: site.description,
+  url: site.url,
+  image: `${site.url}/assets/images/avatar.jpeg`,
+  email: "wallacemaia2007@gmail.com",
+  telephone: "+5535910036806",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Uberlândia",
+    addressRegion: "Minas Gerais",
+    addressCountry: "BR",
+  },
+  sameAs: [
+    links.github,
+    links.linkedin,
+    links.instagram,
+    links.fiverr,
+    links.personalPortfolio,
+  ],
+  knowsAbout: [
+    "Angular",
+    "TypeScript",
+    "Java",
+    "Spring Boot",
+    "Spring Security",
+    "RxJS",
+    "Tailwind CSS",
+    "MySQL",
+    "PostgreSQL",
+    "MongoDB",
+    "Docker",
+    "Node.js",
+    "REST API",
+  ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${site.url}/#website`,
+  url: site.url,
+  name: `${site.name} | Serviços Web Full Stack`,
+  description: site.description,
+  inLanguage: "pt-BR",
+  author: { "@id": `${site.url}/#person` },
+};
+
+const webpageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": site.url,
+  url: site.url,
+  name: site.title,
+  description: site.description,
+  primaryImageOfPage: OG_IMAGE,
+  isPartOf: { "@id": `${site.url}/#website` },
+  about: { "@id": `${site.url}/#person` },
+};
+
+const projectsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Projetos de Wallace Maia",
+  url: site.url,
+  numberOfItems: projects.length,
+  itemListElement: projects.map((project, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: project.title,
+    description: project.description,
+    url: project.liveUrl,
+  })),
+};
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={personJsonLd} />
+      <JsonLd data={websiteJsonLd} />
+      <JsonLd data={webpageJsonLd} />
+      <JsonLd data={projectsJsonLd} />
       <HeroSection />
       <ProblemSolutionSection />
       <WorksSection />
