@@ -1,5 +1,6 @@
 "use client";
 
+import { useLenis } from "lenis/react";
 import { ArrowUp, Mail, MapPin, Phone, UserRound } from "lucide-react";
 import Link from "next/link";
 
@@ -12,6 +13,16 @@ import {
 } from "@/data/dev-content";
 
 export function Footer() {
+  const lenis = useLenis();
+
+  const scrollToTop = () => {
+    if (lenis) {
+      lenis.scrollTo(0);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="border-t-4 border-dev bg-[var(--section-tint)] text-[var(--brand-ink)]">
       <div className="mx-auto max-w-7xl px-4 py-12 lg:px-6">
@@ -124,7 +135,7 @@ export function Footer() {
             </Link>
             <button
               type="button"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              onClick={scrollToTop}
               className="grid h-12 w-12 place-items-center rounded-full bg-dev !text-white shadow-dev transition-all hover:scale-110 hover:bg-dev-dark [&_*]:!text-white"
               aria-label="Voltar ao topo"
             >

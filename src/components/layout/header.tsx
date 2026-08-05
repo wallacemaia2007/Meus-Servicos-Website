@@ -1,5 +1,6 @@
 "use client";
 
+import { useLenis } from "lenis/react";
 import { Menu, MessageCircle, UserRound, X } from "lucide-react";
 import Link from "next/link";
 
@@ -11,10 +12,15 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const { isScrolled, isHidden } = useHeaderScroll();
   const { isOpen, toggle, close } = useMobileMenu();
+  const lenis = useLenis();
 
   const scrollTo = (href: string) => {
     close();
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    if (lenis) {
+      lenis.scrollTo(href);
+    } else {
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (

@@ -9,6 +9,7 @@ import {
 import { Toaster } from "sonner";
 
 import { QueryProvider } from "@/components/common/query-provider";
+import { SmoothScroll } from "@/components/common/smooth-scroll";
 import { ThemeProvider } from "@/components/common/theme-provider";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
@@ -142,9 +143,11 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <QueryProvider>
-            <Header />
-            <main>{children}</main>
-            <Footer />
+            <SmoothScroll>
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </SmoothScroll>
             <Toaster richColors position="top-right" closeButton />
           </QueryProvider>
         </ThemeProvider>

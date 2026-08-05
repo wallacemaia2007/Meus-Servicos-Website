@@ -40,6 +40,7 @@ const DotGrid = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const dotsRef = useRef<Dot[]>([]);
   const pointerRef = useRef({ x: -9999, y: -9999 });
+  const isVisibleRef = useRef(false);
 
   const buildGrid = useCallback(() => {
     const wrapper = wrapperRef.current;
@@ -84,15 +85,41 @@ const DotGrid = ({
   }, [buildGrid]);
 
   useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    if (!("IntersectionObserver" in window)) {
+      isVisibleRef.current = true;
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = Boolean(entry?.isIntersecting);
+      },
+      { rootMargin: "120px" },
+    );
+
+    observer.observe(wrapper);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d", { alpha: true });
-    if (!canvas || !ctx) return;
+    if (!canvas || !ctx || !isVisibleRef.current) return;
 
     const base = readCssColor(baseColor);
     const active = readCssColor(activeColor);
     let frame = 0;
 
     const draw = () => {
+      if (!isVisibleRef.current) {
+        frame = 0;
+        return;
+      }
+
       const width = canvas.clientWidth;
       const height = canvas.clientHeight;
       ctx.clearRect(0, 0, width, height);
@@ -128,7 +155,9 @@ const DotGrid = ({
     window.addEventListener("pointerleave", onPointerLeave);
 
     return () => {
-      cancelAnimationFrame(frame);
+      if (frame !== 0) {
+        cancelAnimationFrame(frame);
+      }
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerleave", onPointerLeave);
     };
