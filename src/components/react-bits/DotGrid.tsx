@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export interface DotGridProps {
   dotSize?: number;
@@ -41,6 +41,7 @@ const DotGrid = ({
   const dotsRef = useRef<Dot[]>([]);
   const pointerRef = useRef({ x: -9999, y: -9999 });
   const isVisibleRef = useRef(false);
+  const [isInView, setIsInView] = useState(false);
 
   const buildGrid = useCallback(() => {
     const wrapper = wrapperRef.current;
@@ -90,12 +91,14 @@ const DotGrid = ({
 
     if (!("IntersectionObserver" in window)) {
       isVisibleRef.current = true;
+      setIsInView(true);
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         isVisibleRef.current = Boolean(entry?.isIntersecting);
+        setIsInView(Boolean(entry?.isIntersecting));
       },
       { rootMargin: "120px" },
     );
@@ -108,7 +111,7 @@ const DotGrid = ({
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d", { alpha: true });
-    if (!canvas || !ctx || !isVisibleRef.current) return;
+    if (!canvas || !ctx || !isInView) return;
 
     const base = readCssColor(baseColor);
     const active = readCssColor(activeColor);
@@ -161,7 +164,7 @@ const DotGrid = ({
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerleave", onPointerLeave);
     };
-  }, [activeColor, baseColor, dotSize, proximity]);
+  }, [activeColor, baseColor, dotSize, isInView, proximity]);
 
   return (
     <div

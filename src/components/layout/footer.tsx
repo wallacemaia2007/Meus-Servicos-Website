@@ -24,7 +24,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="border-t-4 border-dev bg-[var(--section-tint)] text-[var(--brand-ink)]">
+    <footer className="border-t-4 border-dev bg-white text-[var(--brand-ink)]">
       <div className="mx-auto max-w-7xl px-4 py-12 lg:px-6">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <section className="space-y-4">

@@ -201,14 +201,7 @@ textarea:focus-visible {
 }
 
 .hero-shell {
-  background:
-    radial-gradient(
-      circle at 22% 32%,
-      rgba(151, 28, 38, 0.12),
-      transparent 28%
-    ),
-    radial-gradient(circle at 76% 45%, rgba(194, 58, 68, 0.1), transparent 30%),
-    linear-gradient(180deg, var(--section-light), var(--section-tint));
+  background: var(--section-light);
 }
 
 .hero-preview-wrapper {
