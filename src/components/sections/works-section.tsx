@@ -86,7 +86,7 @@ export function WorksSection() {
         <div className="relative mt-16 flex flex-col gap-8 lg:flex-row lg:items-start">
           <div
             ref={cityRef}
-            className="city-container relative w-full shrink-0 rounded-2xl border border-[var(--section-border)] p-6 shadow-[0_24px_70px_-46px_rgba(151,28,38,0.55)] lg:w-[60%] md:p-8"
+            className="city-container relative w-full shrink-0 rounded-2xl border border-[var(--section-border)] p-6 shadow-[0_24px_70px_-46px_rgba(155,27,31,0.55)] lg:w-[60%] md:p-8"
           >
             <div className="grid h-[280px] grid-cols-4 gap-2 sm:h-[350px] md:h-[380px] md:gap-4 lg:grid-cols-8">
               {serviceCategories.map((category, categoryIndex) => {
@@ -162,7 +162,7 @@ export function WorksSection() {
             <div className="absolute bottom-6 left-6 right-6 h-px bg-gradient-to-r from-transparent via-dev-dark to-transparent opacity-50 md:bottom-8 md:left-8 md:right-8" />
           </div>
 
-          <div className="panel-container w-full overflow-hidden rounded-2xl border border-[var(--section-border)] bg-white shadow-[0_24px_70px_-46px_rgba(151,28,38,0.65)] lg:w-[40%]">
+          <div className="panel-container w-full overflow-hidden rounded-2xl border border-[var(--section-border)] bg-white shadow-[0_24px_70px_-46px_rgba(155,27,31,0.65)] lg:w-[40%]">
             {active ? (
               <ActivePanel key={active.id} category={active} />
             ) : (

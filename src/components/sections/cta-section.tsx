@@ -74,8 +74,8 @@ export function CtaSection() {
             <source src={ctaVideoSrc} type="video/mp4" />
           ) : null}
         </video>
-        <div className="absolute inset-0 bg-[rgba(110,20,28,0.82)]" />
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[rgba(110,20,28,0.72)] to-transparent" />
+        <div className="absolute inset-0 bg-[rgba(107,11,15,0.82)]" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[rgba(107,11,15,0.72)] to-transparent" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-3xl px-4 text-center lg:px-6">

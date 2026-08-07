@@ -37,7 +37,7 @@ export function Header() {
           className={cn(
             "pointer-events-auto flex w-full max-w-5xl items-center justify-between rounded-full border px-2 py-1.5 shadow-lg backdrop-blur-md transition-all duration-300 sm:px-3 sm:py-2",
             isScrolled
-                ? "border-[rgba(151,28,38,0.2)] bg-white/95"
+                ? "border-[rgba(155,27,31,0.2)] bg-white/95"
                 : "border-[var(--brand-border)] bg-white/85",
           )}
         >

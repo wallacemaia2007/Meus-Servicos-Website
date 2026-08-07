@@ -184,14 +184,14 @@ export function BeforeAfterSlider({
         </div>
 
         <div
-          className="pointer-events-none absolute inset-y-0 z-20 w-px bg-white/95 shadow-[0_0_28px_rgba(151,28,38,0.46)]"
+          className="pointer-events-none absolute inset-y-0 z-20 w-px bg-white/95 shadow-[0_0_28px_rgba(155,27,31,0.46)]"
           style={{ left: "var(--split)" }}
           aria-hidden="true"
         />
 
         <motion.button
           type="button"
-          className="absolute top-1/2 z-30 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 touch-none items-center justify-center rounded-full border border-[rgba(151,28,38,0.18)] bg-white text-[var(--brand-red)] shadow-[0_18px_45px_rgba(0,0,0,0.28)] outline-none transition-transform hover:scale-105 focus-visible:ring-2 focus-visible:ring-[var(--brand-red-light)] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+          className="absolute top-1/2 z-30 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 touch-none items-center justify-center rounded-full border border-[rgba(155,27,31,0.18)] bg-white text-[var(--brand-red)] shadow-[0_18px_45px_rgba(0,0,0,0.28)] outline-none transition-transform hover:scale-105 focus-visible:ring-2 focus-visible:ring-[var(--brand-red-light)] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           style={{ left: "var(--split)" }}
           role="slider"
           aria-label="Comparar antes e depois"
@@ -275,16 +275,16 @@ function BeforeLayer({ label }: { label: string }) {
 function AfterLayer({ label }: { label: string }) {
   return (
     <div className="absolute inset-0 bg-white p-4 text-[var(--brand-ink)] max-[400px]:p-3 sm:p-6 lg:p-8">
-      <div className="relative flex h-full flex-col overflow-hidden rounded-[1.35rem] border border-[rgba(151,28,38,0.22)] bg-white shadow-[0_26px_70px_rgba(151,28,38,0.16)]">
+      <div className="relative flex h-full flex-col overflow-hidden rounded-[1.35rem] border border-[rgba(155,27,31,0.22)] bg-white shadow-[0_26px_70px_rgba(155,27,31,0.16)]">
         <div
           className="absolute inset-0 opacity-70"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(151,28,38,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(151,28,38,0.08) 1px, transparent 1px)",
+              "linear-gradient(rgba(155,27,31,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(155,27,31,0.08) 1px, transparent 1px)",
             backgroundSize: "24px 24px",
           }}
         />
-        <div className="relative flex items-center gap-2 border-b border-[rgba(151,28,38,0.14)] bg-[var(--brand-red-tint)] px-3 py-2 sm:px-4">
+        <div className="relative flex items-center gap-2 border-b border-[rgba(155,27,31,0.14)] bg-[var(--brand-red-tint)] px-3 py-2 sm:px-4">
           <span className="h-2 w-2 rounded-full bg-[var(--brand-red-dark)]" />
           <span className="h-2 w-2 rounded-full bg-[var(--brand-red)]" />
           <span className="h-2 w-2 rounded-full bg-[var(--brand-red-light)]" />
@@ -293,7 +293,7 @@ function AfterLayer({ label }: { label: string }) {
           </span>
         </div>
         <div className="relative flex flex-1 flex-col gap-4 p-4 max-[400px]:gap-3 max-[400px]:p-3 sm:gap-5 sm:p-6 lg:p-8">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[rgba(151,28,38,0.26)] bg-[var(--brand-red)] px-3 py-1 text-[10px] font-bold uppercase text-white sm:text-xs">
+          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[rgba(155,27,31,0.26)] bg-[var(--brand-red)] px-3 py-1 text-[10px] font-bold uppercase text-white sm:text-xs">
             <CheckCircle className="h-3.5 w-3.5" />
             {label}
           </span>
@@ -312,15 +312,15 @@ function AfterLayer({ label }: { label: string }) {
             </p>
           </div>
           <div className="grid flex-1 grid-cols-[1fr_0.7fr] gap-3 max-[400px]:gap-2 sm:gap-4">
-            <div className="space-y-3 rounded-xl border border-[rgba(151,28,38,0.14)] bg-white/86 p-3 shadow-sm max-[400px]:p-2 sm:p-4">
+            <div className="space-y-3 rounded-xl border border-[rgba(155,27,31,0.14)] bg-white/86 p-3 shadow-sm max-[400px]:p-2 sm:p-4">
               <div className="h-2.5 w-20 rounded-full bg-[var(--brand-red)]" />
-              <div className="h-2.5 w-32 rounded-full bg-[rgba(151,28,38,0.18)]" />
+              <div className="h-2.5 w-32 rounded-full bg-[rgba(155,27,31,0.18)]" />
               <div className="grid grid-cols-2 gap-2 pt-3">
                 <span className="h-14 rounded-lg bg-[var(--brand-red-tint)]" />
-                <span className="h-14 rounded-lg bg-[rgba(151,28,38,0.12)]" />
+                <span className="h-14 rounded-lg bg-[rgba(155,27,31,0.12)]" />
               </div>
             </div>
-            <div className="rounded-xl border border-[rgba(151,28,38,0.18)] bg-gradient-to-b from-[var(--brand-red)] to-[var(--brand-red-dark)] p-3 text-white shadow-[0_18px_44px_rgba(151,28,38,0.28)] max-[400px]:p-2 sm:p-4">
+            <div className="rounded-xl border border-[rgba(155,27,31,0.18)] bg-gradient-to-b from-[var(--brand-red)] to-[var(--brand-red-dark)] p-3 text-white shadow-[0_18px_44px_rgba(155,27,31,0.28)] max-[400px]:p-2 sm:p-4">
               <div className="text-[10px] font-bold uppercase text-white/70">
                 conversão
               </div>

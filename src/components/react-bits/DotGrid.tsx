@@ -30,7 +30,7 @@ function readCssColor(value: string) {
 const DotGrid = ({
   dotSize = 2,
   gap = 28,
-  baseColor = "rgba(151, 28, 38, 0.08)",
+  baseColor = "rgba(155, 27, 31, 0.08)",
   activeColor = "rgba(194, 58, 68, 0.22)",
   proximity = 130,
   className = "",

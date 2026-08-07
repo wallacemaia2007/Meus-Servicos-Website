@@ -86,7 +86,7 @@ export function ContactSection() {
             viewport={viewport}
             transition={{ duration: prefersReducedMotion ? 0 : 0.55 }}
           >
-            <div className="rounded-2xl border border-[var(--section-border)] bg-white p-6 shadow-[0_24px_70px_-50px_rgba(151,28,38,0.7)] md:p-8">
+            <div className="rounded-2xl border border-[var(--section-border)] bg-white p-6 shadow-[0_24px_70px_-50px_rgba(155,27,31,0.7)] md:p-8">
               <h3 className="font-body mb-6 text-xl font-bold text-[var(--brand-ink)]">
                 {contactCopy.formTitle}
               </h3>
@@ -333,7 +333,7 @@ function ContactCard({
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      className="group flex items-center gap-4 rounded-2xl border border-[var(--section-border)] bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-dev/30 hover:bg-[rgba(253,236,236,0.42)]"
+      className="group flex items-center gap-4 rounded-2xl border border-[var(--section-border)] bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-dev/30 hover:bg-[rgba(250,233,233,0.42)]"
     >
       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--brand-red-tint)] text-dev transition-colors group-hover:bg-dev group-hover:!text-white">
         {icon}

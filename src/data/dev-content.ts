@@ -302,7 +302,7 @@ export const projects: DevProject[] = [
     theme: {
       surface: "var(--dev-bg-surface)",
       accent: "var(--brand-red)",
-      glow: "rgba(151, 28, 38, 0.35)",
+      glow: "rgba(155, 27, 31, 0.35)",
     },
     pages: [
       "/assets/images/projects/portfolio-pessoal/portfolio-pessoal-1.png",
@@ -325,7 +325,7 @@ export const projects: DevProject[] = [
     theme: {
       surface: "var(--dev-bg-card)",
       accent: "var(--brand-red-dark)",
-      glow: "rgba(110, 20, 28, 0.3)",
+      glow: "rgba(107, 11, 15, 0.3)",
     },
     pages: [
       "/assets/images/projects/banda-aurah/banda-aurah1.png",
@@ -367,7 +367,7 @@ export const projects: DevProject[] = [
     theme: {
       surface: "var(--dev-bg-surface)",
       accent: "var(--brand-red)",
-      glow: "rgba(151, 28, 38, 0.35)",
+      glow: "rgba(155, 27, 31, 0.35)",
     },
     pages: [
       "/assets/images/projects/painel-admin/foto1.jpg",
@@ -387,7 +387,7 @@ export const projects: DevProject[] = [
     theme: {
       surface: "var(--dev-bg-card)",
       accent: "var(--brand-red-dark)",
-      glow: "rgba(110, 20, 28, 0.3)",
+      glow: "rgba(107, 11, 15, 0.3)",
     },
     pages: [
       "/assets/images/projects/schulles/hero.jpg",
@@ -440,7 +440,7 @@ export const projects: DevProject[] = [
     theme: {
       surface: "var(--dev-bg-surface)",
       accent: "var(--brand-red)",
-      glow: "rgba(151, 28, 38, 0.35)",
+      glow: "rgba(155, 27, 31, 0.35)",
     },
     pages: [
       "/assets/images/projects/split-hub/imagem-1.png",
@@ -827,7 +827,7 @@ export const terminalSnippets = [
   "kubectl apply -f k8s/deployment.yaml",
   "// Optimizing rendering performance for high-load apps...",
   "if (network.isStable()) { syncDatabaseState(); }",
-  'console.log("%cWelcome to my Portfolio!", "color: #971C26; font-weight: bold;");',
+  'console.log("%cWelcome to my Portfolio!", "color: #9B1B1F; font-weight: bold;");',
   "git push origin main --force-with-lease",
   "sudo apt-get update && sudo apt-get upgrade -y",
   "const observer = new IntersectionObserver(entries => { ... });",

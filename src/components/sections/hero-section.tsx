@@ -30,7 +30,7 @@ export function HeroSection() {
     >
       <HeroParticles />
       <div
-        className="pointer-events-none absolute left-1/2 top-28 h-[420px] w-[min(90vw,760px)] -translate-x-1/2 rounded-full bg-[rgba(253,236,236,0.72)] blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-28 h-[420px] w-[min(90vw,760px)] -translate-x-1/2 rounded-full bg-[rgba(245,240,234,0.6)] blur-3xl"
         aria-hidden="true"
       />
       <div className="relative z-10 mx-auto max-w-7xl px-4 pb-16 pt-28 sm:py-24 lg:px-6 lg:py-28">
@@ -54,7 +54,7 @@ export function HeroSection() {
             </motion.div>
 
             <motion.div
-              className="inline-flex items-center gap-2 rounded-full border border-[rgba(151,28,38,0.2)] bg-[var(--brand-red-tint)] px-5 py-2.5"
+              className="inline-flex items-center gap-2 rounded-full border border-[rgba(155,27,31,0.2)] bg-[var(--brand-red-tint)] px-5 py-2.5"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -114,7 +114,7 @@ export function HeroSection() {
               <MagneticCta>
                 <a
                   href="#works"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-[rgba(151,28,38,0.25)] px-6 py-3 text-sm font-bold text-[var(--brand-red)] transition-all duration-200 hover:border-dev hover:bg-[var(--brand-red-tint)] hover:text-[var(--brand-red-dark)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-[rgba(155,27,31,0.25)] px-6 py-3 text-sm font-bold text-[var(--brand-red)] transition-all duration-200 hover:border-dev hover:bg-[var(--brand-red-tint)] hover:text-[var(--brand-red-dark)]"
                 >
                   {hero.ctaServicos}
                 </a>

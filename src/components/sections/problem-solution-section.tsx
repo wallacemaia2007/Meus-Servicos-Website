@@ -115,7 +115,7 @@ export function ProblemSolutionSection() {
                     delay: prefersReducedMotion ? 0 : index * 0.05,
                   }}
                 >
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-[rgba(151,28,38,0.2)] bg-[var(--brand-red-tint)] text-[var(--brand-red)] transition-colors hover:bg-[var(--brand-red)] hover:!text-white">
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-[rgba(155,27,31,0.2)] bg-[var(--brand-red-tint)] text-[var(--brand-red)] transition-colors hover:bg-[var(--brand-red)] hover:!text-white">
                     <Icon className="h-5 w-5" />
                   </div>
                   <div className="space-y-1">
