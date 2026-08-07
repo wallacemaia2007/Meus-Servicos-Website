@@ -125,8 +125,8 @@ export function WorksSection() {
                       <div
                         className={
                           isActive
-                            ? "building-shape active z-10 flex h-full w-full scale-105 flex-col items-center justify-center overflow-hidden rounded-t-lg border-l-2 border-r-2 border-t-2 border-dev bg-[var(--brand-red-tint)]"
-                            : "building-shape flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-t-lg border border-[var(--section-border)] bg-white hover:border-dev/50 hover:bg-[var(--brand-red-tint)]"
+                            ? "building-shape active z-10 flex h-full w-full scale-105 flex-col items-center justify-center overflow-hidden rounded-t-lg border-l-2 border-r-2 border-t-2 border-dev bg-[var(--brand-red-tint)] cursor-pointer"
+                            : "building-shape flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-t-lg border border-[var(--section-border)] bg-white hover:border-dev/50 hover:bg-[var(--brand-red-tint)] cursor-pointer"
                         }
                       >
                         <Icon className="mb-2 hidden h-6 w-6 text-gray-400 transition-colors group-hover:text-dev md:block" />
