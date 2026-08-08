@@ -3,9 +3,9 @@ import { CtaSection } from "@/components/sections/cta-section";
 import { HeroSection } from "@/components/sections/hero-section";
 import { ProblemSolutionSection } from "@/components/sections/problem-solution-section";
 import { ProjectsSection } from "@/components/sections/projects-section";
-import { StackSection } from "@/components/sections/stack-section";
 import { WorksSection } from "@/components/sections/works-section";
 import { JsonLd } from "@/components/seo/json-ld";
+import { SocialProofSection } from "@/components/social-proof/social-proof-section";
 import { links, projects, site } from "@/data/dev-content";
 
 const OG_IMAGE = `${site.url}/assets/images/og-image.jpg`;
@@ -101,7 +101,7 @@ export default function HomePage() {
       <ProblemSolutionSection />
       <WorksSection />
       <ProjectsSection />
-      <StackSection />
+      <SocialProofSection />
       <ContactSection />
       <CtaSection />
       <a
