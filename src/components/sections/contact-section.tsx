@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import { SectionHeader } from "@/components/shared/SectionHeader";
 import {
   contactCopy,
   contactInfo,
@@ -63,22 +64,13 @@ export function ContactSection() {
       className="bg-[var(--section-surface)] py-16 transition-colors duration-300 md:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <motion.div
-          className="mx-auto max-w-3xl text-center"
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={viewport}
-          transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}
-        >
-          <h2 className="font-heading text-3xl font-normal text-[var(--brand-ink)] md:text-5xl">
-            {contactCopy.title}
-          </h2>
-          <p className="mt-4 text-base text-[var(--brand-ink-muted)] md:text-lg">
-            {contactCopy.subtitle}
-          </p>
-        </motion.div>
+        <SectionHeader
+          eyebrow={contactCopy.eyebrow}
+          title={contactCopy.title}
+          subtitle={contactCopy.subtitle}
+        />
 
-        <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           <motion.div
             className="order-2 lg:order-1"
             initial={prefersReducedMotion ? false : { opacity: 0, x: -50 }}

@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { BeforeAfterSlider } from "@/components/sections/before-after-slider";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 import { problemServices, problemSolution } from "@/data/dev-content";
 
 const icons: Record<string, LucideIcon> = {
@@ -37,41 +38,12 @@ export function ProblemSolutionSection() {
   return (
     <section className="comparison-section overflow-hidden bg-[linear-gradient(135deg,var(--brand-red-dark),var(--brand-red))] py-24 text-white">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="mb-16 space-y-4 text-center">
-          <motion.div
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase text-white backdrop-blur-sm"
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
-            whileInView={finalState}
-            viewport={viewport}
-            transition={{ duration: prefersReducedMotion ? 0 : 0.45 }}
-          >
-            {problemSolution.badge}
-          </motion.div>
-          <motion.h2
-            className="font-heading text-4xl font-normal md:text-6xl"
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
-            whileInView={finalState}
-            viewport={viewport}
-            transition={{
-              duration: prefersReducedMotion ? 0 : 0.5,
-              delay: prefersReducedMotion ? 0 : 0.1,
-            }}
-          >
-            {problemSolution.title}
-          </motion.h2>
-          <motion.p
-            className="mx-auto max-w-2xl text-lg text-white/78 md:text-xl"
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
-            whileInView={finalState}
-            viewport={viewport}
-            transition={{
-              duration: prefersReducedMotion ? 0 : 0.5,
-              delay: prefersReducedMotion ? 0 : 0.2,
-            }}
-          >
-            {problemSolution.description}
-          </motion.p>
-        </div>
+        <SectionHeader
+          tone="dark"
+          eyebrow={problemSolution.badge}
+          title={problemSolution.title}
+          subtitle={problemSolution.description}
+        />
 
         <motion.div
           className="mb-20"

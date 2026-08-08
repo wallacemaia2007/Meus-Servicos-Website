@@ -588,7 +588,7 @@ textarea:focus-visible {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   text-transform: uppercase;
-  color: var(--active-accent);
+  color: var(--active-accent, var(--brand-red));
   opacity: 0.8;
 }
 

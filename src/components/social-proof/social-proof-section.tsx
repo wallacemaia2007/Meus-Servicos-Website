@@ -1,13 +1,13 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLenis } from "lenis/react";
 import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import { SectionHeader } from "@/components/shared/SectionHeader";
 import { socialProof, testimonials } from "@/data/testimonials";
 import { useLenisScrollTrigger } from "@/hooks/useLenisScrollTrigger";
 
@@ -111,9 +111,12 @@ export function SocialProofSection() {
 
       {prefersReducedMotion ? (
         <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 md:py-28">
-          <SectionHeading
-            prefersReducedMotion
-            className="mx-auto max-w-3xl text-center"
+          <SectionHeader
+            tone="dark"
+            eyebrow={socialProof.badge}
+            title={socialProof.title}
+            subtitle={socialProof.subtitle}
+            className="mb-0"
           />
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((testimonial) => (
@@ -129,9 +132,12 @@ export function SocialProofSection() {
         <div className="relative z-10 h-screen">
           <div className="flex h-full flex-col">
             <div className="shrink-0 px-6 pt-16 md:px-[10vw] md:pt-20 lg:pt-24">
-              <SectionHeading
-                prefersReducedMotion={false}
-                className="mx-auto max-w-3xl text-center"
+              <SectionHeader
+                tone="dark"
+                eyebrow={socialProof.badge}
+                title={socialProof.title}
+                subtitle={socialProof.subtitle}
+                className="mb-0"
               />
             </div>
             <div className="flex min-h-0 flex-1 items-center">
@@ -160,33 +166,5 @@ export function SocialProofSection() {
         </div>
       )}
     </section>
-  );
-}
-
-function SectionHeading({
-  prefersReducedMotion,
-  className = "",
-}: {
-  prefersReducedMotion: boolean;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      className={className}
-      initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.6 }}
-      transition={{ duration: 0.55, ease: "easeOut" }}
-    >
-      <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-white backdrop-blur-sm">
-        {socialProof.badge}
-      </span>
-      <h2 className="font-heading mt-4 text-3xl font-normal leading-tight text-white md:text-5xl">
-        {socialProof.title}
-      </h2>
-      <p className="mt-4 text-base text-white/78 md:text-lg">
-        {socialProof.subtitle}
-      </p>
-    </motion.div>
   );
 }

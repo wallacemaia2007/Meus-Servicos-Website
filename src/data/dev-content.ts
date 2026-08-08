@@ -118,6 +118,7 @@ export const problemServices: ProblemService[] = [
 
 export const works = {
   title: "Soluções que transformam ideias em produtos digitais",
+  eyebrow: "Serviços",
   subtitle:
     "Clique em um serviço para explorar o que posso construir para você",
   cta: "Solicitar este serviço",
@@ -767,6 +768,7 @@ export const skills: Skill[] = [
 
 export const contactCopy = {
   title: "Vamos Conversar?",
+  eyebrow: "Contato",
   subtitle:
     "Estou sempre aberto a novas oportunidades e projetos interessantes",
   formTitle: "Envie uma mensagem",
