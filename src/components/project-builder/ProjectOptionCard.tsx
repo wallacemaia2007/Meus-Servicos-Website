@@ -31,7 +31,7 @@ export const ProjectOptionCard = React.forwardRef<
       onClick={onSelect}
       onKeyDown={onKeyDown}
       className={cn(
-        "group flex w-full items-start gap-3 rounded-2xl border p-4 text-left transition-all duration-200",
+        "group flex w-full cursor-pointer items-start gap-3 rounded-2xl border p-4 text-left transition-all duration-200",
         selected
           ? "border-dev bg-[var(--brand-red-tint)] shadow-[0_12px_28px_-16px_rgba(155,27,31,0.4)]"
           : "border-[var(--section-border)] bg-white hover:-translate-y-0.5 hover:border-dev/40 hover:bg-[var(--brand-red-tint)]/40 hover:shadow-sm",

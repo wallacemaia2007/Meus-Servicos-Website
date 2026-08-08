@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { projectBuilderCategories, projectBuilderCopy } from "@/data/project-builder-options";
+import { buildProjectDetails, getProjectSummaryRows } from "@/lib/project/project-details";
 import type {
   ProjectBrief,
   ProjectCategory as ProjectCategoryType,
@@ -16,32 +17,20 @@ import type {
 } from "@/types/project-builder";
 
 import { ProjectCategory } from "./ProjectCategory";
+import { ProjectContactModal } from "./ProjectContactModal";
 import { ProjectProgress } from "./ProjectProgress";
-import { ProjectSummary, type ProjectSummaryRow } from "./ProjectSummary";
+import { ProjectSummary } from "./ProjectSummary";
 
-const optionLabel = (category: ProjectCategoryType, optionId: string) =>
-  category.options.find((option) => option.id === optionId)?.label ?? optionId;
-
-const asString = (value: string | string[] | undefined) =>
-  typeof value === "string" && value ? value : undefined;
-
-const asArray = (value: string | string[] | undefined): string[] =>
-  Array.isArray(value) ? value : [];
-
-export interface ProjectBuilderSectionProps {
-  onSubmit?: (projectConfiguration: ProjectBrief) => void;
-}
-
-export function ProjectBuilderSection({
-  onSubmit = (projectConfiguration) => {
-    console.log("Project configuration", projectConfiguration);
-  },
-}: ProjectBuilderSectionProps) {
+export function ProjectBuilderSection() {
   const prefersReducedMotion = useReducedMotion();
   const [config, setConfig] = useState<ProjectConfiguration>({});
   const [notes, setNotes] = useState("");
   const [technologyDetails, setTechnologyDetails] = useState("");
   const [otherDetails, setOtherDetails] = useState<Record<string, string>>({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [pendingProject, setPendingProject] = useState<ProjectBrief | null>(
+    null,
+  );
 
   const isFilled = (category: ProjectCategoryType) => {
     const value = config[category.id];
@@ -69,81 +58,19 @@ export function ProjectBuilderSection({
     return previousFilled || anyFilledFromHere;
   });
 
-  const summaryRows = useMemo(() => {
-    const rows: ProjectSummaryRow[] = [];
+  const brief = useMemo(
+    () => buildProjectDetails(config, { notes, otherDetails, technologyDetails }),
+    [config, notes, otherDetails, technologyDetails],
+  );
 
-    for (const category of projectBuilderCategories) {
-      const value = config[category.id];
-      const selectedIds = Array.isArray(value) ? value : value ? [value] : [];
-
-      if (selectedIds.length === 0) {
-        continue;
-      }
-
-      let text = selectedIds.map((id) => optionLabel(category, id)).join(", ");
-
-      if (
-        category.id === "technology" &&
-        config.technology === "defined" &&
-        technologyDetails.trim()
-      ) {
-        text = `${text} (${technologyDetails.trim()})`;
-      }
-
-      const otherText = otherDetails[category.id]?.trim();
-      if (selectedIds.includes("other") && otherText) {
-        text = `${text} (${otherText})`;
-      }
-
-      rows.push({ title: category.title, value: text });
-    }
-
-    if (notes.trim()) {
-      rows.push({ title: "Observações", value: notes.trim() });
-    }
-
-    return rows;
-  }, [config, notes, otherDetails, technologyDetails]);
-
-  const buildBrief = (): ProjectBrief => {
-    const otherBrief: Record<string, string> = {};
-
-    for (const category of projectBuilderCategories) {
-      const value = config[category.id];
-      const selectedIds = Array.isArray(value) ? value : value ? [value] : [];
-      if (!selectedIds.includes("other")) {
-        continue;
-      }
-      const text = otherDetails[category.id]?.trim();
-      if (text) {
-        otherBrief[category.id] = text;
-      }
-    }
-
-    return {
-      projectType: asString(config.projectType),
-      features: asArray(config.features),
-      objective: asString(config.objective),
-      users: asArray(config.users),
-      integrations: asArray(config.integrations),
-      design: asString(config.design),
-      projectStage: asString(config.projectStage),
-      deadline: asString(config.deadline),
-      technologyPreference: asString(config.technology),
-      technologyDetails:
-        config.technology === "defined" && technologyDetails.trim()
-          ? technologyDetails.trim()
-          : undefined,
-      otherDetails: Object.keys(otherBrief).length ? otherBrief : undefined,
-      additionalNotes: notes.trim() ? notes.trim() : undefined,
-    };
-  };
+  const summaryRows = useMemo(() => getProjectSummaryRows(brief), [brief]);
 
   const handleSubmit = () => {
     if (!allFilled) {
       return;
     }
-    onSubmit(buildBrief());
+    setPendingProject(brief);
+    setIsModalOpen(true);
   };
 
   return (
@@ -272,6 +199,12 @@ export function ProjectBuilderSection({
           </aside>
         </div>
       </div>
+
+      <ProjectContactModal
+        project={pendingProject}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </section>
   );
 }
