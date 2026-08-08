@@ -1,5 +1,8 @@
 import type { Testimonial } from "@/types/testimonial";
 
+const forbidenUser:string =
+  "https://media.istockphoto.com/id/1495088043/pt/vetorial/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=S7d8ImMSfoLBMCaEJOffTVua003OAl2xUnzOsuKIwek=";
+
 export const socialProof = {
   id: "depoimentos",
   badge: "Prova Social",
@@ -15,7 +18,7 @@ export const testimonials: Testimonial[] = [
     id: "motiro",
     clientName: "Instituto Motirõ",
     role: "Instituição Cultural",
-    avatarUrl: "https://i.pravatar.cc/150?u=instituto-motiro",
+    avatarUrl: forbidenUser,
     imageUrl: "/assets/images/testimonials/image/motiro.png",
     rating: 5,
     comment:
@@ -28,7 +31,7 @@ export const testimonials: Testimonial[] = [
     id: "marcio",
     clientName: "Márcio Carvalho",
     role: "Historiador e Produtor Cultural",
-    avatarUrl: "https://i.pravatar.cc/150?u=marcio-carvalho",
+    avatarUrl: forbidenUser,
     imageUrl: "/assets/images/testimonials/image/marcio.png",
     rating: 5,
     comment:
@@ -41,7 +44,7 @@ export const testimonials: Testimonial[] = [
     id: "schulles",
     clientName: "Schulle",
     role: "Marca Schulle",
-    avatarUrl: "https://i.pravatar.cc/150?u=schulle",
+    avatarUrl: forbidenUser,
     imageUrl: "/assets/images/testimonials/image/schulles.jpg",
     rating: 5,
     comment:

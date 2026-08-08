@@ -1,3 +1,4 @@
+import { ProjectBuilderSection } from "@/components/project-builder/ProjectBuilderSection";
 import { ContactSection } from "@/components/sections/contact-section";
 import { CtaSection } from "@/components/sections/cta-section";
 import { HeroSection } from "@/components/sections/hero-section";
@@ -102,6 +103,7 @@ export default function HomePage() {
       <WorksSection />
       <ProjectsSection />
       <SocialProofSection />
+      <ProjectBuilderSection />
       <ContactSection />
       <CtaSection />
       <a
