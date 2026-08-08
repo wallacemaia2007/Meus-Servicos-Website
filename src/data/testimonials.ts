@@ -16,6 +16,7 @@ export const testimonials: Testimonial[] = [
     clientName: "Instituto Motirõ",
     role: "Instituição Cultural",
     avatarUrl: "https://i.pravatar.cc/150?u=instituto-motiro",
+    imageUrl: "/assets/images/testimonials/image/motiro.png",
     rating: 5,
     comment:
       "Migração completa do nosso site institucional sem dor de cabeça. Suporte rápido em qualquer ajuste que precisamos.",
@@ -28,6 +29,7 @@ export const testimonials: Testimonial[] = [
     clientName: "Márcio Carvalho",
     role: "Historiador e Produtor Cultural",
     avatarUrl: "https://i.pravatar.cc/150?u=marcio-carvalho",
+    imageUrl: "/assets/images/testimonials/image/marcio.png",
     rating: 5,
     comment:
       "O Wallace entendeu exatamente o tom que eu queria pro meu portfólio cultural. Site profissional, rápido e do jeito que eu imaginava.",
@@ -40,6 +42,7 @@ export const testimonials: Testimonial[] = [
     clientName: "Schulle",
     role: "Marca Schulle",
     avatarUrl: "https://i.pravatar.cc/150?u=schulle",
+    imageUrl: "/assets/images/testimonials/image/schulles.jpg",
     rating: 5,
     comment:
       "O novo site institucional elevou a percepção da marca e uniu catálogo, e-commerce e blog em um só lugar. Design sofisticado e rápido.",
