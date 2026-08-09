@@ -1,6 +1,6 @@
 import type { Testimonial } from "@/types/testimonial";
 
-const forbidenUser:string =
+const forbidenUser: string =
   "https://media.istockphoto.com/id/1495088043/pt/vetorial/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=S7d8ImMSfoLBMCaEJOffTVua003OAl2xUnzOsuKIwek=";
 
 export const socialProof = {
@@ -35,20 +35,20 @@ export const testimonials: Testimonial[] = [
     imageUrl: "/assets/images/testimonials/image/marcio.png",
     rating: 5,
     comment:
-      "O Wallace entendeu exatamente o tom que eu queria pro meu portfólio cultural. Site profissional, rápido e do jeito que eu imaginava.",
+      "Portfólio moderno e funcional, com design elegante e integração com redes sociais. O site reflete minha identidade profissional e facilita a apresentação dos meus projetos.",
     projectName: "Portfólio Márcio Carvalho",
     projectUrl: "https://www.marciofcarvalho.com.br",
     date: "Jul/2026",
   },
   {
     id: "schulles",
-    clientName: "Schulle",
-    role: "Marca Schulle",
+    clientName: "Patrick",
+    role: "Shulle's Gastronomia",
     avatarUrl: forbidenUser,
     imageUrl: "/assets/images/testimonials/image/schulles.jpg",
     rating: 5,
     comment:
-      "O novo site institucional elevou a percepção da marca e uniu catálogo, e-commerce e blog em um só lugar. Design sofisticado e rápido.",
+      "Site funcional e bonito, com o gerencial melhorou a administração do meu negócio. A landing page ficou incrível, com design moderno e integração com redes sociais!",
     projectName: "Schulle Website",
     projectUrl: "https://www.schulles.com.br/",
     date: "Mai/2026",

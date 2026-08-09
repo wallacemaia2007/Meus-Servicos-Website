@@ -1,6 +1,5 @@
 import type {
   ContactInfo,
-  DevProject,
   NavItem,
   ProblemService,
   ServiceCategory,
@@ -292,7 +291,9 @@ export const projectCopy = {
   cta: "Saiba Mais! →",
 };
 
-export const projects: DevProject[] = [
+export { projects } from "./portfolio-projects";
+
+export const legacyProjects = [
   {
     id: "portfolio-pessoal",
     title: "Portfolio Pessoal",
@@ -382,7 +383,7 @@ export const projects: DevProject[] = [
     id: "schulles",
     title: "Schulle Website",
     description:
-      "Site institucional moderno para a marca Schulle, com design sofisticado, catálogo de produtos, integração com e-commerce e blog de conteúdo.",
+      "Landing page moderna para a Schulle's Gastronomia, com design sofisticado, apresentação de cardápio, reservas online e integração com redes sociais.",
     year: "2026",
     liveUrl: "https://www.schulles.com.br/",
     technologies: ["Angular", "TypeScript", "Angular Material"],

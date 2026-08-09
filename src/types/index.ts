@@ -27,11 +27,22 @@ export type ServiceCategory = {
 
 export type DevProject = {
   id: string;
+  slug: string;
   title: string;
+  shortDescription: string;
   description: string;
   year: string;
+  startDate: string;
+  endDate?: string;
+  status: "completed" | "in-progress" | "planned";
+  category: string;
+  clientType: "freelance" | "pessoal" | string;
   liveUrl: string;
+  githubUrl?: string;
   technologies: string[];
+  tags: string[];
+  challenges: string[];
+  learnings: string[];
   theme: {
     surface: string;
     accent: string;
