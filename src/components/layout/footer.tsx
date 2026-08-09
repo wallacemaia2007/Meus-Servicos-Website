@@ -4,6 +4,7 @@ import { useLenis } from "lenis/react";
 import { ArrowUp, Mail, MapPin, Phone, UserRound } from "lucide-react";
 import Link from "next/link";
 
+import { getAnchorScrollOptions } from "@/components/common/smooth-scroll";
 import {
   contactInfo,
   links,
@@ -17,7 +18,7 @@ export function Footer() {
 
   const scrollToTop = () => {
     if (lenis) {
-      lenis.scrollTo(0);
+      lenis.scrollTo(0, getAnchorScrollOptions(0));
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }

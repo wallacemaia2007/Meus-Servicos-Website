@@ -206,7 +206,7 @@ const Threads = forwardRef<ThreadsHandle, ThreadsProps>(function Threads(
     // its cost scales with the number of rendered pixels. Cap the internal render
     // resolution to keep large / high-DPI screens smooth; the effect is soft
     // enough that the downscale is imperceptible.
-    const MAX_RENDER_DIM = 1920;
+    const MAX_RENDER_DIM = 1440;
     function resize() {
       const { clientWidth, clientHeight } = container;
       const baseDpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -258,7 +258,10 @@ const Threads = forwardRef<ThreadsHandle, ThreadsProps>(function Threads(
 
     function update(t: number) {
       animationFrameId.current = requestAnimationFrame(update);
-      if (!isVisible || document.hidden) return;
+      if (!isVisible || document.hidden) {
+        lastTime = t;
+        return;
+      }
 
       const delta = t - lastTime;
       lastTime = t;

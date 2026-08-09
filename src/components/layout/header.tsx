@@ -4,6 +4,10 @@ import { useLenis } from "lenis/react";
 import { Menu, MessageCircle, UserRound, X } from "lucide-react";
 import Link from "next/link";
 
+import {
+  getAnchorScrollOptions,
+  getAnchorScrollTarget,
+} from "@/components/common/smooth-scroll";
 import { links, navItems } from "@/data/dev-content";
 import { useHeaderScroll } from "@/hooks/use-header-scroll";
 import { useMobileMenu } from "@/hooks/use-mobile-menu";
@@ -17,9 +21,12 @@ export function Header() {
   const scrollTo = (href: string) => {
     close();
     if (lenis) {
-      lenis.scrollTo(href);
+      lenis.scrollTo(getAnchorScrollTarget(href), getAnchorScrollOptions(href));
     } else {
-      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+      window.scrollTo({
+        top: getAnchorScrollTarget(href),
+        behavior: "smooth",
+      });
     }
   };
 

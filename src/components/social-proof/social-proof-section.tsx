@@ -44,7 +44,8 @@ export function SocialProofSection() {
       const track = trackRef.current;
       if (!section || !track) return;
 
-      const getScrollDistance = () => track.scrollWidth - window.innerWidth;
+      const getScrollDistance = () =>
+        Math.max(0, track.scrollWidth - window.innerWidth);
       const getFallDistance = () => window.innerHeight;
       const getTotalDistance = () => getScrollDistance() + getFallDistance();
       const getFallFraction = () => getFallDistance() / getTotalDistance();
@@ -53,17 +54,39 @@ export function SocialProofSection() {
         track.querySelectorAll<HTMLElement>("[data-fall-reveal]"),
       );
 
+      gsap.set(track, {
+        force3D: true,
+        willChange: "transform",
+        x: 0,
+        z: 0.01,
+      });
+
+      gsap.set(cards, {
+        force3D: true,
+        willChange: "transform, opacity",
+      });
+
+      let backgroundFrame = 0;
+      let backgroundProgress = 0;
+      const updateBackground = () => {
+        backgroundFrame = 0;
+        backgroundRef.current?.setProgress(backgroundProgress);
+      };
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: "top top",
           end: () => `+=${getTotalDistance()}`,
-          scrub: 1,
+          scrub: 0.65,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            backgroundRef.current?.setProgress(self.progress);
+            backgroundProgress = self.progress;
+            if (!backgroundFrame) {
+              backgroundFrame = requestAnimationFrame(updateBackground);
+            }
           },
         },
       });
@@ -90,10 +113,17 @@ export function SocialProofSection() {
         {
           x: () => -getScrollDistance(),
           ease: "none",
+          force3D: true,
           duration: () => 1 - SLIDE_START,
         },
         SLIDE_START,
       );
+
+      return () => {
+        if (backgroundFrame) {
+          cancelAnimationFrame(backgroundFrame);
+        }
+      };
     },
     { scope: sectionRef, dependencies: [prefersReducedMotion] },
   );
@@ -143,7 +173,7 @@ export function SocialProofSection() {
             <div className="flex min-h-0 flex-1 items-center">
               <div
                 ref={trackRef}
-                className="flex w-max items-stretch gap-4 px-6 md:gap-6 md:pl-[10vw] md:pr-[10vw]"
+                className="flex w-max transform-gpu items-stretch gap-4 px-6 will-change-transform md:gap-6 md:pl-[10vw] md:pr-[10vw]"
               >
                 {testimonials.map((testimonial) => (
                   <TestimonialCard
