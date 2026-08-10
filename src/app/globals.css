@@ -567,9 +567,8 @@ textarea:focus-visible {
   position: relative;
   z-index: 1;
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
-  padding: 3rem 1rem 2rem;
+  padding: 3rem 1rem 1.25rem;
 }
 
 .projects-header {
@@ -654,15 +653,17 @@ textarea:focus-visible {
 
 .projects-main {
   display: grid;
-  flex: 1;
+  flex: 0 0 auto;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-  align-items: stretch;
+  align-items: start;
 }
 
 .browser-mockup {
   position: relative;
   display: flex;
+  width: 100%;
+  height: fit-content;
   overflow: hidden;
   flex-direction: column;
   border: 1px solid var(--section-border);
@@ -717,7 +718,8 @@ textarea:focus-visible {
   display: flex;
   width: 100%;
   aspect-ratio: 16 / 9;
-  flex: 1;
+  flex: 0 0 auto;
+  height: auto;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
@@ -1138,6 +1140,7 @@ textarea:focus-visible {
 
 @media (min-width: 1024px) {
   .projects-wrapper {
+    min-height: 100vh;
     padding: 4rem 5rem 3rem;
   }
 
