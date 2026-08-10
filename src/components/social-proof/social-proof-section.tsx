@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLenis } from "lenis/react";
 import { ChevronDown } from "lucide-react";
+import type { PointerEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 
 import { SectionHeader } from "@/components/shared/SectionHeader";
@@ -19,10 +20,27 @@ import { TestimonialCard } from "./TestimonialCard";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const MOBILE_QUERY = "(max-width: 767px)";
+
+function isMobileViewport() {
+  return (
+    typeof window !== "undefined" && window.matchMedia(MOBILE_QUERY).matches
+  );
+}
+
 export function SocialProofSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const mobileRailRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const backgroundRef = useRef<SocialProofBackgroundHandle>(null);
+  const mobileDragRef = useRef({
+    pointerId: -1,
+    startX: 0,
+    startY: 0,
+    startScrollLeft: 0,
+    isHorizontal: false,
+    isDragging: false,
+  });
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const lenis = useLenis();
@@ -38,7 +56,7 @@ export function SocialProofSection() {
   }, []);
 
   useEffect(() => {
-    const media = window.matchMedia("(max-width: 767px)");
+    const media = window.matchMedia(MOBILE_QUERY);
     const apply = () => setIsMobile(media.matches);
     apply();
     media.addEventListener("change", apply);
@@ -47,7 +65,7 @@ export function SocialProofSection() {
 
   useGSAP(
     () => {
-      if (prefersReducedMotion || isMobile) return;
+      if (prefersReducedMotion || isMobile || isMobileViewport()) return;
 
       const section = sectionRef.current;
       const track = trackRef.current;
@@ -137,6 +155,65 @@ export function SocialProofSection() {
     { scope: sectionRef, dependencies: [prefersReducedMotion, isMobile] },
   );
 
+  const handleMobilePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (!isMobile || event.pointerType === "mouse") return;
+
+    mobileDragRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      startScrollLeft: event.currentTarget.scrollLeft,
+      isHorizontal: false,
+      isDragging: true,
+    };
+  };
+
+  const handleMobilePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    const drag = mobileDragRef.current;
+    const rail = mobileRailRef.current;
+
+    if (!rail || !drag.isDragging || drag.pointerId !== event.pointerId) {
+      return;
+    }
+
+    const deltaX = event.clientX - drag.startX;
+    const deltaY = event.clientY - drag.startY;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
+
+    if (!drag.isHorizontal) {
+      if (absY > 8 && absY >= absX) {
+        drag.isDragging = false;
+        return;
+      }
+
+      if (absX < 8 || absX < absY * 1.15) {
+        return;
+      }
+
+      drag.isHorizontal = true;
+      rail.setPointerCapture(event.pointerId);
+    }
+
+    event.preventDefault();
+    rail.scrollLeft = drag.startScrollLeft - deltaX;
+  };
+
+  const handleMobilePointerEnd = (event: PointerEvent<HTMLDivElement>) => {
+    const drag = mobileDragRef.current;
+    const rail = mobileRailRef.current;
+
+    if (rail?.hasPointerCapture(event.pointerId)) {
+      rail.releasePointerCapture(event.pointerId);
+    }
+
+    if (drag.pointerId === event.pointerId) {
+      drag.isDragging = false;
+      drag.isHorizontal = false;
+      drag.pointerId = -1;
+    }
+  };
+
   return (
     <section
       id={socialProof.id}
@@ -157,7 +234,15 @@ export function SocialProofSection() {
             subtitle={socialProof.subtitle}
             className="mb-0"
           />
-          <div className="-mx-6 mt-7 overflow-x-auto overscroll-x-contain px-6 pb-2 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [touch-action:pan-x_pan-y] [&::-webkit-scrollbar]:hidden">
+          <div
+            ref={mobileRailRef}
+            data-lenis-prevent-horizontal
+            onPointerDown={handleMobilePointerDown}
+            onPointerMove={handleMobilePointerMove}
+            onPointerUp={handleMobilePointerEnd}
+            onPointerCancel={handleMobilePointerEnd}
+            className="-mx-6 mt-7 overflow-x-hidden overscroll-x-contain px-6 pb-2 select-none [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [touch-action:pan-y] [&::-webkit-scrollbar]:hidden"
+          >
             <div
               ref={trackRef}
               className="flex w-max snap-x snap-mandatory items-stretch gap-4"
