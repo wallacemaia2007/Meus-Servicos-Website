@@ -2,6 +2,7 @@
 
 import type { ScrollToOptions } from "lenis";
 import { ReactLenis, useLenis } from "lenis/react";
+import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
 
@@ -10,6 +11,8 @@ export const ANCHOR_SCROLL_PIXELS_PER_SECOND = 2600;
 export const ANCHOR_SCROLL_MIN_DURATION = 0.5;
 export const ANCHOR_SCROLL_MAX_DURATION = 1.35;
 export const ANCHOR_SCROLL_TALL_SECTION_RATIO = 0.9;
+const START_PROJECT_SCROLL_DELAY = 900;
+const START_PROJECT_SCROLL_DURATION = 1.8;
 
 const ANCHOR_SCROLL_EASING = (progress: number) =>
   progress < 0.5
@@ -71,10 +74,54 @@ export function getAnchorScrollOptions(target: string | number): ScrollToOptions
 
 function AnchorScrollController() {
   const lenis = useLenis();
+  const pathname = usePathname();
 
   useEffect(() => {
     if (!lenis) {
       return;
+    }
+
+    const scrollToHash = (
+      hash: string,
+      options?: { lock?: boolean; updateHistory?: boolean },
+    ) => {
+      if (!hash) {
+        return;
+      }
+
+      lenis.scrollTo(getAnchorScrollTarget(hash), {
+        ...getAnchorScrollOptions(hash),
+        lock: options?.lock,
+      });
+
+      if (options?.updateHistory) {
+        window.history.pushState(null, "", hash);
+      }
+    };
+
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+
+    let startProjectTimer: number | undefined;
+
+    const shouldPlayStartProjectIntro =
+      pathname === "/start-project" || window.location.hash === "#start-project";
+
+    if (shouldPlayStartProjectIntro) {
+      lenis.scrollTo(0, { force: true, immediate: true });
+      window.scrollTo(0, 0);
+
+      startProjectTimer = window.setTimeout(() => {
+        lenis.scrollTo(getAnchorScrollTarget("#start-project"), {
+          ...getAnchorScrollOptions("#start-project"),
+          duration: START_PROJECT_SCROLL_DURATION,
+          lock: true,
+        });
+      }, START_PROJECT_SCROLL_DELAY);
+    } else if (window.location.hash) {
+      requestAnimationFrame(() => {
+        scrollToHash(window.location.hash);
+      });
     }
 
     const onClick = (event: MouseEvent) => {
@@ -104,16 +151,20 @@ function AnchorScrollController() {
       }
 
       event.preventDefault();
-      lenis.scrollTo(getAnchorScrollTarget(hash), getAnchorScrollOptions(hash));
-      window.history.pushState(null, "", hash);
+      scrollToHash(hash, { updateHistory: true });
     };
 
     document.addEventListener("click", onClick);
 
     return () => {
+      if (startProjectTimer) {
+        window.clearTimeout(startProjectTimer);
+      }
+
+      window.history.scrollRestoration = previousScrollRestoration;
       document.removeEventListener("click", onClick);
     };
-  }, [lenis]);
+  }, [lenis, pathname]);
 
   return null;
 }

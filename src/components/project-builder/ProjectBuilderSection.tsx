@@ -75,7 +75,7 @@ export function ProjectBuilderSection() {
 
   return (
     <section
-      id="monte-seu-projeto"
+      id="start-project"
       className="bg-[var(--section-light)] py-16 transition-colors duration-300 md:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
