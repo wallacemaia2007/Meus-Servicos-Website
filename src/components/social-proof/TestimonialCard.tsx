@@ -86,9 +86,9 @@ export function TestimonialCard({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Ver projeto ${testimonial.projectName} em nova aba`}
-              className="flex shrink-0 items-center gap-1.5 rounded-full border border-[var(--section-border)] px-3 py-1 text-xs font-semibold text-[var(--brand-ink)] transition-colors hover:border-[var(--brand-red)] hover:text-[var(--brand-red)]"
+              className="flex min-w-[5.5rem] shrink-0 items-center justify-center gap-1.5 rounded-full border border-[var(--section-border)] bg-white px-3 py-1 text-xs font-semibold !text-[var(--brand-red)] transition-colors hover:border-[var(--brand-red)] hover:bg-[var(--brand-red-tint)] hover:!text-[var(--brand-red-dark)] [&_*]:!text-inherit"
             >
-              Ver projeto
+              Online
               <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
             </a>
           ) : null}

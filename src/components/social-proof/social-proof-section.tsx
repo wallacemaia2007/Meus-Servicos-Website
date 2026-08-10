@@ -24,6 +24,7 @@ export function SocialProofSection() {
   const trackRef = useRef<HTMLDivElement>(null);
   const backgroundRef = useRef<SocialProofBackgroundHandle>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const lenis = useLenis();
 
   useLenisScrollTrigger(lenis);
@@ -36,9 +37,17 @@ export function SocialProofSection() {
     return () => media.removeEventListener("change", apply);
   }, []);
 
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 767px)");
+    const apply = () => setIsMobile(media.matches);
+    apply();
+    media.addEventListener("change", apply);
+    return () => media.removeEventListener("change", apply);
+  }, []);
+
   useGSAP(
     () => {
-      if (prefersReducedMotion) return;
+      if (prefersReducedMotion || isMobile) return;
 
       const section = sectionRef.current;
       const track = trackRef.current;
@@ -125,7 +134,7 @@ export function SocialProofSection() {
         }
       };
     },
-    { scope: sectionRef, dependencies: [prefersReducedMotion] },
+    { scope: sectionRef, dependencies: [prefersReducedMotion, isMobile] },
   );
 
   return (
@@ -139,7 +148,30 @@ export function SocialProofSection() {
         prefersReducedMotion={prefersReducedMotion}
       />
 
-      {prefersReducedMotion ? (
+      {isMobile ? (
+        <div className="relative z-10 px-6 py-12">
+          <SectionHeader
+            tone="dark"
+            eyebrow={socialProof.badge}
+            title={socialProof.title}
+            subtitle={socialProof.subtitle}
+            className="mb-0"
+          />
+          <div className="-mx-6 mt-7 overflow-x-auto overscroll-x-contain px-6 pb-2 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [touch-action:pan-x_pan-y] [&::-webkit-scrollbar]:hidden">
+            <div
+              ref={trackRef}
+              className="flex w-max snap-x snap-mandatory items-stretch gap-4"
+            >
+              {testimonials.map((testimonial) => (
+                <TestimonialCard
+                  key={testimonial.id}
+                  testimonial={testimonial}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : prefersReducedMotion ? (
         <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 md:py-28">
           <SectionHeader
             tone="dark"
