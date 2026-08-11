@@ -185,7 +185,7 @@ export function Header() {
             onClick={close}
             className="font-body flex w-full items-center justify-center rounded-xl border border-[var(--brand-border)] bg-white px-5 py-3 text-sm font-bold text-[var(--brand-red)] transition-all hover:bg-[var(--brand-red-tint)]"
           >
-            Conheça a empresa
+              Sobre mim
           </Link>
           <div className="grid grid-cols-2 gap-2">
             {[

@@ -132,7 +132,7 @@ export function Footer() {
               className="font-body inline-flex items-center gap-2 rounded-full border border-[var(--brand-border)] bg-white px-4 py-2 text-sm font-semibold text-[var(--brand-ink)] transition-all duration-200 hover:border-dev hover:text-dev"
             >
               <UserRound className="h-4 w-4" />
-              Conheça a empresa
+              Sobre mim
             </Link>
             <button
               type="button"

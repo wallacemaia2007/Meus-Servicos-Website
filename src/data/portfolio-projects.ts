@@ -244,16 +244,24 @@ export const projects: DevProject[] = [
     ],
     theme: themes[0],
     pages: [
-      assetPath("assets/images/projects/portfolio-pessoal/portfolio-pessoal-1.png"),
-      assetPath("assets/images/projects/portfolio-pessoal/portfolio-pessoal-2.png"),
-      assetPath("assets/images/projects/portfolio-pessoal/portfolio-pessoal-3.png"),
+      assetPath(
+        "assets/images/projects/portfolio-pessoal/portfolio-pessoal-1.png",
+      ),
+      assetPath(
+        "assets/images/projects/portfolio-pessoal/portfolio-pessoal-2.png",
+      ),
+      assetPath(
+        "assets/images/projects/portfolio-pessoal/portfolio-pessoal-3.png",
+      ),
     ],
     video: {
       src: resolveVideo(
         "personal-portfolio",
         "https://res.cloudinary.com/SEU_CLOUD_NAME/video/upload/q_auto/videos/personal-portfolio.mp4",
       ),
-      poster: assetPath("assets/images/projects/portfolio-pessoal/thumbnail.png"),
+      poster: assetPath(
+        "assets/images/projects/portfolio-pessoal/thumbnail.png",
+      ),
     },
   },
   {
@@ -313,17 +321,27 @@ export const projects: DevProject[] = [
     ],
     theme: themes[1],
     pages: [
-      assetPath("assets/images/projects/portfolio-marcio-carvalho/imagem-1.png"),
-      assetPath("assets/images/projects/portfolio-marcio-carvalho/imagem-2.png"),
-      assetPath("assets/images/projects/portfolio-marcio-carvalho/imagem-3.png"),
-      assetPath("assets/images/projects/portfolio-marcio-carvalho/imagem-4.png"),
+      assetPath(
+        "assets/images/projects/portfolio-marcio-carvalho/imagem-1.png",
+      ),
+      assetPath(
+        "assets/images/projects/portfolio-marcio-carvalho/imagem-2.png",
+      ),
+      assetPath(
+        "assets/images/projects/portfolio-marcio-carvalho/imagem-3.png",
+      ),
+      assetPath(
+        "assets/images/projects/portfolio-marcio-carvalho/imagem-4.png",
+      ),
     ],
     video: {
       src: resolveVideo(
         "portfolio-marcio-carvalho",
         "https://res.cloudinary.com/gnazw8x5/video/upload/v1785780302/video_marcio_o39v4r.mp4",
       ),
-      poster: assetPath("assets/images/projects/portfolio-marcio-carvalho/thumbnail.png"),
+      poster: assetPath(
+        "assets/images/projects/portfolio-marcio-carvalho/thumbnail.png",
+      ),
     },
   },
   {
@@ -397,11 +415,11 @@ export const projects: DevProject[] = [
   {
     id: "dev-landing-page",
     slug: "dev-landing-page",
-    title: "Landing Page Maiawall",
+    title: "Maiawall Serviços",
     shortDescription:
-      "Landing page comercial em Angular para apresentar servicos, projetos, stack e contato profissional.",
+      "Landing page comercial da Maiawall para apresentar servicos, projetos, stack e contato profissional.",
     description:
-      "Landing page comercial criada para apresentar os servicos web da Maiawall, projetos, stack e canais de contato com uma narrativa mais direta para conversao. A pagina combina hero animado, secoes comerciais, prova de trabalho, integracao com WhatsApp e uma experiencia visual focada em transmitir autoridade e facilitar o primeiro contato.",
+      "Projeto da landing page comercial da Maiawall focado em captacao de clientes para servicos de desenvolvimento web. A pagina foi estruturada com narrativa de conversao, hero animado, secoes de servicos, projetos em destaque, stack tecnica e CTA direto para WhatsApp, priorizando clareza, performance e credibilidade.",
     year: "2026",
     startDate: "2026-05-14",
     endDate: "2026-07-29",
@@ -410,21 +428,23 @@ export const projects: DevProject[] = [
     clientType: "internal",
     liveUrl: "https://servicos.maiawall.com",
     technologies: [
-      "Angular",
+      "React",
+      "Next.js",
       "TypeScript",
       "Tailwind CSS",
       "SCSS",
-      "Angular Material",
       "GSAP",
-      "RxJS",
+      "Canvas",
       "Responsive Design",
       "SEO",
-      "WhatsApp Integration",
+      "Google Analytics",
+      "WhatsApp Link",
     ],
     tags: [
       "landing page",
-      "portfolio",
-      "angular",
+      "maiawall",
+      "react",
+      "nextjs",
       "typescript",
       "tailwind",
       "gsap",
@@ -433,16 +453,16 @@ export const projects: DevProject[] = [
       "whatsapp",
     ],
     challenges: [
-      "Criar uma rota independente do portfolio principal com identidade visual propria",
+      "Criar uma experiencia independente do portfolio principal com identidade visual propria",
       "Construir um hero animado com particulas em canvas mantendo boa performance",
-      "Organizar secoes comerciais, servicos, projetos, stack e contato em narrativa fluida",
+      "Organizar secoes comerciais, servicos, projetos, stack e contato em narrativa fluida de conversao",
       "Aplicar animacoes com GSAP respeitando reduced motion",
     ],
     learnings: [
-      "Estruturacao de landing page standalone dentro de uma aplicacao Angular maior",
-      "Migracao da antiga rota /dev para https://servicos.maiawall.com",
-      "Criacao de animacoes com GSAP e canvas",
-      "Aprimoramento de copy, hierarquia visual e CTAs",
+      "Estruturacao de landing page comercial standalone com React, Next.js e TypeScript",
+      "Evolucao da antiga rota /dev para o dominio dedicado https://servicos.maiawall.com",
+      "Implementacao de animacoes com GSAP e canvas com foco em UX e performance",
+      "Aprimoramento de copy comercial, hierarquia visual e CTAs orientados a contato",
     ],
     theme: themes[0],
     pages: [
@@ -450,5 +470,14 @@ export const projects: DevProject[] = [
       assetPath("assets/images/projects/dev-landing-page/imagem-2.png"),
       assetPath("assets/images/projects/dev-landing-page/imagem-3.png"),
     ],
+    video: {
+      src: resolveVideo(
+        "dev-landing-page",
+        "https://res.cloudinary.com/gnazw8x5/video/upload/v1785780253/servicos_dev_adz1qf.mp4",
+      ),
+      poster: assetPath(
+        "assets/images/projects/dev-landing-page/thumbnail.png",
+      ),
+    },
   },
 ];
