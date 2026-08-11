@@ -73,6 +73,12 @@ export function ProjectBuilderSection() {
     setIsModalOpen(true);
   };
 
+  const handleClearSelected = () => {
+    setConfig({});
+    setOtherDetails({});
+    setTechnologyDetails("");
+  };
+
   return (
     <section
       id="start-project"
@@ -156,7 +162,11 @@ export function ProjectBuilderSection() {
           </div>
 
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
-            <ProjectSummary rows={summaryRows} />
+            <ProjectSummary
+              rows={summaryRows}
+              showClearButton={filledCount > 0}
+              onClearSelected={handleClearSelected}
+            />
 
             <div className="rounded-2xl border border-[var(--section-border)] bg-white p-5 shadow-sm">
               <div className="flex items-baseline justify-between gap-3">
