@@ -8,7 +8,7 @@ export const socialProof = {
   badge: "Prova Social",
   title: "Quem já confiou no trabalho",
   subtitle:
-    "Depoimentos de clientes que tiraram o projeto do papel comigo — e o que aconteceu depois.",
+    "Depoimentos de clientes que tiraram o projeto do papel com a Maiawall — e o que aconteceu depois.",
   scrollHint: "Role para ver mais depoimentos",
   mobileHint: "Arraste para o lado",
 };
@@ -35,7 +35,7 @@ export const testimonials: Testimonial[] = [
     imageUrl: "/assets/images/testimonials/image/marcio.png",
     rating: 5,
     comment:
-      "Portfólio moderno e funcional, com design elegante e integração com redes sociais. O site reflete minha identidade profissional e facilita a apresentação dos meus projetos.",
+      "Site moderno e funcional, com design elegante e integração com redes sociais. A entrega reflete uma identidade profissional clara e facilita a apresentação dos projetos.",
     projectName: "Portfólio Márcio Carvalho",
     projectUrl: "https://www.marciofcarvalho.com.br",
     date: "Jul/2026",

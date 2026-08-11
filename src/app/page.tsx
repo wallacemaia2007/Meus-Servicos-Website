@@ -11,16 +11,16 @@ import { links, projects, site } from "@/data/dev-content";
 
 const HERO_PREVIEW_IMAGE = `${site.url}/assets/images/hero-preview.png`;
 
-const personJsonLd = {
+const organizationJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": `${site.url}/#person`,
+  "@type": "Organization",
+  "@id": `${site.url}/#organization`,
   name: site.fullName,
-  alternateName: ["Wallace Maia Dev", "maiawall"],
-  jobTitle: "Desenvolvedor Web Full Stack",
+  alternateName: ["Maiawall", "Maiawall Serviços Web"],
   description: site.description,
   url: site.url,
-  image: `${site.url}/assets/images/avatar.jpeg`,
+  image: `${site.url}/assets/brand/logo-light.png`,
+  logo: `${site.url}/assets/brand/logo-light.png`,
   email: "wallacemaia2007@gmail.com",
   telephone: "+5535910036806",
   address: {
@@ -35,6 +35,25 @@ const personJsonLd = {
     links.instagram,
     links.fiverr,
     links.personalPortfolio,
+  ],
+  areaServed: "BR",
+  makesOffer: [
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Serviços web sob medida",
+        serviceType: "Desenvolvimento de sites, sistemas web, dashboards, e-commerce e APIs",
+      },
+    },
+  ],
+  serviceType: [
+    "Criação de sites",
+    "Landing pages",
+    "Sistemas web",
+    "E-commerce",
+    "Dashboards",
+    "APIs",
   ],
   knowsAbout: [
     "Angular",
@@ -61,7 +80,7 @@ const websiteJsonLd = {
   name: `${site.name} | Serviços Web Full Stack`,
   description: site.description,
   inLanguage: "pt-BR",
-  author: { "@id": `${site.url}/#person` },
+  publisher: { "@id": `${site.url}/#organization` },
 };
 
 const webpageJsonLd = {
@@ -73,13 +92,13 @@ const webpageJsonLd = {
   description: site.description,
   primaryImageOfPage: HERO_PREVIEW_IMAGE,
   isPartOf: { "@id": `${site.url}/#website` },
-  about: { "@id": `${site.url}/#person` },
+  about: { "@id": `${site.url}/#organization` },
 };
 
 const projectsJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Projetos de Wallace Maia",
+  name: "Projetos da Maiawall",
   url: site.url,
   numberOfItems: projects.length,
   itemListElement: projects.map((project, index) => ({
@@ -94,10 +113,6 @@ const projectsJsonLd = {
 export default function HomePage() {
   return (
     <>
-      <JsonLd data={personJsonLd} />
-      <JsonLd data={websiteJsonLd} />
-      <JsonLd data={webpageJsonLd} />
-      <JsonLd data={projectsJsonLd} />
       <HeroSection />
       <ProblemSolutionSection />
       <WorksSection />
@@ -106,6 +121,10 @@ export default function HomePage() {
       <ProjectBuilderSection />
       <ContactSection />
       <CtaSection />
+      <JsonLd id="maiawall-organization-jsonld" data={organizationJsonLd} />
+      <JsonLd id="maiawall-website-jsonld" data={websiteJsonLd} />
+      <JsonLd id="maiawall-webpage-jsonld" data={webpageJsonLd} />
+      <JsonLd id="maiawall-projects-jsonld" data={projectsJsonLd} />
       <a
         href={site.whatsapp}
         target="_blank"

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Wallace Maia | Desenvolvedor Full Stack Angular & Java — Portfólio</title>
+  <title>Maiawall | Servi?os Web Full Stack — Portfólio</title>
   <base href="/">
 
   <!-- ═══════════════════════════════════════════════════════ -->
@@ -17,9 +17,9 @@
   <!-- ═══════════════════════════════════════════════════════ -->
   <!-- SEO META — descrição e palavras-chave                  -->
   <!-- ═══════════════════════════════════════════════════════ -->
-  <meta name="description" content="Portfólio de Wallace Candido Maia Sousa — Desenvolvedor Full Stack especializado em Angular, Java e Spring Boot. Projetos reais, experiência na CroSoften e freelance. Uberlândia/MG.">
-  <meta name="keywords" content="Wallace Maia, Wallace Candido Maia Sousa, Wallace Maia desenvolvedor, desenvolvedor full stack, desenvolvedor web, desenvolvedor Angular, desenvolvedor Java, Spring Boot, programador MG, frontend developer, backend developer, portfólio desenvolvedor, Angular 19, TypeScript, RxJS, Tailwind CSS, Spring Security, MySQL, PostgreSQL, MongoDB, Docker, maiawall, maiawall.com, desenvolvedor Uberlândia, desenvolvedor Passos MG, freelancer desenvolvimento web, sistemas web, API REST, CroSoften, UFU sistemas de informação">
-  <meta name="author" content="Wallace Candido Maia Sousa">
+  <meta name="description" content="Portfólio de Maiawall — Servi?os Web Full Stack especializado em Angular, Java e Spring Boot. Projetos reais, experiência na CroSoften e servi?os web. Uberlândia/MG.">
+  <meta name="keywords" content="Maiawall, Maiawall, Maiawall empresa de tecnologia, empresa de servi?os web, servi?os web, servi?os Angular, servi?os Java, Spring Boot, empresa de tecnologia MG, frontend web, backend web, portfólio empresa de servi?os web, Angular 19, TypeScript, RxJS, Tailwind CSS, Spring Security, MySQL, PostgreSQL, MongoDB, Docker, maiawall, maiawall.com, empresa de servi?os web Uberlândia, empresa web Passos MG, empresa desenvolvimento web, sistemas web, API REST, CroSoften, UFU sistemas de informação">
+  <meta name="author" content="Maiawall">
   <meta name="geo.region" content="BR-MG">
   <meta name="geo.placename" content="Uberlândia, Minas Gerais, Brasil">
 
@@ -28,13 +28,13 @@
   <!-- ═══════════════════════════════════════════════════════ -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://maiawall.com/home">
-  <meta property="og:title" content="Wallace Maia | Desenvolvedor Full Stack Angular &amp; Java">
-  <meta property="og:description" content="Desenvolvedor Full Stack com experiência em Angular, Java e Spring Boot. Projetos reais entregues, atuação na CroSoften e como freelancer. Veja meu portfólio completo.">
+  <meta property="og:title" content="Maiawall | Servi?os Web Full Stack Angular &amp; Java">
+  <meta property="og:description" content="Empresa de servi?os web com solu??es em sites, sistemas, dashboards, APIs e e-commerces sob medida.">
   <meta property="og:image" content="https://maiawall.com/assets/images/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="674">
-  <meta property="og:image:alt" content="Wallace Maia — Desenvolvedor Full Stack">
-  <meta property="og:site_name" content="Wallace Maia Portfolio">
+  <meta property="og:image:alt" content="Maiawall — Servi?os Web Full Stack">
+  <meta property="og:site_name" content="Maiawall Portfolio">
   <meta property="og:locale" content="pt_BR">
 
   <!-- ═══════════════════════════════════════════════════════ -->
@@ -43,25 +43,25 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@wallacemaia2007">
   <meta name="twitter:creator" content="@wallacemaia2007">
-  <meta name="twitter:title" content="Wallace Maia | Desenvolvedor Full Stack Angular &amp; Java">
-  <meta name="twitter:description" content="Desenvolvedor Full Stack com foco em Angular, Java e Spring Boot. Portfólio com projetos reais, habilidades e experiência profissional.">
+  <meta name="twitter:title" content="Maiawall | Servi?os Web Full Stack Angular &amp; Java">
+  <meta name="twitter:description" content="Servi?os Web Full Stack com foco em Angular, Java e Spring Boot. Portfólio com projetos reais, habilidades e experiência profissional.">
   <meta name="twitter:image" content="https://maiawall.com/assets/images/og-image.jpg">
-  <meta name="twitter:image:alt" content="Wallace Maia — Portfólio Desenvolvedor Full Stack">
+  <meta name="twitter:image:alt" content="Maiawall — Portfólio Servi?os Web Full Stack">
 
   <!-- ═══════════════════════════════════════════════════════ -->
   <!-- SCHEMA.ORG — JSON-LD estruturado                       -->
   <!-- ═══════════════════════════════════════════════════════ -->
 
-  <!-- Pessoa / Desenvolvedor -->
+  <!-- Marca / Servi?os web -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": "https://maiawall.com/#person",
-    "name": "Wallace Maia",
-    "alternateName": ["Wallace Maia Dev", "Wallace Candido Maia Sousa", "maiawall"],
-    "jobTitle": "Desenvolvedor Full Stack",
-    "description": "Desenvolvedor Full Stack especializado em Angular, Java e Spring Boot, com experiência em aplicações web completas, APIs RESTful e sistemas escaláveis.",
+    "name": "Maiawall",
+    "alternateName": ["Maiawall", "Maiawall", "maiawall"],
+    "serviceType": "Servi?os Web Full Stack",
+    "description": "Servi?os Web Full Stack especializado em Angular, Java e Spring Boot, com experiência em aplicações web completas, APIs RESTful e sistemas escaláveis.",
     "url": "https://maiawall.com",
     "image": "https://maiawall.com/assets/images/avatar.jpeg",
     "email": "wallacemaia2007@gmail.com",
@@ -112,7 +112,7 @@
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": "https://maiawall.com/#organization",
-    "name": "Wallace Maia",
+    "name": "Maiawall",
     "url": "https://maiawall.com",
     "logo": "https://maiawall.com/assets/brand/logo-light.png",
     "sameAs": [
@@ -129,8 +129,8 @@
     "@type": "WebSite",
     "@id": "https://maiawall.com/#website",
     "url": "https://maiawall.com",
-    "name": "Wallace Maia | Portfólio Full Stack",
-    "description": "Portfólio profissional de Wallace Maia, desenvolvedor Full Stack especializado em Angular e Java.",
+    "name": "Maiawall | Portfólio Full Stack",
+    "description": "Portfólio profissional de Maiawall, empresa de servi?os web Full Stack especializado em Angular e Java.",
     "author": { "@id": "https://maiawall.com/#person" },
     "inLanguage": "pt-BR",
     "potentialAction": {
@@ -150,8 +150,8 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "url": "https://maiawall.com/home",
-    "name": "Wallace Maia | Desenvolvedor Full Stack Angular & Java — Início",
-    "description": "Conheça o portfólio de Wallace Maia: projetos reais, habilidades técnicas e experiência profissional.",
+    "name": "Maiawall | Servi?os Web Full Stack — Início",
+    "description": "Conheça o portfólio de Maiawall: projetos reais, habilidades técnicas e experiência profissional.",
     "primaryImageOfPage": "https://maiawall.com/assets/images/og-image.jpg",
     "isPartOf": { "@id": "https://maiawall.com/#website" },
     "about": { "@id": "https://maiawall.com/#person" },
@@ -169,10 +169,10 @@
   {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    "name": "Portfólio de Projetos — Wallace Maia",
+    "name": "Portfólio de Projetos — Maiawall",
     "url": "https://maiawall.com/projects",
     "author": { "@id": "https://maiawall.com/#person" },
-    "description": "Coleção de projetos desenvolvidos por Wallace Maia: APIs, sistemas web, portfólios e e-commerces.",
+    "description": "Coleção de projetos desenvolvidos por Maiawall: APIs, sistemas web, portfólios e e-commerces.",
     "hasPart": [
       {
         "@type": "SoftwareApplication",
@@ -185,11 +185,11 @@
       },
       {
         "@type": "SoftwareApplication",
-        "name": "Portfólio Pessoal maiawall.com",
+        "name": "Site Institucional Maiawall",
         "applicationCategory": "WebApplication",
         "operatingSystem": "Web",
         "url": "https://maiawall.com",
-        "codeRepository": "https://github.com/wallacemaia2007/Portfolio-Wallace_Maia",
+        "codeRepository": "https://github.com/wallacemaia2007",
         "description": "Portfólio responsivo em Angular com API backend em Node.js/Express.",
         "programmingLanguage": ["Angular", "TypeScript", "Node.js", "Tailwind CSS"]
       },
@@ -273,8 +273,8 @@
   <!-- Noscript fallback para crawlers -->
   <noscript>
     <div>
-      <h1>Wallace Maia — Desenvolvedor Full Stack</h1>
-      <p>Portfólio profissional de Wallace Candido Maia Sousa, desenvolvedor Full Stack especializado em Angular, Java e
+      <h1>Maiawall — Servi?os Web Full Stack</h1>
+      <p>Portfólio profissional de Maiawall, empresa de servi?os web Full Stack especializado em Angular, Java e
         Spring Boot.</p>
       <p>Acesse: <a href="https://maiawall.com">maiawall.com</a></p>
       <p>LinkedIn: <a href="https://www.linkedin.com/in/wallacemaia-dev/">wallacemaia-dev</a></p>

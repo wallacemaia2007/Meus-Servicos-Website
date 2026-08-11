@@ -75,7 +75,7 @@ export function buildWhatsappMessage(
   });
 
   const messageLines = [
-    "Olá, Wallace! Acabei de montar meu projeto pelo site da Maiawall e gostaria de conversar sobre ele.",
+    "Olá! Acabei de montar meu projeto pelo site da empresa e gostaria de conversar sobre ele.",
     "",
     "*Dados para contato*",
     ...contactLines,
@@ -93,7 +93,7 @@ export function buildWhatsappMessage(
   }
 
   messageLines.push(
-    "Pode me chamar por aqui para alinharmos os próximos passos.",
+    "Podem me chamar por aqui para alinharmos os próximos passos.",
   );
 
   return messageLines.join("\n").replace(/\n{3,}/g, "\n\n").trim();

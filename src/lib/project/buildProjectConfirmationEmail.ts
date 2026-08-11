@@ -36,7 +36,7 @@ export function buildProjectConfirmationEmail(
     )
     .join("");
 
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Olá! Acabei de enviar um projeto pelo site da Maiawall.")}`;
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Olá! Acabei de enviar um projeto pelo site da empresa.")}`;
 
   const html = renderTemplate(loadEmailTemplate("project-confirmation.html"), {
     SUBJECT: escapeHtml(subject),

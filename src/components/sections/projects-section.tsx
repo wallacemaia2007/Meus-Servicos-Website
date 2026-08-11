@@ -361,8 +361,8 @@ function formatStatus(status: string) {
 
 function formatClientType(clientType: string) {
   const labels: Record<string, string> = {
-    freelance: "Freelance",
-    pessoal: "Pessoal",
+    cliente: "Cliente",
+    internal: "Produto proprio",
   };
 
   return labels[clientType] ?? clientType;

@@ -36,7 +36,7 @@ export type DevProject = {
   endDate?: string;
   status: "completed" | "in-progress" | "planned";
   category: string;
-  clientType: "freelance" | "pessoal" | string;
+  clientType: "cliente" | "internal" | string;
   liveUrl: string;
   githubUrl?: string;
   technologies: string[];

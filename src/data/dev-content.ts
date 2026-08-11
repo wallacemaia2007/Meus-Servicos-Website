@@ -11,10 +11,10 @@ import type {
 export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://servicos.maiawall.com",
   name: "Maiawall",
-  fullName: "Wallace Maia",
-  title: "Wallace Maia | Serviços Web Full Stack",
+  fullName: "Maiawall",
+  title: "Maiawall | Empresa de Serviços Web",
   description:
-    "Portfólio de serviços de Wallace Maia — desenvolvedor full stack Angular, Java e Spring Boot. Sites, e-commerces, dashboards e APIs sob medida. Orçamento gratuito.",
+    "Empresa de tecnologia especializada em serviços web para negócios que precisam de sites, e-commerces, dashboards, sistemas e APIs sob medida. Orçamento gratuito.",
   whatsapp:
     "https://wa.me/5535910036806?text=Ol%C3%A1!%20Gostaria%20de%20saber%20sobre%20os%20projetos%20e%20seu%20trabalho!",
 };
@@ -33,7 +33,7 @@ export const links = {
   personalPortfolio: "https://maiawall.com",
   whatsapp: "https://wa.me/5535910036806",
   email:
-    "https://mail.google.com/mail/?view=cm&fs=1&to=wallacemaia2007@gmail.com&su=Tenho%20interesse%20em%20um%20projeto&body=Ol%C3%A1%2C%20Wallace!%0A%0AGostaria%20de%20conversar%20sobre%20um%20projeto.%0A%0A",
+    "https://mail.google.com/mail/?view=cm&fs=1&to=wallacemaia2007@gmail.com&su=Tenho%20interesse%20em%20um%20projeto&body=Ol%C3%A1%2C%20Maiawall!%0A%0AGostaria%20de%20conversar%20sobre%20um%20projeto.%0A%0A",
   github: "https://github.com/wallacemaia2007",
   linkedin: "https://www.linkedin.com/in/wallacemaia-dev/",
   instagram: "https://www.instagram.com/wallace_maia._",
@@ -41,8 +41,8 @@ export const links = {
 };
 
 export const hero = {
-  role: "Desenvolvedor Web Full Stack",
-  tag: "Dev Web Full Stack",
+  role: "Empresa de Serviços Web",
+  tag: "Empresa de tecnologia web",
   rotatingRoles: [
     "Landing Pages de Alta Conversão",
     "Sistemas Web Sob Medida",
@@ -70,13 +70,13 @@ export const hero = {
 };
 
 export const problemSolution = {
-  badge: "TRANSFORMO SITES EM RESULTADOS",
-  title: "Seu site hoje X Meu serviço",
+  badge: "TRANSFORMAMOS SITES EM RESULTADOS",
+  title: "Seu site hoje X Maiawall",
   description:
     "A diferença entre apenas existir online e realmente gerar resultados.",
   currentSiteLabel: "SEU SITE HOJE",
-  deliveredLabel: "MEU SERVIÇO",
-  servicesLabel: "SERVIÇOS QUE EU IMPLEMENTO",
+  deliveredLabel: "Maiawall",
+  servicesLabel: "SERVIÇOS QUE IMPLEMENTAMOS",
   servicesDesc:
     "Soluções pensadas para quem precisa vender, organizar e escalar com tecnologia.",
   currentItems: [
@@ -87,7 +87,7 @@ export const problemSolution = {
     "Sem estratégia digital e sem métricas",
   ],
   deliveredItems: [
-    "Site moderno que vende sua marca 24h",
+    "Site moderno que vende sua empresa 24h",
     "Gestão completa de clientes e vendas",
     "Automação que libera seu tempo",
     "Autoridade digital que gera confiança",
@@ -120,11 +120,11 @@ export const works = {
   title: "Soluções que transformam ideias em produtos digitais",
   eyebrow: "Serviços",
   subtitle:
-    "Clique em um serviço para explorar o que posso construir para você",
+    "Clique em um serviço para explorar o que a Maiawall pode construir para você",
   cta: "Solicitar este serviço",
   emptyTitle: "Explore os serviços",
   emptyMsg:
-    "Clique em um prédio para descobrir o que posso construir para você",
+    "Clique em um prédio para descobrir o que a Maiawall pode construir para você",
 };
 
 export const serviceCategories: ServiceCategory[] = [
@@ -216,7 +216,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "branding",
     name: "Portfólios & Branding",
     icon: "Brush",
-    phrase: "Identidade digital que fortalece sua marca.",
+    phrase: "Identidade digital que fortalece sua empresa.",
     services: [
       "Portfólios interativos com animações",
       "Sites pessoais com integração social",
@@ -283,10 +283,10 @@ export const serviceCategories: ServiceCategory[] = [
 ];
 
 export const projectCopy = {
-  title: "Alguns de meus serviços",
+  title: "Alguns serviços da Maiawall",
   subtitle01: "Cada projeto é uma parceria focada em resultado.",
-  subtitle02: "Conheça alguns dos trabalhos que entreguei.",
-  subtitle03: "Soluções reais que ajudaram meus clientes a crescer.",
+  subtitle02: "Conheça alguns trabalhos entregues pela empresa.",
+  subtitle03: "Soluções reais criadas para ajudar negócios a crescer.",
   pages: "Páginas do projeto",
   cta: "Saiba Mais! →",
 };
@@ -296,9 +296,9 @@ export { projects } from "./portfolio-projects";
 export const legacyProjects = [
   {
     id: "portfolio-pessoal",
-    title: "Portfolio Pessoal",
+    title: "Portfólio Wallace Maia",
     description:
-      "Meu portfólio pessoal construído com Angular 19, apresentando meus projetos, habilidades e experiências em um formato moderno e interativo com suporte a temas claro e escuro.",
+      "Portfólio Wallace Maia construído com Angular 19 para apresentar projetos, repertório técnico e serviços web em um formato moderno e interativo com suporte a temas claro e escuro.",
     year: "2025",
     liveUrl: "https://maiawall.com",
     technologies: ["Angular", "Tailwind CSS", "RxJS", "GSAP"],
@@ -454,9 +454,9 @@ export const legacyProjects = [
 ];
 
 export const stackCopy = {
-  title: "Minha Stack",
+  title: "Stack Maiawall",
   subtitle:
-    "As tecnologias que uso para construir produtos reais — do front ao back, do protótipo ao deploy",
+    "As tecnologias usadas para construir produtos reais — do front ao back, do protótipo ao deploy",
   frontendLabel: "Interface & Experiência",
   frontendDesc:
     "Interfaces modernas, rápidas e acessíveis. Do design ao componente final, com reatividade e performance de primeira.",
@@ -772,11 +772,11 @@ export const contactCopy = {
   title: "Vamos Conversar?",
   eyebrow: "Contato",
   subtitle:
-    "Estou sempre aberto a novas oportunidades e projetos interessantes",
+    "A equipe da Maiawall está pronta para conversar sobre novos projetos web",
   formTitle: "Envie uma mensagem",
   sending: "Enviando...",
   send: "Enviar Mensagem",
-  toastSuccess: "Mensagem enviada com sucesso. Retornarei em breve.",
+  toastSuccess: "Mensagem enviada com sucesso. A Maiawall retornará em breve.",
   toastError: "Erro ao enviar mensagem. Tente novamente ou use o WhatsApp.",
 };
 
@@ -785,11 +785,11 @@ export const contactInfo: ContactInfo = {
   phone: "+55 (35) 91003-6806",
   location: "Uberlândia, MG - Brasil",
   linkedin: "https://www.linkedin.com/in/wallacemaia-dev/",
-  linkedinDisplay: "wallacemaia-dev",
+  linkedinDisplay: "LinkedIn Maiawall",
   github: "https://github.com/wallacemaia2007",
-  githubDisplay: "wallacemaia2007",
+  githubDisplay: "GitHub Maiawall",
   fiverr: "https://br.fiverr.com/wallace_maia?public_mode=true",
-  fiverrDisplay: "wallace_maia",
+  fiverrDisplay: "Fiverr Maiawall",
 };
 
 export const socialLinks: SocialLink[] = [
@@ -806,10 +806,10 @@ export const socialLinks: SocialLink[] = [
 
 export const cta = {
   tag: "Disponível para projetos",
-  title: "Pronto para trabalhar",
-  accent: "juntos?",
+  title: "Pronto para tirar",
+  accent: "sua ideia do papel?",
   subtitle:
-    "Transformo suas ideias em produtos digitais reais. Vamos criar algo incrível.",
+    "A Maiawall transforma ideias em produtos digitais reais para empresas que precisam vender, organizar e crescer.",
   projectsBtn: "Ver Projetos",
   whatsappBtn: "Fale no WhatsApp",
 };
@@ -831,7 +831,7 @@ export const terminalSnippets = [
   "kubectl apply -f k8s/deployment.yaml",
   "// Optimizing rendering performance for high-load apps...",
   "if (network.isStable()) { syncDatabaseState(); }",
-  'console.log("%cWelcome to my Portfolio!", "color: #9B1B1F; font-weight: bold;");',
+  'console.log("%cWelcome to Maiawall!", "color: #9B1B1F; font-weight: bold;");',
   "git push origin main --force-with-lease",
   "sudo apt-get update && sudo apt-get upgrade -y",
   "const observer = new IntersectionObserver(entries => { ... });",

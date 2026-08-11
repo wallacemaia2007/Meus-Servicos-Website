@@ -98,7 +98,7 @@ export function Header() {
               className="font-body inline-flex items-center gap-2 rounded-full bg-dev px-5 py-1.5 text-sm font-bold !text-white shadow-dev transition-all duration-200 hover:-translate-y-0.5 hover:bg-dev-dark [&_*]:!text-white"
             >
               <MessageCircle className="h-4 w-4" />
-              Fale comigo
+              Contato
             </button>
           </div>
 
@@ -143,7 +143,7 @@ export function Header() {
             <span className="font-heading text-xl font-normal leading-tight">
               Maiawall
               <br />
-              Wallace Maia
+              Tech
             </span>
           </div>
           <button
@@ -176,7 +176,7 @@ export function Header() {
             onClick={() => scrollTo("#contact")}
             className="font-body flex w-full items-center justify-center rounded-xl bg-dev px-5 py-3 text-sm font-bold !text-white transition-all active:scale-[0.98]"
           >
-            Fale comigo
+            Fale com a empresa
           </button>
           <Link
             href={links.personalPortfolio}
@@ -185,7 +185,7 @@ export function Header() {
             onClick={close}
             className="font-body flex w-full items-center justify-center rounded-xl border border-[var(--brand-border)] bg-white px-5 py-3 text-sm font-bold text-[var(--brand-red)] transition-all hover:bg-[var(--brand-red-tint)]"
           >
-            Saiba mais
+            Conheça a empresa
           </Link>
           <div className="grid grid-cols-2 gap-2">
             {[

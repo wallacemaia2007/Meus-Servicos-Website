@@ -304,7 +304,7 @@ function AfterLayer({ label }: { label: string }) {
             <h3 className="font-heading text-3xl font-normal leading-none text-[var(--brand-ink)] max-[400px]:text-2xl sm:text-5xl lg:text-6xl">
               Site que
               <br />
-              vende a marca
+              vende a empresa
             </h3>
             <p className="max-w-md text-xs leading-relaxed text-[var(--brand-ink-muted)] sm:text-sm lg:text-base">
               Identidade clara, jornada orientada a ação e tecnologia pronta

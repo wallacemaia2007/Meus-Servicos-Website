@@ -140,7 +140,7 @@ export function HeroSection() {
                   <div className="hero-preview-avatar">
                     <img
                       src={avatar}
-                      alt="Wallace Maia - Foto de perfil"
+                      alt="Maiawall - Logo da empresa"
                       onError={() => setAvatar(hero.fallbackAvatar)}
                     />
                   </div>

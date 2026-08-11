@@ -4,7 +4,7 @@ export const projectBuilderCopy = {
   eyebrow: "Monte seu projeto",
   title: "Monte seu projeto",
   subtitle:
-    "Conte um pouco sobre o que você precisa e monte uma primeira visão do seu projeto. Você escolhe as características e eu entro em contato para entender os detalhes e transformar sua ideia em uma solução real.",
+    "Conte um pouco sobre o que você precisa e monte uma primeira visão do seu projeto. Você escolhe as características e a nossa equipe entra em contato para entender os detalhes e transformar sua ideia em uma solução real.",
   progressLabel: "Seu projeto está {percent}% definido",
   progressSteps: "{filled} de {total} etapas preenchidas",
   summaryTitle: "Seu projeto",
@@ -225,12 +225,12 @@ export const projectBuilderCategories: ProjectCategory[] = [
       },
       {
         id: "portfolio-showcase",
-        label: "Mostrar meus projetos e trabalhos",
+        label: "Mostrar projetos e trabalhos",
         icon: "FolderOpen",
       },
       {
         id: "about-section",
-        label: "Seção sobre mim",
+        label: "Seção sobre a empresa",
         icon: "UserRound",
       },
       {
@@ -335,7 +335,7 @@ export const projectBuilderCategories: ProjectCategory[] = [
       { id: "professionals", label: "Profissionais", icon: "Briefcase" },
       { id: "general-public", label: "Público geral", icon: "Users" },
       { id: "partners", label: "Parceiros", icon: "Handshake" },
-      { id: "personal", label: "Pessoal (para mim mesmo)", icon: "UserRound" },
+      { id: "personal", label: "Uso individual", icon: "UserRound" },
       { id: "other", label: "Outro", icon: "HelpCircle" },
     ],
   },
@@ -372,7 +372,7 @@ export const projectBuilderCategories: ProjectCategory[] = [
       },
       {
         id: "follow-brand",
-        label: "Quero seguir minha marca atual",
+        label: "Quero seguir minha identidade atual",
         icon: "Brush",
       },
       {
@@ -445,7 +445,7 @@ export const projectBuilderCategories: ProjectCategory[] = [
     mode: "single",
     options: [
       { id: "no-preference", label: "Não tenho preferência", icon: "HelpCircle" },
-      { id: "recommend", label: "Quero que você recomende", icon: "Sparkles" },
+      { id: "recommend", label: "Quero uma recomendação da equipe", icon: "Sparkles" },
       { id: "defined", label: "Já tenho uma tecnologia definida", icon: "Code" },
       { id: "discuss", label: "Quero conversar sobre isso", icon: "MessageSquare" },
     ],

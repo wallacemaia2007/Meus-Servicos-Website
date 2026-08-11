@@ -66,7 +66,7 @@ export const projects: DevProject[] = [
     endDate: "2026-05-18",
     status: "completed",
     category: "Web",
-    clientType: "freelance",
+    clientType: "cliente",
     liveUrl: "https://www.schulles.com.br/",
     technologies: [
       "Angular",
@@ -122,7 +122,7 @@ export const projects: DevProject[] = [
     endDate: "2026-04-15",
     status: "completed",
     category: "Web",
-    clientType: "freelance",
+    clientType: "cliente",
     liveUrl: "https://www.institutomotiro.com.br/",
     technologies: [
       "Next.js 16",
@@ -174,7 +174,7 @@ export const projects: DevProject[] = [
     endDate: "2026-02-10",
     status: "completed",
     category: "Web",
-    clientType: "freelance",
+    clientType: "cliente",
     liveUrl: "https://portfolio-banda-aurah.vercel.app/",
     technologies: [
       "Angular",
@@ -211,16 +211,17 @@ export const projects: DevProject[] = [
   {
     id: "personal-portfolio",
     slug: "personal-portfolio",
-    title: "Portfolio Pessoal",
-    shortDescription: "Portfolio pessoal responsivo com Angular e Tailwind CSS",
+    title: "Portfólio Wallace Maia",
+    shortDescription:
+      "Site institucional responsivo com Angular e Tailwind CSS",
     description:
-      "Portfolio pessoal criado para apresentar minha trajetoria, habilidades e projetos de forma mais profissional e acessivel. A interface foi construida com foco em responsividade, organizacao visual e SEO, funcionando como uma base publica para demonstrar experiencia tecnica, repertorio de projetos e formas de contato.",
+      "Site institucional criado para apresentar a Maiawall, seus servicos web e projetos de forma mais profissional e acessivel. A interface foi construida com foco em responsividade, organizacao visual e SEO, funcionando como uma base publica para demonstrar repertorio tecnico, entregas e formas de contato.",
     year: "2025",
     startDate: "2025-12-20",
     endDate: "",
     status: "completed",
     category: "Web",
-    clientType: "freelance",
+    clientType: "cliente",
     liveUrl: "https://www.maiawall.com",
     technologies: [
       "Angular",
@@ -268,7 +269,7 @@ export const projects: DevProject[] = [
     endDate: "2026-07-27",
     status: "completed",
     category: "Web",
-    clientType: "freelance",
+    clientType: "cliente",
     liveUrl: "https://www.marciofcarvalho.com.br",
     technologies: [
       "Next.js 16",
@@ -338,7 +339,7 @@ export const projects: DevProject[] = [
     endDate: "",
     status: "in-progress",
     category: "Web",
-    clientType: "pessoal",
+    clientType: "internal",
     liveUrl: "https://splithub.maiawall.com",
     technologies: [
       "Angular 20",
@@ -396,17 +397,17 @@ export const projects: DevProject[] = [
   {
     id: "dev-landing-page",
     slug: "dev-landing-page",
-    title: "Landing Page Dev",
+    title: "Landing Page Maiawall",
     shortDescription:
       "Landing page comercial em Angular para apresentar servicos, projetos, stack e contato profissional.",
     description:
-      "Landing page comercial criada para apresentar meus servicos web, projetos, stack e canais de contato com uma narrativa mais direta para conversao. A pagina combina hero animado, secoes comerciais, prova de trabalho, integracao com WhatsApp e uma experiencia visual focada em transmitir autoridade e facilitar o primeiro contato.",
+      "Landing page comercial criada para apresentar os servicos web da Maiawall, projetos, stack e canais de contato com uma narrativa mais direta para conversao. A pagina combina hero animado, secoes comerciais, prova de trabalho, integracao com WhatsApp e uma experiencia visual focada em transmitir autoridade e facilitar o primeiro contato.",
     year: "2026",
     startDate: "2026-05-14",
     endDate: "2026-07-29",
     status: "completed",
     category: "frontend",
-    clientType: "pessoal",
+    clientType: "internal",
     liveUrl: "https://servicos.maiawall.com",
     technologies: [
       "Angular",
