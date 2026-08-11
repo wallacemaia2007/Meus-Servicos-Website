@@ -170,6 +170,10 @@ textarea:focus-visible {
   outline-offset: 3px;
 }
 
+button{
+  cursor: pointer;
+}
+
 .header-hidden {
   transform: translateY(-120%);
 }
