@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { SocialProofSection } from "@/components/social-proof/social-proof-section";
 import { links, projects, site } from "@/data/dev-content";
 
-const OG_IMAGE = `${site.url}/assets/images/og-image.jpg`;
+const HERO_PREVIEW_IMAGE = `${site.url}/assets/images/hero-preview.png`;
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -71,7 +71,7 @@ const webpageJsonLd = {
   url: site.url,
   name: site.title,
   description: site.description,
-  primaryImageOfPage: OG_IMAGE,
+  primaryImageOfPage: HERO_PREVIEW_IMAGE,
   isPartOf: { "@id": `${site.url}/#website` },
   about: { "@id": `${site.url}/#person` },
 };

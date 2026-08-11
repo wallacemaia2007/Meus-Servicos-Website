@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 
 import { SITE_URL } from "@/constants/site";
 
+const HERO_PREVIEW_IMAGE = `${SITE_URL}/assets/images/hero-preview.png`;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
@@ -9,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
-      images: [`${SITE_URL}/assets/images/og-image.jpg`],
+      images: [HERO_PREVIEW_IMAGE],
     },
   ];
 }

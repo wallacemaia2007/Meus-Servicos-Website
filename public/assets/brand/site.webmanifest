@@ -1,6 +1,8 @@
 {
   "name": "Portfólio Wallace Maia",
   "short_name": "Maiawall",
+  "description": "Serviços web full stack de Wallace Maia.",
+  "start_url": "/",
   "icons": [
     {
       "src": "/assets/brand/web-app-manifest-192x192.png",
@@ -17,5 +19,14 @@
   ],
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
-  "display": "standalone"
+  "display": "standalone",
+  "screenshots": [
+    {
+      "src": "/assets/images/hero-preview.png",
+      "sizes": "1920x992",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Hero da página inicial da Maiawall"
+    }
+  ]
 }

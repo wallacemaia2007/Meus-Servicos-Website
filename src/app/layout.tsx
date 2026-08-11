@@ -15,6 +15,8 @@ import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { site } from "@/data/dev-content";
 
+const heroPreviewImage = `${site.url}/assets/images/hero-preview.png`;
+
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
   weight: ["400"],
@@ -106,9 +108,9 @@ export const metadata: Metadata = {
     description: site.description,
     images: [
       {
-        url: `${site.url}/assets/images/og-image.jpg`,
-        width: 1200,
-        height: 674,
+        url: heroPreviewImage,
+        width: 1920,
+        height: 992,
         alt: "Wallace Maia — Serviços Web Full Stack",
       },
     ],
@@ -119,7 +121,7 @@ export const metadata: Metadata = {
     creator: "@wallacemaia2007",
     title: site.title,
     description: site.description,
-    images: [`${site.url}/assets/images/og-image.jpg`],
+    images: [heroPreviewImage],
   },
   other: {
     "geo.region": "BR-MG",
