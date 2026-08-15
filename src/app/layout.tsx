@@ -16,6 +16,7 @@ import { Header } from "@/components/layout/header";
 import { site } from "@/data/dev-content";
 
 const heroPreviewImage = `${site.url}/assets/images/hero-preview.png`;
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
 
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
@@ -40,8 +41,7 @@ const splineSansMono = Spline_Sans_Mono({
 
 // ═══════════════════════════════════════════════════════════
 // SEO & METADATA — servicos.maiawall.com
-// GSC: para verificar no Google Search Console, adicione abaixo:
-//   verification: { google: "SEU-CODIGO-DE-VERIFICACAO" }
+// GSC: configure GOOGLE_SITE_VERIFICATION no ambiente de producao.
 // GA4: o snippet do Google Analytics fica documentado no README.md
 // ═══════════════════════════════════════════════════════════
 export const metadata: Metadata = {
@@ -56,25 +56,14 @@ export const metadata: Metadata = {
   creator: site.fullName,
   publisher: site.fullName,
   category: "Tecnologia",
-  keywords: [
-    "serviços web",
-    "empresa de tecnologia",
-    "empresa de serviços web",
-    "criação de sites",
-    "sistemas web",
-    "e-commerce",
-    "landing pages",
-    "dashboards",
-    "APIs",
-    "Angular",
-    "Java",
-    "Spring Boot",
-    "Maiawall",
-    "Maiawall serviços web",
-    "maiawall",
-    "desenvolvimento web",
-    "consultoria web",
-  ],
+  keywords: site.searchTerms,
+  ...(googleSiteVerification
+    ? {
+        verification: {
+          google: googleSiteVerification,
+        },
+      }
+    : {}),
   robots: {
     index: true,
     follow: true,
@@ -119,6 +108,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@wallacemaia2007",
+    creator: "@wallacemaia2007",
     title: site.title,
     description: site.description,
     images: [heroPreviewImage],
@@ -126,6 +117,9 @@ export const metadata: Metadata = {
   other: {
     "geo.region": "BR-MG",
     "geo.placename": "Uberlândia, Minas Gerais, Brasil",
+    "business:contact_data:country_name": "Brasil",
+    "business:contact_data:region": "Minas Gerais",
+    "business:contact_data:locality": "Uberlândia",
   },
 };
 

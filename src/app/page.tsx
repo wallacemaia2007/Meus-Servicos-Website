@@ -16,7 +16,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   "@id": `${site.url}/#organization`,
   name: site.fullName,
-  alternateName: ["Maiawall", "Maiawall Serviços Web"],
+  alternateName: ["Maiawall", "Maiawall Serviços Web", "Wallace Maia"],
   description: site.description,
   url: site.url,
   image: `${site.url}/assets/brand/logo-light.png`,
@@ -29,6 +29,7 @@ const organizationJsonLd = {
     addressRegion: "Minas Gerais",
     addressCountry: "BR",
   },
+  founder: { "@id": `${site.url}/#wallace-maia` },
   sameAs: [
     links.github,
     links.linkedin,
@@ -43,7 +44,8 @@ const organizationJsonLd = {
       itemOffered: {
         "@type": "Service",
         name: "Serviços web sob medida",
-        serviceType: "Desenvolvimento de sites, sistemas web, dashboards, e-commerce e APIs",
+        serviceType:
+          "Desenvolvimento de sites, landing pages, CRM, ERP, sistemas web, dashboards, e-commerce e APIs",
       },
     },
   ],
@@ -51,6 +53,8 @@ const organizationJsonLd = {
     "Criação de sites",
     "Landing pages",
     "Sistemas web",
+    "CRM",
+    "ERP",
     "E-commerce",
     "Dashboards",
     "APIs",
@@ -70,6 +74,36 @@ const organizationJsonLd = {
     "Node.js",
     "REST API",
   ],
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${site.url}/#wallace-maia`,
+  name: "Wallace Maia",
+  alternateName: ["Wallace Candido Maia Sousa", "wallacemaia2007"],
+  jobTitle: "Desenvolvedor Full Stack",
+  description:
+    "Wallace Maia, fundador da Maiawall, desenvolve sites, sistemas web, CRM, ERP, dashboards, e-commerces e APIs sob medida.",
+  url: links.personalPortfolio,
+  image: `${site.url}/assets/brand/logo-light.png`,
+  email: "wallacemaia2007@gmail.com",
+  telephone: "+5535910036806",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Uberlândia",
+    addressRegion: "Minas Gerais",
+    addressCountry: "BR",
+  },
+  sameAs: [
+    links.github,
+    links.linkedin,
+    links.instagram,
+    links.personalPortfolio,
+  ],
+  worksFor: { "@id": `${site.url}/#organization` },
+  owns: { "@id": `${site.url}/#organization` },
+  knowsAbout: organizationJsonLd.knowsAbout,
 };
 
 const websiteJsonLd = {
@@ -93,6 +127,35 @@ const webpageJsonLd = {
   primaryImageOfPage: HERO_PREVIEW_IMAGE,
   isPartOf: { "@id": `${site.url}/#website` },
   about: { "@id": `${site.url}/#organization` },
+};
+
+const serviceCatalogJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  "@id": `${site.url}/#servicos-web`,
+  name: "Serviços web da Maiawall",
+  url: site.url,
+  description: site.shortDescription,
+  provider: { "@id": `${site.url}/#organization` },
+  itemListElement: [
+    "Criação de sites profissionais",
+    "Landing pages de alta conversão",
+    "Desenvolvimento de CRM",
+    "Desenvolvimento de ERP",
+    "Sistemas web sob medida",
+    "Dashboards e painéis administrativos",
+    "E-commerce e lojas virtuais",
+    "APIs REST e integrações",
+    "Automação de processos web",
+  ].map((name) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name,
+      areaServed: "BR",
+      provider: { "@id": `${site.url}/#organization` },
+    },
+  })),
 };
 
 const projectsJsonLd = {
@@ -122,8 +185,13 @@ export default function HomePage() {
       <ContactSection />
       <CtaSection />
       <JsonLd id="maiawall-organization-jsonld" data={organizationJsonLd} />
+      <JsonLd id="maiawall-person-jsonld" data={personJsonLd} />
       <JsonLd id="maiawall-website-jsonld" data={websiteJsonLd} />
       <JsonLd id="maiawall-webpage-jsonld" data={webpageJsonLd} />
+      <JsonLd
+        id="maiawall-service-catalog-jsonld"
+        data={serviceCatalogJsonLd}
+      />
       <JsonLd id="maiawall-projects-jsonld" data={projectsJsonLd} />
       <a
         href={site.whatsapp}
